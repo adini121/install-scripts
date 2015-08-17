@@ -1,5 +1,5 @@
 #! /bin/bash
-
+echo "from mac"
 echo "...............................not to be used anymore............................."
 echo "running script for creating multiple tomcat instances under the home directory"
 #TomcatInstance=$1 #eg tomcat1
