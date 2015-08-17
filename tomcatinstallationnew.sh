@@ -1,4 +1,6 @@
 #! /bin/bash
+
+echo "...............................not to be used anymore............................."
 echo "running script for creating multiple tomcat instances under the home directory"
 #TomcatInstance=$1 #eg tomcat1
 user=$1 #eg adi
