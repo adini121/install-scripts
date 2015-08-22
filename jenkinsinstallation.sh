@@ -103,7 +103,7 @@ if grep -q 'HUDSON_HOME' /home/$user/tomcat/TomcatInstance$startupPort/webapps/j
 	sed -i 's|<env-entry-name>HUDSON_HOME</env-entry-name>|<env-entry-name>JENKINS_HOME</env-entry-name>|g' /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins$JenkinsVersion/WEB-INF/web.xml
 fi
 
-	sed -i 's|.*<env-entry-value>*.|<env-entry-value>/home/'$user'/jenkinsHome/jenkinsHome'$JenkinsVersion'</env-entry-value>|g' /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins$JenkinsVersion/WEB-INF/web.xml
+	sed -i 's|.*</env-entry-value>*.|<env-entry-value>/home/'$user'/jenkinsHome/jenkinsHome'$JenkinsVersion'</env-entry-value>|g' /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins$JenkinsVersion/WEB-INF/web.xml
 }
 while getopts ":u:v:s:" i; do
         case "${i}" in
@@ -121,7 +121,7 @@ if [[ $user == "" || $JenkinsVersion == "" || $startupPort == "" ]]; then
         usage
 fi
 
-export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-i386
+export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
 export PATH=$PATH:$JAVA_HOME
 
 /home/$user/tomcat/TomcatInstance$startupPort/bin/startup.sh
