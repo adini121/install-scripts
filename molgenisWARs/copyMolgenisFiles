@@ -1,0 +1,21 @@
+cp molgenis-app-1.5.0-SNAPSHOT.war /home/nisal/MolgenisWarFiles/molgenis150snapshot.war 
+
+cp molgenis-app-1.5.1-SNAPSHOT.war /home/nisal/MolgenisWarFiles/molgenis151snapshot.war
+
+cp molgenis-app-1.6.2-SNAPSHOT.war /home/nisal/MolgenisWarFiles/molgenis162snapshot.war
+
+cp molgenis-app-1.7.1-SNAPSHOT.war /home/nisal/MolgenisWarFiles/molgenis171snapshot.war
+
+cp molgenis-app-1.8.1-SNAPSHOT.war /home/nisal/MolgenisWarFiles/molgenis181snapshot.war
+
+cp molgenis-app-1.8.3-SNAPSHOT.war /home/nisal/MolgenisWarFiles/molgenis183snapshot.war
+
+cp molgenis-app-1.9.0-SNAPSHOT.war /home/nisal/MolgenisWarFiles/molgenis190snapshot.war
+
+cp molgenis-app-omx-1.2.2-SNAPSHOT.war /home/nisal/MolgenisWarFiles/molgenis122snapshot.war
+
+cp molgenis-app-omx-1.2.3-SNAPSHOT.war /home/nisal/MolgenisWarFiles/molgenis123snapshot.war
+
+cp molgenis-app-omx-1.2.4-SNAPSHOT.war /home/nisal/MolgenisWarFiles/molgenis124snapshot.war
+
+
