@@ -1,0 +1,641 @@
+Aug 25, 2015 8:04:11 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Server version:        Apache Tomcat/7.0.63
+Aug 25, 2015 8:04:11 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Server built:          Jun 30 2015 08:08:33 UTC
+Aug 25, 2015 8:04:11 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Server number:         7.0.63.0
+Aug 25, 2015 8:04:11 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: OS Name:               Linux
+Aug 25, 2015 8:04:11 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: OS Version:            3.13.0-61-generic
+Aug 25, 2015 8:04:11 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Architecture:          amd64
+Aug 25, 2015 8:04:11 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Java Home:             /usr/lib/jvm/java-7-openjdk-amd64/jre
+Aug 25, 2015 8:04:11 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: JVM Version:           1.7.0_79-b14
+Aug 25, 2015 8:04:11 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: JVM Vendor:            Oracle Corporation
+Aug 25, 2015 8:04:11 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: CATALINA_BASE:         /home/nisal/tomcat/TomcatInstance8083
+Aug 25, 2015 8:04:11 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: CATALINA_HOME:         /home/nisal/tomcat/TomcatInstance8083
+Aug 25, 2015 8:04:11 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.util.logging.config.file=/home/nisal/tomcat/TomcatInstance8083/conf/logging.properties
+Aug 25, 2015 8:04:11 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+Aug 25, 2015 8:04:11 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Dorg.apache.el.parser.SKIP_IDENTIFIER_CHECK=true
+Aug 25, 2015 8:04:11 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.endorsed.dirs=/home/nisal/tomcat/TomcatInstance8083/endorsed
+Aug 25, 2015 8:04:11 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Dcatalina.base=/home/nisal/tomcat/TomcatInstance8083
+Aug 25, 2015 8:04:11 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Dcatalina.home=/home/nisal/tomcat/TomcatInstance8083
+Aug 25, 2015 8:04:11 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.io.tmpdir=/home/nisal/tomcat/TomcatInstance8083/temp
+Aug 25, 2015 8:04:11 PM org.apache.catalina.core.AprLifecycleListener lifecycleEvent
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+Aug 25, 2015 8:04:12 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8083"]
+Aug 25, 2015 8:04:12 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8013"]
+Aug 25, 2015 8:04:12 PM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 764 ms
+Aug 25, 2015 8:04:12 PM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+Aug 25, 2015 8:04:12 PM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.63
+Aug 25, 2015 8:04:12 PM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /home/nisal/tomcat/TomcatInstance8083/webapps/encuestame151.war
+Aug 25, 2015 8:04:18 PM org.apache.catalina.core.StandardContext checkUnusualURLPattern
+INFO: Suspicious url pattern: "/setup*" in context [/encuestame151] - see sections 12.1 and 12.2 of the Servlet specification
+Aug 25, 2015 8:04:19 PM org.apache.catalina.startup.TaglibUriRule body
+INFO: TLD skipped. URI: http://java.sun.com/jstl/core_rt is already defined
+Aug 25, 2015 8:04:19 PM org.apache.catalina.startup.TaglibUriRule body
+INFO: TLD skipped. URI: http://java.sun.com/jstl/core is already defined
+Aug 25, 2015 8:04:19 PM org.apache.catalina.startup.TaglibUriRule body
+INFO: TLD skipped. URI: http://java.sun.com/jsp/jstl/core is already defined
+Aug 25, 2015 8:04:19 PM org.apache.catalina.startup.TaglibUriRule body
+INFO: TLD skipped. URI: http://java.sun.com/jstl/fmt_rt is already defined
+Aug 25, 2015 8:04:19 PM org.apache.catalina.startup.TaglibUriRule body
+INFO: TLD skipped. URI: http://java.sun.com/jstl/fmt is already defined
+Aug 25, 2015 8:04:19 PM org.apache.catalina.startup.TaglibUriRule body
+INFO: TLD skipped. URI: http://java.sun.com/jsp/jstl/fmt is already defined
+Aug 25, 2015 8:04:19 PM org.apache.catalina.startup.TaglibUriRule body
+INFO: TLD skipped. URI: http://java.sun.com/jsp/jstl/functions is already defined
+Aug 25, 2015 8:04:19 PM org.apache.catalina.startup.TaglibUriRule body
+INFO: TLD skipped. URI: http://jakarta.apache.org/taglibs/standard/permittedTaglibs is already defined
+Aug 25, 2015 8:04:19 PM org.apache.catalina.startup.TaglibUriRule body
+INFO: TLD skipped. URI: http://jakarta.apache.org/taglibs/standard/scriptfree is already defined
+Aug 25, 2015 8:04:19 PM org.apache.catalina.startup.TaglibUriRule body
+INFO: TLD skipped. URI: http://java.sun.com/jstl/sql_rt is already defined
+Aug 25, 2015 8:04:19 PM org.apache.catalina.startup.TaglibUriRule body
+INFO: TLD skipped. URI: http://java.sun.com/jstl/sql is already defined
+Aug 25, 2015 8:04:19 PM org.apache.catalina.startup.TaglibUriRule body
+INFO: TLD skipped. URI: http://java.sun.com/jsp/jstl/sql is already defined
+Aug 25, 2015 8:04:19 PM org.apache.catalina.startup.TaglibUriRule body
+INFO: TLD skipped. URI: http://java.sun.com/jstl/xml_rt is already defined
+Aug 25, 2015 8:04:19 PM org.apache.catalina.startup.TaglibUriRule body
+INFO: TLD skipped. URI: http://java.sun.com/jstl/xml is already defined
+Aug 25, 2015 8:04:19 PM org.apache.catalina.startup.TaglibUriRule body
+INFO: TLD skipped. URI: http://java.sun.com/jsp/jstl/xml is already defined
+Aug 25, 2015 8:04:19 PM org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+ENCUESTAME ::  app version :: 1.5.1
+ENCUESTAME ::  database version :: 1
+ENCUESTAME ::  build version :: 4
+ENCUESTAME ::  build time :: 2015-05-30T11:32:32.241Z
+ENCUESTAME ::  build path :: http://www.encuestame.org/build/browse/ENME-RELEASE-JOB1-4
+ENCUESTAME ::  build revision :: 563433419c7ee2046b448111bb29c49fffe670bd
+ENCUESTAME ::  build repo url :: https://github.com/encuestame/encuestame.git
+ENCUESTAME ::  build branch :: release
+Aug 25, 2015 8:04:37 PM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /home/nisal/tomcat/TomcatInstance8083/webapps/encuestame151.war has finished in 25,543 ms
+Aug 25, 2015 8:04:37 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /home/nisal/tomcat/TomcatInstance8083/webapps/ROOT
+Aug 25, 2015 8:04:37 PM org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Aug 25, 2015 8:04:37 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /home/nisal/tomcat/TomcatInstance8083/webapps/ROOT has finished in 170 ms
+Aug 25, 2015 8:04:37 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /home/nisal/tomcat/TomcatInstance8083/webapps/docs
+Aug 25, 2015 8:04:38 PM org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Aug 25, 2015 8:04:38 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /home/nisal/tomcat/TomcatInstance8083/webapps/docs has finished in 160 ms
+Aug 25, 2015 8:04:38 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /home/nisal/tomcat/TomcatInstance8083/webapps/examples
+Aug 25, 2015 8:04:38 PM org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Aug 25, 2015 8:04:38 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /home/nisal/tomcat/TomcatInstance8083/webapps/examples has finished in 301 ms
+Aug 25, 2015 8:04:38 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /home/nisal/tomcat/TomcatInstance8083/webapps/host-manager
+Aug 25, 2015 8:04:38 PM org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Aug 25, 2015 8:04:38 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /home/nisal/tomcat/TomcatInstance8083/webapps/host-manager has finished in 225 ms
+Aug 25, 2015 8:04:38 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /home/nisal/tomcat/TomcatInstance8083/webapps/manager
+Aug 25, 2015 8:04:38 PM org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Aug 25, 2015 8:04:38 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /home/nisal/tomcat/TomcatInstance8083/webapps/manager has finished in 154 ms
+Aug 25, 2015 8:04:38 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8083"]
+Aug 25, 2015 8:04:38 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8013"]
+Aug 25, 2015 8:04:38 PM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 26645 ms
+WARN : org.hibernate.util.JDBCExceptionReporter - SQL Error: -22, SQLState: S0002
+ERROR: org.hibernate.util.JDBCExceptionReporter - Table not found in statement [select this_.uid as uid391_3_, this_.lat as lat391_3_, this_.lng as lng391_3_, this_.account_uid as account19_391_3_, this_.name as name391_3_, this_.date_new as date5_391_3_, this_.groupId as groupId391_3_, this_.help_links as help6_391_3_, this_.invite_code as invite7_391_3_, this_.user_language as user8_391_3_, this_.last_ip_logged as last9_391_3_, this_.last_time_logged as last10_391_3_, this_.password as password391_3_, this_.picture_source as picture12_391_3_, this_.shared_profile as shared13_391_3_, this_.email as email391_3_, this_.userProfilePicture as userPro15_391_3_, this_.status as status391_3_, this_.username as username391_3_, this_.welcome_page as welcome18_391_3_, account2_.uid as uid385_0_, account2_.account_created_date as account2_385_0_, account2_.account_enabled as account3_385_0_, group3_.group_id as group1_386_1_, group3_.account_uid as account6_386_1_, group3_.des_info as des2_386_1_, group3_.name as name386_1_, group3_.type as type386_1_, group3_.id_state as id5_386_1_, account4_.uid as uid385_2_, account4_.account_created_date as account2_385_2_, account4_.account_enabled as account3_385_2_ from userAccount this_ left outer join account account2_ on this_.account_uid=account2_.uid left outer join groups group3_ on this_.groupId=group3_.group_id left outer join account account4_ on group3_.account_uid=account4_.uid where this_.username=?]
+Aug 25, 2015 8:04:40 PM org.apache.jasper.compiler.TldLocationsCache tldScanJar
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+WARN : org.hibernate.util.JDBCExceptionReporter - SQL Error: -22, SQLState: S0002
+ERROR: org.hibernate.util.JDBCExceptionReporter - Table not found in statement [select this_.hash_tag_id as hash1_367_0_, this_.created_updated as created2_367_0_, this_.tag as tag367_0_, this_.hits as hits367_0_, this_.size as size367_0_, this_.hashtag_updated_date as hashtag6_367_0_ from hash_tags this_ order by this_.hits desc, this_.tag asc]
+ERROR: org.springframework.scheduling.support.TaskUtils$LoggingErrorHandler - Unexpected error occurred in scheduled task.
+org.springframework.dao.InvalidDataAccessResourceUsageException: could not execute query; SQL [select this_.hash_tag_id as hash1_367_0_, this_.created_updated as created2_367_0_, this_.tag as tag367_0_, this_.hits as hits367_0_, this_.size as size367_0_, this_.hashtag_updated_date as hashtag6_367_0_ from hash_tags this_ order by this_.hits desc, this_.tag asc]; nested exception is org.hibernate.exception.SQLGrammarException: could not execute query
+	at org.springframework.orm.hibernate3.SessionFactoryUtils.convertHibernateAccessException(SessionFactoryUtils.java:642)
+	at org.springframework.orm.hibernate3.HibernateAccessor.convertHibernateAccessException(HibernateAccessor.java:414)
+	at org.springframework.orm.hibernate3.HibernateTemplate.doExecute(HibernateTemplate.java:416)
+	at org.springframework.orm.hibernate3.HibernateTemplate.executeWithNativeSession(HibernateTemplate.java:379)
+	at org.springframework.orm.hibernate3.HibernateTemplate.findByCriteria(HibernateTemplate.java:1132)
+	at org.springframework.orm.hibernate3.HibernateTemplate.findByCriteria(HibernateTemplate.java:1124)
+	at org.encuestame.persistence.dao.imp.AbstractHibernateDaoSupport.filterByMaxorStart(AbstractHibernateDaoSupport.java:134)
+	at org.encuestame.persistence.dao.imp.HashTagDao.getHashTags(HashTagDao.java:119)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:136)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:207)
+	at com.sun.proxy.$Proxy55.getHashTags(Unknown Source)
+	at org.encuestame.core.cron.CalculateHashTagSize.calculate(CalculateHashTagSize.java:81)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:65)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:81)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:178)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:292)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.hibernate.exception.SQLGrammarException: could not execute query
+	at org.hibernate.exception.SQLStateConverter.convert(SQLStateConverter.java:92)
+	at org.hibernate.exception.JDBCExceptionHelper.convert(JDBCExceptionHelper.java:66)
+	at org.hibernate.loader.Loader.doList(Loader.java:2545)
+	at org.hibernate.loader.Loader.listIgnoreQueryCache(Loader.java:2276)
+	at org.hibernate.loader.Loader.list(Loader.java:2271)
+	at org.hibernate.loader.criteria.CriteriaLoader.list(CriteriaLoader.java:119)
+	at org.hibernate.impl.SessionImpl.list(SessionImpl.java:1716)
+	at org.hibernate.impl.CriteriaImpl.list(CriteriaImpl.java:347)
+	at org.springframework.orm.hibernate3.HibernateTemplate$35.doInHibernate(HibernateTemplate.java:1144)
+	at org.springframework.orm.hibernate3.HibernateTemplate$35.doInHibernate(HibernateTemplate.java:1132)
+	at org.springframework.orm.hibernate3.HibernateTemplate.doExecute(HibernateTemplate.java:411)
+	... 31 more
+Caused by: java.sql.SQLException: Table not found in statement [select this_.hash_tag_id as hash1_367_0_, this_.created_updated as created2_367_0_, this_.tag as tag367_0_, this_.hits as hits367_0_, this_.size as size367_0_, this_.hashtag_updated_date as hashtag6_367_0_ from hash_tags this_ order by this_.hits desc, this_.tag asc]
+	at org.hsqldb.jdbc.Util.throwError(Unknown Source)
+	at org.hsqldb.jdbc.jdbcPreparedStatement.<init>(Unknown Source)
+	at org.hsqldb.jdbc.jdbcConnection.prepareStatement(Unknown Source)
+	at org.hibernate.jdbc.AbstractBatcher.getPreparedStatement(AbstractBatcher.java:534)
+	at org.hibernate.jdbc.AbstractBatcher.getPreparedStatement(AbstractBatcher.java:452)
+	at org.hibernate.jdbc.AbstractBatcher.prepareQueryStatement(AbstractBatcher.java:161)
+	at org.hibernate.loader.Loader.prepareQueryStatement(Loader.java:1700)
+	at org.hibernate.loader.Loader.doQuery(Loader.java:801)
+	at org.hibernate.loader.Loader.doQueryAndInitializeNonLazyCollections(Loader.java:274)
+	at org.hibernate.loader.Loader.doList(Loader.java:2542)
+	... 39 more
+WARN : org.hibernate.util.JDBCExceptionReporter - SQL Error: -22, SQLState: S0002
+ERROR: org.hibernate.util.JDBCExceptionReporter - Table not found in statement [select this_.uid as uid391_3_, this_.lat as lat391_3_, this_.lng as lng391_3_, this_.account_uid as account19_391_3_, this_.name as name391_3_, this_.date_new as date5_391_3_, this_.groupId as groupId391_3_, this_.help_links as help6_391_3_, this_.invite_code as invite7_391_3_, this_.user_language as user8_391_3_, this_.last_ip_logged as last9_391_3_, this_.last_time_logged as last10_391_3_, this_.password as password391_3_, this_.picture_source as picture12_391_3_, this_.shared_profile as shared13_391_3_, this_.email as email391_3_, this_.userProfilePicture as userPro15_391_3_, this_.status as status391_3_, this_.username as username391_3_, this_.welcome_page as welcome18_391_3_, account2_.uid as uid385_0_, account2_.account_created_date as account2_385_0_, account2_.account_enabled as account3_385_0_, group3_.group_id as group1_386_1_, group3_.account_uid as account6_386_1_, group3_.des_info as des2_386_1_, group3_.name as name386_1_, group3_.type as type386_1_, group3_.id_state as id5_386_1_, account4_.uid as uid385_2_, account4_.account_created_date as account2_385_2_, account4_.account_enabled as account3_385_2_ from userAccount this_ left outer join account account2_ on this_.account_uid=account2_.uid left outer join groups group3_ on this_.groupId=group3_.group_id left outer join account account4_ on group3_.account_uid=account4_.uid where this_.username=?]
+WARN : org.hibernate.util.JDBCExceptionReporter - SQL Error: -22, SQLState: S0002
+ERROR: org.hibernate.util.JDBCExceptionReporter - Table not found in statement [select min(this_.scheduled_date) as y0_ from scheduled this_]
+ERROR: org.springframework.scheduling.support.TaskUtils$LoggingErrorHandler - Unexpected error occurred in scheduled task.
+org.springframework.dao.InvalidDataAccessResourceUsageException: could not execute query; SQL [select min(this_.scheduled_date) as y0_ from scheduled this_]; nested exception is org.hibernate.exception.SQLGrammarException: could not execute query
+	at org.springframework.orm.hibernate3.SessionFactoryUtils.convertHibernateAccessException(SessionFactoryUtils.java:642)
+	at org.springframework.orm.hibernate3.HibernateAccessor.convertHibernateAccessException(HibernateAccessor.java:414)
+	at org.springframework.orm.hibernate3.HibernateTemplate.doExecute(HibernateTemplate.java:416)
+	at org.springframework.orm.hibernate3.HibernateTemplate.executeWithNativeSession(HibernateTemplate.java:379)
+	at org.springframework.orm.hibernate3.HibernateTemplate.findByCriteria(HibernateTemplate.java:1132)
+	at org.springframework.orm.hibernate3.HibernateTemplate.findByCriteria(HibernateTemplate.java:1124)
+	at org.encuestame.persistence.dao.imp.ScheduleDao.retrieveMinimumScheduledDate(ScheduleDao.java:49)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:136)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:207)
+	at com.sun.proxy.$Proxy75.retrieveMinimumScheduledDate(Unknown Source)
+	at org.encuestame.business.cron.PublishScheduled.publish(PublishScheduled.java:62)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:65)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:81)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:178)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:292)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.hibernate.exception.SQLGrammarException: could not execute query
+	at org.hibernate.exception.SQLStateConverter.convert(SQLStateConverter.java:92)
+	at org.hibernate.exception.JDBCExceptionHelper.convert(JDBCExceptionHelper.java:66)
+	at org.hibernate.loader.Loader.doList(Loader.java:2545)
+	at org.hibernate.loader.Loader.listIgnoreQueryCache(Loader.java:2276)
+	at org.hibernate.loader.Loader.list(Loader.java:2271)
+	at org.hibernate.loader.criteria.CriteriaLoader.list(CriteriaLoader.java:119)
+	at org.hibernate.impl.SessionImpl.list(SessionImpl.java:1716)
+	at org.hibernate.impl.CriteriaImpl.list(CriteriaImpl.java:347)
+	at org.springframework.orm.hibernate3.HibernateTemplate$35.doInHibernate(HibernateTemplate.java:1144)
+	at org.springframework.orm.hibernate3.HibernateTemplate$35.doInHibernate(HibernateTemplate.java:1132)
+	at org.springframework.orm.hibernate3.HibernateTemplate.doExecute(HibernateTemplate.java:411)
+	... 30 more
+Caused by: java.sql.SQLException: Table not found in statement [select min(this_.scheduled_date) as y0_ from scheduled this_]
+	at org.hsqldb.jdbc.Util.throwError(Unknown Source)
+	at org.hsqldb.jdbc.jdbcPreparedStatement.<init>(Unknown Source)
+	at org.hsqldb.jdbc.jdbcConnection.prepareStatement(Unknown Source)
+	at org.hibernate.jdbc.AbstractBatcher.getPreparedStatement(AbstractBatcher.java:534)
+	at org.hibernate.jdbc.AbstractBatcher.getPreparedStatement(AbstractBatcher.java:452)
+	at org.hibernate.jdbc.AbstractBatcher.prepareQueryStatement(AbstractBatcher.java:161)
+	at org.hibernate.loader.Loader.prepareQueryStatement(Loader.java:1700)
+	at org.hibernate.loader.Loader.doQuery(Loader.java:801)
+	at org.hibernate.loader.Loader.doQueryAndInitializeNonLazyCollections(Loader.java:274)
+	at org.hibernate.loader.Loader.doList(Loader.java:2542)
+	... 38 more
+WARN : org.hibernate.util.JDBCExceptionReporter - SQL Error: -22, SQLState: S0002
+ERROR: org.hibernate.util.JDBCExceptionReporter - Table not found in statement [select min(this_.scheduled_date) as y0_ from scheduled this_]
+ERROR: org.springframework.scheduling.support.TaskUtils$LoggingErrorHandler - Unexpected error occurred in scheduled task.
+org.springframework.dao.InvalidDataAccessResourceUsageException: could not execute query; SQL [select min(this_.scheduled_date) as y0_ from scheduled this_]; nested exception is org.hibernate.exception.SQLGrammarException: could not execute query
+	at org.springframework.orm.hibernate3.SessionFactoryUtils.convertHibernateAccessException(SessionFactoryUtils.java:642)
+	at org.springframework.orm.hibernate3.HibernateAccessor.convertHibernateAccessException(HibernateAccessor.java:414)
+	at org.springframework.orm.hibernate3.HibernateTemplate.doExecute(HibernateTemplate.java:416)
+	at org.springframework.orm.hibernate3.HibernateTemplate.executeWithNativeSession(HibernateTemplate.java:379)
+	at org.springframework.orm.hibernate3.HibernateTemplate.findByCriteria(HibernateTemplate.java:1132)
+	at org.springframework.orm.hibernate3.HibernateTemplate.findByCriteria(HibernateTemplate.java:1124)
+	at org.encuestame.persistence.dao.imp.ScheduleDao.retrieveMinimumScheduledDate(ScheduleDao.java:49)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:136)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:207)
+	at com.sun.proxy.$Proxy75.retrieveMinimumScheduledDate(Unknown Source)
+	at org.encuestame.business.cron.PublishScheduled.publish(PublishScheduled.java:62)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:65)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:81)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:178)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:292)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.hibernate.exception.SQLGrammarException: could not execute query
+	at org.hibernate.exception.SQLStateConverter.convert(SQLStateConverter.java:92)
+	at org.hibernate.exception.JDBCExceptionHelper.convert(JDBCExceptionHelper.java:66)
+	at org.hibernate.loader.Loader.doList(Loader.java:2545)
+	at org.hibernate.loader.Loader.listIgnoreQueryCache(Loader.java:2276)
+	at org.hibernate.loader.Loader.list(Loader.java:2271)
+	at org.hibernate.loader.criteria.CriteriaLoader.list(CriteriaLoader.java:119)
+	at org.hibernate.impl.SessionImpl.list(SessionImpl.java:1716)
+	at org.hibernate.impl.CriteriaImpl.list(CriteriaImpl.java:347)
+	at org.springframework.orm.hibernate3.HibernateTemplate$35.doInHibernate(HibernateTemplate.java:1144)
+	at org.springframework.orm.hibernate3.HibernateTemplate$35.doInHibernate(HibernateTemplate.java:1132)
+	at org.springframework.orm.hibernate3.HibernateTemplate.doExecute(HibernateTemplate.java:411)
+	... 30 more
+Caused by: java.sql.SQLException: Table not found in statement [select min(this_.scheduled_date) as y0_ from scheduled this_]
+	at org.hsqldb.jdbc.Util.throwError(Unknown Source)
+	at org.hsqldb.jdbc.jdbcPreparedStatement.<init>(Unknown Source)
+	at org.hsqldb.jdbc.jdbcConnection.prepareStatement(Unknown Source)
+	at org.hibernate.jdbc.AbstractBatcher.getPreparedStatement(AbstractBatcher.java:534)
+	at org.hibernate.jdbc.AbstractBatcher.getPreparedStatement(AbstractBatcher.java:452)
+	at org.hibernate.jdbc.AbstractBatcher.prepareQueryStatement(AbstractBatcher.java:161)
+	at org.hibernate.loader.Loader.prepareQueryStatement(Loader.java:1700)
+	at org.hibernate.loader.Loader.doQuery(Loader.java:801)
+	at org.hibernate.loader.Loader.doQueryAndInitializeNonLazyCollections(Loader.java:274)
+	at org.hibernate.loader.Loader.doList(Loader.java:2542)
+	... 38 more
+WARN : org.hibernate.util.JDBCExceptionReporter - SQL Error: -22, SQLState: S0002
+ERROR: org.hibernate.util.JDBCExceptionReporter - Table not found in statement [select this_.uid as uid391_3_, this_.lat as lat391_3_, this_.lng as lng391_3_, this_.account_uid as account19_391_3_, this_.name as name391_3_, this_.date_new as date5_391_3_, this_.groupId as groupId391_3_, this_.help_links as help6_391_3_, this_.invite_code as invite7_391_3_, this_.user_language as user8_391_3_, this_.last_ip_logged as last9_391_3_, this_.last_time_logged as last10_391_3_, this_.password as password391_3_, this_.picture_source as picture12_391_3_, this_.shared_profile as shared13_391_3_, this_.email as email391_3_, this_.userProfilePicture as userPro15_391_3_, this_.status as status391_3_, this_.username as username391_3_, this_.welcome_page as welcome18_391_3_, account2_.uid as uid385_0_, account2_.account_created_date as account2_385_0_, account2_.account_enabled as account3_385_0_, group3_.group_id as group1_386_1_, group3_.account_uid as account6_386_1_, group3_.des_info as des2_386_1_, group3_.name as name386_1_, group3_.type as type386_1_, group3_.id_state as id5_386_1_, account4_.uid as uid385_2_, account4_.account_created_date as account2_385_2_, account4_.account_enabled as account3_385_2_ from userAccount this_ left outer join account account2_ on this_.account_uid=account2_.uid left outer join groups group3_ on this_.groupId=group3_.group_id left outer join account account4_ on group3_.account_uid=account4_.uid where this_.username=?]
+WARN : org.hibernate.util.JDBCExceptionReporter - SQL Error: -22, SQLState: S0002
+ERROR: org.hibernate.util.JDBCExceptionReporter - Table not found in statement [select this_.uid as uid391_3_, this_.lat as lat391_3_, this_.lng as lng391_3_, this_.account_uid as account19_391_3_, this_.name as name391_3_, this_.date_new as date5_391_3_, this_.groupId as groupId391_3_, this_.help_links as help6_391_3_, this_.invite_code as invite7_391_3_, this_.user_language as user8_391_3_, this_.last_ip_logged as last9_391_3_, this_.last_time_logged as last10_391_3_, this_.password as password391_3_, this_.picture_source as picture12_391_3_, this_.shared_profile as shared13_391_3_, this_.email as email391_3_, this_.userProfilePicture as userPro15_391_3_, this_.status as status391_3_, this_.username as username391_3_, this_.welcome_page as welcome18_391_3_, account2_.uid as uid385_0_, account2_.account_created_date as account2_385_0_, account2_.account_enabled as account3_385_0_, group3_.group_id as group1_386_1_, group3_.account_uid as account6_386_1_, group3_.des_info as des2_386_1_, group3_.name as name386_1_, group3_.type as type386_1_, group3_.id_state as id5_386_1_, account4_.uid as uid385_2_, account4_.account_created_date as account2_385_2_, account4_.account_enabled as account3_385_2_ from userAccount this_ left outer join account account2_ on this_.account_uid=account2_.uid left outer join groups group3_ on this_.groupId=group3_.group_id left outer join account account4_ on group3_.account_uid=account4_.uid where this_.username=?]
+WARN : org.hibernate.util.JDBCExceptionReporter - SQL Error: -22, SQLState: S0002
+ERROR: org.hibernate.util.JDBCExceptionReporter - Table not found in statement [select this_.uid as uid391_3_, this_.lat as lat391_3_, this_.lng as lng391_3_, this_.account_uid as account19_391_3_, this_.name as name391_3_, this_.date_new as date5_391_3_, this_.groupId as groupId391_3_, this_.help_links as help6_391_3_, this_.invite_code as invite7_391_3_, this_.user_language as user8_391_3_, this_.last_ip_logged as last9_391_3_, this_.last_time_logged as last10_391_3_, this_.password as password391_3_, this_.picture_source as picture12_391_3_, this_.shared_profile as shared13_391_3_, this_.email as email391_3_, this_.userProfilePicture as userPro15_391_3_, this_.status as status391_3_, this_.username as username391_3_, this_.welcome_page as welcome18_391_3_, account2_.uid as uid385_0_, account2_.account_created_date as account2_385_0_, account2_.account_enabled as account3_385_0_, group3_.group_id as group1_386_1_, group3_.account_uid as account6_386_1_, group3_.des_info as des2_386_1_, group3_.name as name386_1_, group3_.type as type386_1_, group3_.id_state as id5_386_1_, account4_.uid as uid385_2_, account4_.account_created_date as account2_385_2_, account4_.account_enabled as account3_385_2_ from userAccount this_ left outer join account account2_ on this_.account_uid=account2_.uid left outer join groups group3_ on this_.groupId=group3_.group_id left outer join account account4_ on group3_.account_uid=account4_.uid where this_.username=?]
+WARN : org.hibernate.util.JDBCExceptionReporter - SQL Error: -22, SQLState: S0002
+ERROR: org.hibernate.util.JDBCExceptionReporter - Table not found in statement [select this_.hash_tag_id as hash1_367_0_, this_.created_updated as created2_367_0_, this_.tag as tag367_0_, this_.hits as hits367_0_, this_.size as size367_0_, this_.hashtag_updated_date as hashtag6_367_0_ from hash_tags this_ order by this_.hits desc, this_.tag asc]
+ERROR: org.springframework.scheduling.support.TaskUtils$LoggingErrorHandler - Unexpected error occurred in scheduled task.
+org.springframework.dao.InvalidDataAccessResourceUsageException: could not execute query; SQL [select this_.hash_tag_id as hash1_367_0_, this_.created_updated as created2_367_0_, this_.tag as tag367_0_, this_.hits as hits367_0_, this_.size as size367_0_, this_.hashtag_updated_date as hashtag6_367_0_ from hash_tags this_ order by this_.hits desc, this_.tag asc]; nested exception is org.hibernate.exception.SQLGrammarException: could not execute query
+	at org.springframework.orm.hibernate3.SessionFactoryUtils.convertHibernateAccessException(SessionFactoryUtils.java:642)
+	at org.springframework.orm.hibernate3.HibernateAccessor.convertHibernateAccessException(HibernateAccessor.java:414)
+	at org.springframework.orm.hibernate3.HibernateTemplate.doExecute(HibernateTemplate.java:416)
+	at org.springframework.orm.hibernate3.HibernateTemplate.executeWithNativeSession(HibernateTemplate.java:379)
+	at org.springframework.orm.hibernate3.HibernateTemplate.findByCriteria(HibernateTemplate.java:1132)
+	at org.springframework.orm.hibernate3.HibernateTemplate.findByCriteria(HibernateTemplate.java:1124)
+	at org.encuestame.persistence.dao.imp.AbstractHibernateDaoSupport.filterByMaxorStart(AbstractHibernateDaoSupport.java:134)
+	at org.encuestame.persistence.dao.imp.HashTagDao.getHashTags(HashTagDao.java:119)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:136)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:207)
+	at com.sun.proxy.$Proxy55.getHashTags(Unknown Source)
+	at org.encuestame.core.cron.CalculateHashTagSize.calculate(CalculateHashTagSize.java:81)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:65)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:81)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:178)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:292)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.hibernate.exception.SQLGrammarException: could not execute query
+	at org.hibernate.exception.SQLStateConverter.convert(SQLStateConverter.java:92)
+	at org.hibernate.exception.JDBCExceptionHelper.convert(JDBCExceptionHelper.java:66)
+	at org.hibernate.loader.Loader.doList(Loader.java:2545)
+	at org.hibernate.loader.Loader.listIgnoreQueryCache(Loader.java:2276)
+	at org.hibernate.loader.Loader.list(Loader.java:2271)
+	at org.hibernate.loader.criteria.CriteriaLoader.list(CriteriaLoader.java:119)
+	at org.hibernate.impl.SessionImpl.list(SessionImpl.java:1716)
+	at org.hibernate.impl.CriteriaImpl.list(CriteriaImpl.java:347)
+	at org.springframework.orm.hibernate3.HibernateTemplate$35.doInHibernate(HibernateTemplate.java:1144)
+	at org.springframework.orm.hibernate3.HibernateTemplate$35.doInHibernate(HibernateTemplate.java:1132)
+	at org.springframework.orm.hibernate3.HibernateTemplate.doExecute(HibernateTemplate.java:411)
+	... 31 more
+Caused by: java.sql.SQLException: Table not found in statement [select this_.hash_tag_id as hash1_367_0_, this_.created_updated as created2_367_0_, this_.tag as tag367_0_, this_.hits as hits367_0_, this_.size as size367_0_, this_.hashtag_updated_date as hashtag6_367_0_ from hash_tags this_ order by this_.hits desc, this_.tag asc]
+	at org.hsqldb.jdbc.Util.throwError(Unknown Source)
+	at org.hsqldb.jdbc.jdbcPreparedStatement.<init>(Unknown Source)
+	at org.hsqldb.jdbc.jdbcConnection.prepareStatement(Unknown Source)
+	at org.hibernate.jdbc.AbstractBatcher.getPreparedStatement(AbstractBatcher.java:534)
+	at org.hibernate.jdbc.AbstractBatcher.getPreparedStatement(AbstractBatcher.java:452)
+	at org.hibernate.jdbc.AbstractBatcher.prepareQueryStatement(AbstractBatcher.java:161)
+	at org.hibernate.loader.Loader.prepareQueryStatement(Loader.java:1700)
+	at org.hibernate.loader.Loader.doQuery(Loader.java:801)
+	at org.hibernate.loader.Loader.doQueryAndInitializeNonLazyCollections(Loader.java:274)
+	at org.hibernate.loader.Loader.doList(Loader.java:2542)
+	... 39 more
+WARN : org.hibernate.util.JDBCExceptionReporter - SQL Error: -22, SQLState: S0002
+ERROR: org.hibernate.util.JDBCExceptionReporter - Table not found in statement [select min(this_.scheduled_date) as y0_ from scheduled this_]
+ERROR: org.springframework.scheduling.support.TaskUtils$LoggingErrorHandler - Unexpected error occurred in scheduled task.
+org.springframework.dao.InvalidDataAccessResourceUsageException: could not execute query; SQL [select min(this_.scheduled_date) as y0_ from scheduled this_]; nested exception is org.hibernate.exception.SQLGrammarException: could not execute query
+	at org.springframework.orm.hibernate3.SessionFactoryUtils.convertHibernateAccessException(SessionFactoryUtils.java:642)
+	at org.springframework.orm.hibernate3.HibernateAccessor.convertHibernateAccessException(HibernateAccessor.java:414)
+	at org.springframework.orm.hibernate3.HibernateTemplate.doExecute(HibernateTemplate.java:416)
+	at org.springframework.orm.hibernate3.HibernateTemplate.executeWithNativeSession(HibernateTemplate.java:379)
+	at org.springframework.orm.hibernate3.HibernateTemplate.findByCriteria(HibernateTemplate.java:1132)
+	at org.springframework.orm.hibernate3.HibernateTemplate.findByCriteria(HibernateTemplate.java:1124)
+	at org.encuestame.persistence.dao.imp.ScheduleDao.retrieveMinimumScheduledDate(ScheduleDao.java:49)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:136)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:207)
+	at com.sun.proxy.$Proxy75.retrieveMinimumScheduledDate(Unknown Source)
+	at org.encuestame.business.cron.PublishScheduled.publish(PublishScheduled.java:62)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:65)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:81)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:178)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:292)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.hibernate.exception.SQLGrammarException: could not execute query
+	at org.hibernate.exception.SQLStateConverter.convert(SQLStateConverter.java:92)
+	at org.hibernate.exception.JDBCExceptionHelper.convert(JDBCExceptionHelper.java:66)
+	at org.hibernate.loader.Loader.doList(Loader.java:2545)
+	at org.hibernate.loader.Loader.listIgnoreQueryCache(Loader.java:2276)
+	at org.hibernate.loader.Loader.list(Loader.java:2271)
+	at org.hibernate.loader.criteria.CriteriaLoader.list(CriteriaLoader.java:119)
+	at org.hibernate.impl.SessionImpl.list(SessionImpl.java:1716)
+	at org.hibernate.impl.CriteriaImpl.list(CriteriaImpl.java:347)
+	at org.springframework.orm.hibernate3.HibernateTemplate$35.doInHibernate(HibernateTemplate.java:1144)
+	at org.springframework.orm.hibernate3.HibernateTemplate$35.doInHibernate(HibernateTemplate.java:1132)
+	at org.springframework.orm.hibernate3.HibernateTemplate.doExecute(HibernateTemplate.java:411)
+	... 30 more
+Caused by: java.sql.SQLException: Table not found in statement [select min(this_.scheduled_date) as y0_ from scheduled this_]
+	at org.hsqldb.jdbc.Util.throwError(Unknown Source)
+	at org.hsqldb.jdbc.jdbcPreparedStatement.<init>(Unknown Source)
+	at org.hsqldb.jdbc.jdbcConnection.prepareStatement(Unknown Source)
+	at org.hibernate.jdbc.AbstractBatcher.getPreparedStatement(AbstractBatcher.java:534)
+	at org.hibernate.jdbc.AbstractBatcher.getPreparedStatement(AbstractBatcher.java:452)
+	at org.hibernate.jdbc.AbstractBatcher.prepareQueryStatement(AbstractBatcher.java:161)
+	at org.hibernate.loader.Loader.prepareQueryStatement(Loader.java:1700)
+	at org.hibernate.loader.Loader.doQuery(Loader.java:801)
+	at org.hibernate.loader.Loader.doQueryAndInitializeNonLazyCollections(Loader.java:274)
+	at org.hibernate.loader.Loader.doList(Loader.java:2542)
+	... 38 more
+WARN : org.hibernate.util.JDBCExceptionReporter - SQL Error: -22, SQLState: S0002
+ERROR: org.hibernate.util.JDBCExceptionReporter - Table not found in statement [select min(this_.scheduled_date) as y0_ from scheduled this_]
+ERROR: org.springframework.scheduling.support.TaskUtils$LoggingErrorHandler - Unexpected error occurred in scheduled task.
+org.springframework.dao.InvalidDataAccessResourceUsageException: could not execute query; SQL [select min(this_.scheduled_date) as y0_ from scheduled this_]; nested exception is org.hibernate.exception.SQLGrammarException: could not execute query
+	at org.springframework.orm.hibernate3.SessionFactoryUtils.convertHibernateAccessException(SessionFactoryUtils.java:642)
+	at org.springframework.orm.hibernate3.HibernateAccessor.convertHibernateAccessException(HibernateAccessor.java:414)
+	at org.springframework.orm.hibernate3.HibernateTemplate.doExecute(HibernateTemplate.java:416)
+	at org.springframework.orm.hibernate3.HibernateTemplate.executeWithNativeSession(HibernateTemplate.java:379)
+	at org.springframework.orm.hibernate3.HibernateTemplate.findByCriteria(HibernateTemplate.java:1132)
+	at org.springframework.orm.hibernate3.HibernateTemplate.findByCriteria(HibernateTemplate.java:1124)
+	at org.encuestame.persistence.dao.imp.ScheduleDao.retrieveMinimumScheduledDate(ScheduleDao.java:49)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:136)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:207)
+	at com.sun.proxy.$Proxy75.retrieveMinimumScheduledDate(Unknown Source)
+	at org.encuestame.business.cron.PublishScheduled.publish(PublishScheduled.java:62)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:65)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:81)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:178)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:292)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.hibernate.exception.SQLGrammarException: could not execute query
+	at org.hibernate.exception.SQLStateConverter.convert(SQLStateConverter.java:92)
+	at org.hibernate.exception.JDBCExceptionHelper.convert(JDBCExceptionHelper.java:66)
+	at org.hibernate.loader.Loader.doList(Loader.java:2545)
+	at org.hibernate.loader.Loader.listIgnoreQueryCache(Loader.java:2276)
+	at org.hibernate.loader.Loader.list(Loader.java:2271)
+	at org.hibernate.loader.criteria.CriteriaLoader.list(CriteriaLoader.java:119)
+	at org.hibernate.impl.SessionImpl.list(SessionImpl.java:1716)
+	at org.hibernate.impl.CriteriaImpl.list(CriteriaImpl.java:347)
+	at org.springframework.orm.hibernate3.HibernateTemplate$35.doInHibernate(HibernateTemplate.java:1144)
+	at org.springframework.orm.hibernate3.HibernateTemplate$35.doInHibernate(HibernateTemplate.java:1132)
+	at org.springframework.orm.hibernate3.HibernateTemplate.doExecute(HibernateTemplate.java:411)
+	... 30 more
+Caused by: java.sql.SQLException: Table not found in statement [select min(this_.scheduled_date) as y0_ from scheduled this_]
+	at org.hsqldb.jdbc.Util.throwError(Unknown Source)
+	at org.hsqldb.jdbc.jdbcPreparedStatement.<init>(Unknown Source)
+	at org.hsqldb.jdbc.jdbcConnection.prepareStatement(Unknown Source)
+	at org.hibernate.jdbc.AbstractBatcher.getPreparedStatement(AbstractBatcher.java:534)
+	at org.hibernate.jdbc.AbstractBatcher.getPreparedStatement(AbstractBatcher.java:452)
+	at org.hibernate.jdbc.AbstractBatcher.prepareQueryStatement(AbstractBatcher.java:161)
+	at org.hibernate.loader.Loader.prepareQueryStatement(Loader.java:1700)
+	at org.hibernate.loader.Loader.doQuery(Loader.java:801)
+	at org.hibernate.loader.Loader.doQueryAndInitializeNonLazyCollections(Loader.java:274)
+	at org.hibernate.loader.Loader.doList(Loader.java:2542)
+	... 38 more
+WARN : org.hibernate.util.JDBCExceptionReporter - SQL Error: -22, SQLState: S0002
+ERROR: org.hibernate.util.JDBCExceptionReporter - Table not found in statement [select this_.hash_tag_id as hash1_367_0_, this_.created_updated as created2_367_0_, this_.tag as tag367_0_, this_.hits as hits367_0_, this_.size as size367_0_, this_.hashtag_updated_date as hashtag6_367_0_ from hash_tags this_ order by this_.hits desc, this_.tag asc]
+ERROR: org.springframework.scheduling.support.TaskUtils$LoggingErrorHandler - Unexpected error occurred in scheduled task.
+org.springframework.dao.InvalidDataAccessResourceUsageException: could not execute query; SQL [select this_.hash_tag_id as hash1_367_0_, this_.created_updated as created2_367_0_, this_.tag as tag367_0_, this_.hits as hits367_0_, this_.size as size367_0_, this_.hashtag_updated_date as hashtag6_367_0_ from hash_tags this_ order by this_.hits desc, this_.tag asc]; nested exception is org.hibernate.exception.SQLGrammarException: could not execute query
+	at org.springframework.orm.hibernate3.SessionFactoryUtils.convertHibernateAccessException(SessionFactoryUtils.java:642)
+	at org.springframework.orm.hibernate3.HibernateAccessor.convertHibernateAccessException(HibernateAccessor.java:414)
+	at org.springframework.orm.hibernate3.HibernateTemplate.doExecute(HibernateTemplate.java:416)
+	at org.springframework.orm.hibernate3.HibernateTemplate.executeWithNativeSession(HibernateTemplate.java:379)
+	at org.springframework.orm.hibernate3.HibernateTemplate.findByCriteria(HibernateTemplate.java:1132)
+	at org.springframework.orm.hibernate3.HibernateTemplate.findByCriteria(HibernateTemplate.java:1124)
+	at org.encuestame.persistence.dao.imp.AbstractHibernateDaoSupport.filterByMaxorStart(AbstractHibernateDaoSupport.java:134)
+	at org.encuestame.persistence.dao.imp.HashTagDao.getHashTags(HashTagDao.java:119)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:136)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:207)
+	at com.sun.proxy.$Proxy55.getHashTags(Unknown Source)
+	at org.encuestame.core.cron.CalculateHashTagSize.calculate(CalculateHashTagSize.java:81)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:65)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:81)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:178)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:292)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.hibernate.exception.SQLGrammarException: could not execute query
+	at org.hibernate.exception.SQLStateConverter.convert(SQLStateConverter.java:92)
+	at org.hibernate.exception.JDBCExceptionHelper.convert(JDBCExceptionHelper.java:66)
+	at org.hibernate.loader.Loader.doList(Loader.java:2545)
+	at org.hibernate.loader.Loader.listIgnoreQueryCache(Loader.java:2276)
+	at org.hibernate.loader.Loader.list(Loader.java:2271)
+	at org.hibernate.loader.criteria.CriteriaLoader.list(CriteriaLoader.java:119)
+	at org.hibernate.impl.SessionImpl.list(SessionImpl.java:1716)
+	at org.hibernate.impl.CriteriaImpl.list(CriteriaImpl.java:347)
+	at org.springframework.orm.hibernate3.HibernateTemplate$35.doInHibernate(HibernateTemplate.java:1144)
+	at org.springframework.orm.hibernate3.HibernateTemplate$35.doInHibernate(HibernateTemplate.java:1132)
+	at org.springframework.orm.hibernate3.HibernateTemplate.doExecute(HibernateTemplate.java:411)
+	... 31 more
+Caused by: java.sql.SQLException: Table not found in statement [select this_.hash_tag_id as hash1_367_0_, this_.created_updated as created2_367_0_, this_.tag as tag367_0_, this_.hits as hits367_0_, this_.size as size367_0_, this_.hashtag_updated_date as hashtag6_367_0_ from hash_tags this_ order by this_.hits desc, this_.tag asc]
+	at org.hsqldb.jdbc.Util.throwError(Unknown Source)
+	at org.hsqldb.jdbc.jdbcPreparedStatement.<init>(Unknown Source)
+	at org.hsqldb.jdbc.jdbcConnection.prepareStatement(Unknown Source)
+	at org.hibernate.jdbc.AbstractBatcher.getPreparedStatement(AbstractBatcher.java:534)
+	at org.hibernate.jdbc.AbstractBatcher.getPreparedStatement(AbstractBatcher.java:452)
+	at org.hibernate.jdbc.AbstractBatcher.prepareQueryStatement(AbstractBatcher.java:161)
+	at org.hibernate.loader.Loader.prepareQueryStatement(Loader.java:1700)
+	at org.hibernate.loader.Loader.doQuery(Loader.java:801)
+	at org.hibernate.loader.Loader.doQueryAndInitializeNonLazyCollections(Loader.java:274)
+	at org.hibernate.loader.Loader.doList(Loader.java:2542)
+	... 39 more
+WARN : org.hibernate.util.JDBCExceptionReporter - SQL Error: -22, SQLState: S0002
+ERROR: org.hibernate.util.JDBCExceptionReporter - Table not found in statement [select min(this_.scheduled_date) as y0_ from scheduled this_]
+ERROR: org.springframework.scheduling.support.TaskUtils$LoggingErrorHandler - Unexpected error occurred in scheduled task.
+org.springframework.dao.InvalidDataAccessResourceUsageException: could not execute query; SQL [select min(this_.scheduled_date) as y0_ from scheduled this_]; nested exception is org.hibernate.exception.SQLGrammarException: could not execute query
+	at org.springframework.orm.hibernate3.SessionFactoryUtils.convertHibernateAccessException(SessionFactoryUtils.java:642)
+	at org.springframework.orm.hibernate3.HibernateAccessor.convertHibernateAccessException(HibernateAccessor.java:414)
+	at org.springframework.orm.hibernate3.HibernateTemplate.doExecute(HibernateTemplate.java:416)
+	at org.springframework.orm.hibernate3.HibernateTemplate.executeWithNativeSession(HibernateTemplate.java:379)
+	at org.springframework.orm.hibernate3.HibernateTemplate.findByCriteria(HibernateTemplate.java:1132)
+	at org.springframework.orm.hibernate3.HibernateTemplate.findByCriteria(HibernateTemplate.java:1124)
+	at org.encuestame.persistence.dao.imp.ScheduleDao.retrieveMinimumScheduledDate(ScheduleDao.java:49)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:136)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:207)
+	at com.sun.proxy.$Proxy75.retrieveMinimumScheduledDate(Unknown Source)
+	at org.encuestame.business.cron.PublishScheduled.publish(PublishScheduled.java:62)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:65)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:81)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:178)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:292)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.hibernate.exception.SQLGrammarException: could not execute query
+	at org.hibernate.exception.SQLStateConverter.convert(SQLStateConverter.java:92)
+	at org.hibernate.exception.JDBCExceptionHelper.convert(JDBCExceptionHelper.java:66)
+	at org.hibernate.loader.Loader.doList(Loader.java:2545)
+	at org.hibernate.loader.Loader.listIgnoreQueryCache(Loader.java:2276)
+	at org.hibernate.loader.Loader.list(Loader.java:2271)
+	at org.hibernate.loader.criteria.CriteriaLoader.list(CriteriaLoader.java:119)
+	at org.hibernate.impl.SessionImpl.list(SessionImpl.java:1716)
+	at org.hibernate.impl.CriteriaImpl.list(CriteriaImpl.java:347)
+	at org.springframework.orm.hibernate3.HibernateTemplate$35.doInHibernate(HibernateTemplate.java:1144)
+	at org.springframework.orm.hibernate3.HibernateTemplate$35.doInHibernate(HibernateTemplate.java:1132)
+	at org.springframework.orm.hibernate3.HibernateTemplate.doExecute(HibernateTemplate.java:411)
+	... 30 more
+Caused by: java.sql.SQLException: Table not found in statement [select min(this_.scheduled_date) as y0_ from scheduled this_]
+	at org.hsqldb.jdbc.Util.throwError(Unknown Source)
+	at org.hsqldb.jdbc.jdbcPreparedStatement.<init>(Unknown Source)
+	at org.hsqldb.jdbc.jdbcConnection.prepareStatement(Unknown Source)
+	at org.hibernate.jdbc.AbstractBatcher.getPreparedStatement(AbstractBatcher.java:534)
+	at org.hibernate.jdbc.AbstractBatcher.getPreparedStatement(AbstractBatcher.java:452)
+	at org.hibernate.jdbc.AbstractBatcher.prepareQueryStatement(AbstractBatcher.java:161)
+	at org.hibernate.loader.Loader.prepareQueryStatement(Loader.java:1700)
+	at org.hibernate.loader.Loader.doQuery(Loader.java:801)
+	at org.hibernate.loader.Loader.doQueryAndInitializeNonLazyCollections(Loader.java:274)
+	at org.hibernate.loader.Loader.doList(Loader.java:2542)
+	... 38 more
