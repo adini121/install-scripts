@@ -90,7 +90,7 @@ apacheConfiguration() {
 	# 	sudo sed -i '/ServerName localhost/r '$ALIASES'' /etc/apache2/sites-available/000-default.conf 
 	# fi
 	
-	 if      [[ ! grep -q 'Alias /$moodleInstance /var/www/$moodleInstance' /etc/apache2/sites-available/000-default.conf ]];
+	 if ! grep -q 'Alias /$moodleInstance /var/www/$moodleInstance' /etc/apache2/sites-available/000-default.conf;
         then
                 sudo sed -i "/ServerName localhost/r \\ 
                 Alias /'$moodleInstance' /var/www/'$moodleInstance'\\
