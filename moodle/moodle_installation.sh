@@ -30,23 +30,28 @@ installMoodleCode(){
 moodleDBsettings(){
 	echo "................................moodle database settings......................................."
 	mysql -u root << EOF
-	CREATE DATABASE moodle_$MoodleVersion DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+	CREATE DATABASE IF NOT EXISTS moodle_$MoodleVersion DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 	GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,CREATE TEMPORARY TABLES,DROP,INDEX,ALTER ON moodle_$MoodleVersion.* TO ‘moodleuser’@’localhost’ IDENTIFIED BY 'moodlepassword';
 EOF
 }
 
 createMoodleHome(){
 	echo "................................Creating moodledata home directory................................"
-	mkdir /home/$USER/moodle/moodledata/moodledata_$MoodleVersion
-	chmod 0777 /home/$USER/moodle/moodledata/moodledata_$MoodleVersion
+	mkdir /home/$USER/moodledata_$MoodleVersion
+	chmod 0777 /home/$USER/moodledata_$MoodleVersion
+
+	#mkdir /home/$USER/moodle/moodledata/moodledata_$MoodleVersion
+	#chmod 0777 /home/$USER/moodle/moodledata/moodledata_$MoodleVersion
 
 # chmod -R +a "www-admin allow read,delete,write,append,file_inherit,directory_inherit" /path/to/moodledata
 }
 
 moodleConfiguration(){
 	echo ".......................................Configuring moodle......................................."
-	cp /home/$USER/moodle/config.php /var/www/moodle/
-	chmod 755 /var/www/moodle/config.php
+	cp /home/$USER/config.php /var/www/$moodleInstance/
+	#cp /home/$USER/moodle/config.php /var/www/moodle/
+
+	chmod 755 /var/www/$moodleInstance/config.php
 
 	sed -i 's|.*$CFG->dbname    = \x27moodle\x27;.*|$CFG->dbname    = \x27moodle_$MoodleVersion\x27;|g' /var/www/$moodleInstance/config.php
 	sed -i 's|.*$CFG->wwwroot   = \x27http://localhost/moodle\x27;.*|$CFG->wwwroot   = \x27http://localhost/moodle_$MoodleVersion\x27;|g' /var/www/$moodleInstance/config.php
