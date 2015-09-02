@@ -31,7 +31,7 @@ moodleDBsettings(){
 	echo "................................moodle database settings......................................."
 	mysql -u root << EOF
 	CREATE DATABASE IF NOT EXISTS moodle_$MoodleVersion DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-	GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,CREATE TEMPORARY TABLES,DROP,INDEX,ALTER ON moodle_$MoodleVersion.* TO ‘moodleuser’@’localhost’ IDENTIFIED BY moodlepassword;
+	GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,CREATE TEMPORARY TABLES,DROP,INDEX,ALTER ON moodle_$MoodleVersion .* TO ‘moodleuser’@’localhost’ IDENTIFIED BY 'moodlepassword';
 EOF
 }
 
@@ -74,22 +74,34 @@ moodleInstall(){
 
 apacheConfiguration() {
 	echo ".......................................configuring apache2......................................."
-		ALIASES=$(cat <<EOF
-		Alias /$(moodleInstance) /var/www/$(moodleInstance)
-        <Directory /var/www/>
-            Options Indexes FollowSymLinks MultiViews
-            AllowOverride All
-            Order allow,deny
-            allow from all
-        </Directory>
+		# ALIASES=$(cat <<EOF
+		# Alias /$(moodleInstance) /var/www/$(moodleInstance)
+  #       <Directory /var/www/>
+  #           Options Indexes FollowSymLinks MultiViews
+  #           AllowOverride All
+  #           Order allow,deny
+  #           allow from all
+  #       </Directory>
 
-EOF
-)
-	if 	[ ! grep -q 'Alias /$moodleInstance /var/www/$moodleInstance' /etc/apache2/sites-available/000-default.conf ];
-	then
-		sudo sed -i '/ServerName localhost/r '$ALIASES'' /etc/apache2/sites-available/000-default.conf 
-	fi
+# EOF
+# )
+	# if 	[ ! grep -q 'Alias /$moodleInstance /var/www/$moodleInstance' /etc/apache2/sites-available/000-default.conf ];
+	# then
+	# 	sudo sed -i '/ServerName localhost/r '$ALIASES'' /etc/apache2/sites-available/000-default.conf 
+	# fi
 	
+	 if      [[ ! grep -q 'Alias /$moodleInstance /var/www/$moodleInstance' /etc/apache2/sites-available/000-default.conf ]];
+        then
+                sudo sed -i "/ServerName localhost/r \\ 
+                Alias /'$moodleInstance' /var/www/'$moodleInstance'\\
+                <Directory /var/www/>\\
+                Options Indexes FollowSymLinks MultiViews\\
+                AllowOverride All\\
+                Order allow,deny\\
+                allow from all\\
+                </Directory>" /etc/apache2/sites-available/000-default.conf
+        fi
+
 }
 
 while getopts ":u:v:t:m:" i; do
