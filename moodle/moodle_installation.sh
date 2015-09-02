@@ -53,15 +53,17 @@ moodleConfiguration(){
 
 	chmod 755 /var/www/$moodleInstance/config.php
 
-	sed -i 's|.*$CFG->dbname    = \x27moodle\x27;.*|$CFG->dbname    = \x27moodle_$MoodleVersion\x27;|g' /var/www/$moodleInstance/config.php
-	sed -i 's|.*$CFG->wwwroot   = \x27http://localhost/moodle\x27;.*|$CFG->wwwroot   = \x27http://localhost/moodle_$MoodleVersion\x27;|g' /var/www/$moodleInstance/config.php
-	sed -i 's|.*$CFG->dataroot  = \x27/home/$USER/moodledata\x27;.*|$CFG->wwwroot   = \x27/home/$USER/moodle/moodledata/moodledata_$MoodleVersion\x27;|g' /var/www/$moodleInstance/config.php
+	sed -i 's|.*$CFG->dbname    = \x27moodle\x27;.*|$CFG->dbname    = \x27moodle_'$MoodleVersion'\x27;|g' /var/www/$moodleInstance/config.php
+	sed -i 's|.*$CFG->wwwroot   = \x27http://localhost/moodle\x27;.*|$CFG->wwwroot   = \x27http://localhost/moodle_'$MoodleVersion'\x27;|g' /var/www/$moodleInstance/config.php
+	sed -i 's|.*$CFG->dataroot  = \x27/home/$USER/moodledata\x27;.*|$CFG->wwwroot   = \x27/home/$USER/moodledata_'$MoodleVersion'\x27;|g' /var/www/$moodleInstance/config.php
+	#sed -i 's|.*$CFG->dataroot  = \x27/home/$USER/moodledata\x27;.*|$CFG->wwwroot   = \x27/home/$USER/moodle/moodledata/moodledata_'$MoodleVersion'\x27;|g' /var/www/$moodleInstance/config.php
+
 }
 
 moodleInstall(){
 	echo "................................final moodle installation steps................................"
-	/usr/bin/php /var/www/$moodleInstance/admin/cli/install_database.php --adminpass=admin --agree-license 
-	/usr/bin/php /var/www/$moodleInstance/admin/cli/cron.php >/dev/null
+	sudo /usr/bin/php /var/www/$moodleInstance/admin/cli/install_database.php --adminpass=admin --agree-license 
+	sudo /usr/bin/php /var/www/$moodleInstance/admin/cli/cron.php >/dev/null
 }
 
 apacheConfiguration() {
