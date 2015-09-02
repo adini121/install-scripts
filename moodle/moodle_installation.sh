@@ -37,7 +37,7 @@ EOF
 
 createMoodleHome(){
 	echo "................................Creating moodledata home directory................................"
-	if [ ! -d mkdir /home/$USER/moodledata_$MoodleVersion ]; then
+	if [ ! -d /home/$USER/moodledata_$MoodleVersion ]; then
 			mkdir /home/$USER/moodledata_$MoodleVersion
 		fi
 
@@ -85,7 +85,7 @@ apacheConfiguration() {
 
 EOF
 )
-	if 	[ ! grep -q 'Alias /'$moodleInstance' /var/www/'$moodleInstance'' /etc/apache2/sites-available/000-default.conf ];
+	if 	[ ! grep -q 'Alias /$moodleInstance /var/www/$moodleInstance' /etc/apache2/sites-available/000-default.conf ];
 	then
 		sudo sed -i '/ServerName localhost/r '$ALIASES'' /etc/apache2/sites-available/000-default.conf 
 	fi
