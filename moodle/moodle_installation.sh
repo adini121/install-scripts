@@ -75,7 +75,7 @@ moodleInstall(){
 apacheConfiguration() {
 	echo ".......................................configuring apache2......................................."
 		ALIASES=$(cat <<EOF
-		Alias /\$moodleInstance /var/www/\$moodleInstance
+		Alias /$(moodleInstance) /var/www/$(moodleInstance)
         <Directory /var/www/>
             Options Indexes FollowSymLinks MultiViews
             AllowOverride All
