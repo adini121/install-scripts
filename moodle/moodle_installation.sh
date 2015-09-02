@@ -48,14 +48,17 @@ createMoodleHome(){
 
 moodleConfiguration(){
 	echo ".......................................Configuring moodle......................................."
-	cp /home/$USER/config.php /var/www/$moodleInstance/
+	if [ ! -f /var/www/$moodleInstance/config.php ]; then
+			cp /home/$USER/config.php /var/www/$moodleInstance/
+		fi
+	
 	#cp /home/$USER/moodle/config.php /var/www/moodle/
 
-	chmod 755 /var/www/$moodleInstance/config.php
+	chmod 775 /var/www/$moodleInstance/config.php
 
 	sed -i 's|.*$CFG->dbname    = \x27moodle\x27;.*|$CFG->dbname    = \x27moodle_'$MoodleVersion'\x27;|g' /var/www/$moodleInstance/config.php
 	sed -i 's|.*$CFG->wwwroot   = \x27http://localhost/moodle\x27;.*|$CFG->wwwroot   = \x27http://localhost/moodle_'$MoodleVersion'\x27;|g' /var/www/$moodleInstance/config.php
-	sed -i 's|.*$CFG->dataroot  = \x27/home/$USER/moodledata\x27;.*|$CFG->wwwroot   = \x27/home/$USER/moodledata_'$MoodleVersion'\x27;|g' /var/www/$moodleInstance/config.php
+	sed -i 's|.*$CFG->dataroot  = \x27/home/adi/moodledata\x27;.*|$CFG->dataroot   = \x27/home/$USER/moodledata_'$MoodleVersion'\x27;|g' /var/www/$moodleInstance/config.php
 	#sed -i 's|.*$CFG->dataroot  = \x27/home/$USER/moodledata\x27;.*|$CFG->wwwroot   = \x27/home/$USER/moodle/moodledata/moodledata_'$MoodleVersion'\x27;|g' /var/www/$moodleInstance/config.php
 
 }
