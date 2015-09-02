@@ -24,7 +24,7 @@ installMoodleCode(){
  
 	cd /var/www/$moodleInstance
 	git pull
-	git checkout tag $MoodleGitTag
+	git checkout $MoodleGitTag
 }
 
 moodleDBsettings(){
