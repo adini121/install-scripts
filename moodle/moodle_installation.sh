@@ -37,7 +37,10 @@ EOF
 
 createMoodleHome(){
 	echo "................................Creating moodledata home directory................................"
-	mkdir /home/$USER/moodledata_$MoodleVersion
+	if [ ! -d mkdir /home/$USER/moodledata_$MoodleVersion ]; then
+			mkdir /home/$USER/moodledata_$MoodleVersion
+		fi
+	
 	chmod 0777 /home/$USER/moodledata_$MoodleVersion
 
 	#mkdir /home/$USER/moodle/moodledata/moodledata_$MoodleVersion
