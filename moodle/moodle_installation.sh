@@ -40,7 +40,7 @@ createMoodleHome(){
 	if [ ! -d mkdir /home/$USER/moodledata_$MoodleVersion ]; then
 			mkdir /home/$USER/moodledata_$MoodleVersion
 		fi
-	
+
 	chmod 0777 /home/$USER/moodledata_$MoodleVersion
 
 	#mkdir /home/$USER/moodle/moodledata/moodledata_$MoodleVersion
@@ -61,7 +61,7 @@ moodleConfiguration(){
 
 	sed -i 's|.*$CFG->dbname    = \x27moodle\x27;.*|$CFG->dbname    = \x27moodle_'$MoodleVersion'\x27;|g' /var/www/$moodleInstance/config.php
 	sed -i 's|.*$CFG->wwwroot   = \x27http://localhost/moodle\x27;.*|$CFG->wwwroot   = \x27http://localhost/moodle_'$MoodleVersion'\x27;|g' /var/www/$moodleInstance/config.php
-	sed -i 's|.*$CFG->dataroot  = \x27/home/adi/moodledata\x27;.*|$CFG->dataroot   = \x27/home/$USER/moodledata_'$MoodleVersion'\x27;|g' /var/www/$moodleInstance/config.php
+	sed -i 's|.*$CFG->dataroot  = \x27/home/adi/moodledata\x27;.*|$CFG->dataroot   = \x27/home/'$USER'/moodledata_'$MoodleVersion'\x27;|g' /var/www/$moodleInstance/config.php
 	#sed -i 's|.*$CFG->dataroot  = \x27/home/$USER/moodledata\x27;.*|$CFG->wwwroot   = \x27/home/$USER/moodle/moodledata/moodledata_'$MoodleVersion'\x27;|g' /var/www/$moodleInstance/config.php
 
 }
@@ -74,9 +74,20 @@ moodleInstall(){
 
 apacheConfiguration() {
 	echo ".......................................configuring apache2......................................."
-	if 	grep -q 'Alias /'$moodleInstance' /var/www/'$moodleInstance'' /etc/apache2/sites-available/000-default.conf;
+		ALIASES=$(cat <<EOF
+		Alias /\$moodleInstance /var/www/\$moodleInstance
+        <Directory /var/www/>
+            Options Indexes FollowSymLinks MultiViews
+            AllowOverride All
+            Order allow,deny
+            allow from all
+        </Directory>
+
+EOF
+)
+	if 	[ ! grep -q 'Alias /'$moodleInstance' /var/www/'$moodleInstance'' /etc/apache2/sites-available/000-default.conf ];
 	then
-		sed -i '/ServerName localhost/r /home/'$USER'/moodle/add.txt' /etc/apache2/sites-available/000-default.conf 
+		sudo sed -i '/ServerName localhost/r '$ALIASES'' /etc/apache2/sites-available/000-default.conf 
 	fi
 	
 }
