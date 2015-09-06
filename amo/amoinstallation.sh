@@ -26,7 +26,7 @@ usage(){
         echo "Usage: $0 <OPTIONS>"
         echo "Required options:"
         echo "  -u <user>           Eg adi, nisal etc"
-        echo "  -v <dbName>         name for AMO database, format : YYMMDD, eg 150715"
+        echo "  -b <dbName>         name for AMO database, format : YYMMDD, eg 150715"
         echo "  -t <amoGitTag>      amo git tag format : YYYY.MM.DD, eg 2015.04.25"
         echo "  -a <amoInstance>    Eg amo_first, amo_second, amo_third etc"
         echo "  -p <amoPort>        Eg 8080, 8081, 8083 etc"
