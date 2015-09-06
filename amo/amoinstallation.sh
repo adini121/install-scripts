@@ -5,9 +5,9 @@
 
 
 
-###############################################################
-#############.......... DEPENDENCIES ...........###############
-###############################################################
+############################################################################################
+#############                      DEPENDENCIES                      		 ###############
+############################################################################################
 
 # Python 2.7 (2.7 -> 2.7.10)
 # Node 0.10.x or higher
@@ -36,9 +36,9 @@ usage(){
 }
 
 createAMOHome(){
-echo "..                          ..                             ..                    ..                  .."
-echo "..........................................creating amo home............................................"
-echo "..                          ..                             ..                    ..                  .."
+echo "                                             									"                                                                                                                                                                                                          
+echo "                      creating amo home                     					"
+echo "                                             									"                                                                                                                                                                                                          
 
 if [ ! -d /home/$user/AMOHome ]; then
 	echo 'no AMO home directory found.'
@@ -48,9 +48,9 @@ fi
 }
 
 # downloadDependencies (){
-# echo "..                          ..                             ..                    ..                  .."
-# echo "..........................................download Dependencies........................................"
-# echo "..                          ..                             ..                    ..                  .."
+# echo "                                             									"                                                                                                                                                                                                          
+# echo "                      Download Dependencies                  				"    
+# echo "                                             									"                                                                                                                                                                                                          
 
 
 # 	sudo apt-get install python-dev python-virtualenv npm libxml2-dev libxslt1-dev libmysqlclient-dev memcached libssl-dev swig openssl curl libjpeg-dev zlib1g-dev libsasl2-dev nodejs nodejs-legacy
@@ -59,9 +59,9 @@ fi
 # }
 
 installAMOolympiaCode(){
-echo "..                          ..                             ..                    ..                  .."
-echo "................................installing amo code from olympia......................................."
-echo "..                          ..                             ..                    ..                  .."
+echo "                              												"                                                                                                                                                                         
+echo "                      installing amo code from olympia                     	 "
+echo "                                             									"                                                                                                                                                          
 
 		if [ ! -d /home/$user/AMOHome/$amoInstance ]; then
 			git clone --recursive git://github.com/mozilla/olympia.git  /home/$user/AMOHome/$amoInstance
@@ -73,7 +73,9 @@ echo "..                          ..                             ..             
 }
 
 amoDBsettings(){
-	echo "................................amo database settings......................................."
+	echo "                                             									"     
+	echo "                     	 amo database settings          			            "
+	echo "                                             									"     
 	mysql -u root << EOF
 	CREATE DATABASE IF NOT EXISTS amo_$dbName DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 	GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,CREATE TEMPORARY TABLES,DROP,INDEX,ALTER ON amo_$dbName.* TO 'amouser'@'localhost' IDENTIFIED BY 'amopassword';
@@ -82,9 +84,9 @@ EOF
 }
 
 configureLocalSettings() {
-echo "..                          ..                             ..                    ..                  .."
-echo "................................configuring local_settings.py file....................................."
-echo "..                          ..                             ..                    ..                  .."
+echo "                                             									"                                                                                                                                                                                                          
+echo "                      configuring local_settings.py file                      "
+echo "                                             									"     
 echo "checking if local_settings.py is present"
 if [  ! -f /home/$user/AMOHome/$amoInstance/local_settings.py ];
         then 
@@ -92,7 +94,7 @@ if [  ! -f /home/$user/AMOHome/$amoInstance/local_settings.py ];
         		chmod 755 /home/$user/AMOHome/$amoInstance/local_settings.py
         		echo "created local_settings.py"
 cat > /home/$user/AMOHome/$amoInstance/local_settings.py << EOF
-#local_settings.py 
+#local_settings.py
 #specify the settings for each AMO instance
 from settings import *  # noqa
 
@@ -104,10 +106,10 @@ DATABASES['default']['TEST_CHARSET'] = 'utf8'
 DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
 
 #Memcached
-CACHES = {				
- 	'default': {			   
-		'BACKEND': 'caching.backends.memcached.MemcachedCache',		        
- 		'LOCATION': os.environ.get('MEMCACHE_LOCATION', 'localhost:'$memcachedPort''),				        
+CACHES = {
+ 	'default': {
+		'BACKEND': 'caching.backends.memcached.MemcachedCache',
+ 		'LOCATION': os.environ.get('MEMCACHE_LOCATION', 'localhost:'$memcachedPort''),     
 		 		}
 		}
 
@@ -134,40 +136,40 @@ fi
 
 
 runAMOinstance(){
-echo "..                          ..                             ..                    ..                  .."
-echo "................................running full_init and server at localhost:"$amoPort"....................................."
-echo "..                          ..                             ..                    ..                  .."
+echo "                                             									"                                                                                                                                                                                                          
+echo "             running full_init and server at localhost:"$amoPort"             "
+echo "                                             									"                                                                                                                                                                                                          
 	curl -sL https://raw.github.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | $SHELL
 
-echo "..                           														                   .."
-echo "..                         															               .."	
-echo ".. 	 						source virtualenv for "$amoInstance"								   .."
-echo "..                          															               .."
+echo "                                             									"                                                                                                                                                                                                          
+echo "                                             									"                                                                                                                                                                                                          
+echo "                  source virtualenv for "$runAMOinstance"						"				                         
+echo "                                             									"                                                                                                                                                                                                          
 
 
 	source /home/$user/.venvburrito/startup.sh
 	sleep 5
-echo "..                           														                   .."
-echo "..                         															               .."	
-echo ".. 	 						MAKE virtualenv for "$amoInstance"									   .."
-echo "..                          															               .."
+echo "                                             									"                                                                                                                                                                                                          
+echo "                                             									"                                                                                                                                                                                                          
+echo " 	 					MAKE virtualenv for "$amoInstance"						"				                         
+echo "                                             									"                                                                                                                                                                                                          
 	mkvirtualenv $amoInstance
-echo "..                           														                   .."
-echo "..                         															               .."	
-echo ".. 	 									upgrade pip				  		                           .."
-echo "..                          															               .."
+echo "                                             									"                                                                                                                                                                                                          
+echo "                                             									"                                                                                                                                                                                                          
+echo "                      	 	upgrade pip										"		  		                                                 
+echo "                                             									"                                                                                                                                                                                                          
 	pip install --upgrade pip #making sure pip is in recent version
 	sleep 2
-echo "..                           														                   .."
-echo "..                         															               .."	
-echo ".. 	 									make full init 											   .."
-echo "..                          															               .."
+echo "                                             									"                                                                                                                                                                                                          
+echo "                                             									"                                                                                                                                                                                                          
+echo "                      	 	make full init 									" 		                         
+echo "                                             									"                                                                                                                                                                                                          
 	make full_init
 	#./manage.py activate_user --set-admin admin@admin.com
-echo "..                           														                   .."
-echo "..                         															               .."	
-echo ".. 	 						runserver at "$amoPort"								   .."
-echo "..                          															               .."
+echo "                                             									"                                                                                                                                                                                                          
+echo "                                             									"                                                                                                                                                                                                          
+echo "                      	runserver at "$amoPort"								" 		                         
+echo "                                             									"                                                                                                                                                                                                          
 /home/$user/AMOHome/$amoInstance/manage.py runserver localhost:'$amoPort'
 	
 }
@@ -197,7 +199,7 @@ if [[ $user == "" || $dbName == "" || $amoGitTag == "" || $amoInstance == "" || 
         usage
 fi
 
-#..........................................function calls...................................
+#                      unction calls                      
 
 createAMOHome
 
