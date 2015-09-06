@@ -45,17 +45,18 @@ if [ ! -d /home/$user/AMOHome ]; then
         mkdir /home/$user/AMOHome
 	echo 'created AMO directory'
 fi 
-
-downloadDependencies (){
-echo "..                          ..                             ..                    ..                  .."
-echo "..........................................download Dependencies........................................"
-echo "..                          ..                             ..                    ..                  .."
-
-
-	sudo apt-get install python-dev python-virtualenv npm libxml2-dev libxslt1-dev libmysqlclient-dev memcached libssl-dev swig openssl curl libjpeg-dev zlib1g-dev libsasl2-dev nodejs nodejs-legacy
-	curl -sL https://raw.github.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | $SHELL
-
 }
+
+# downloadDependencies (){
+# echo "..                          ..                             ..                    ..                  .."
+# echo "..........................................download Dependencies........................................"
+# echo "..                          ..                             ..                    ..                  .."
+
+
+# 	sudo apt-get install python-dev python-virtualenv npm libxml2-dev libxslt1-dev libmysqlclient-dev memcached libssl-dev swig openssl curl libjpeg-dev zlib1g-dev libsasl2-dev nodejs nodejs-legacy
+# 	curl -sL https://raw.github.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | $SHELL
+
+# }
 
 installAMOolympiaCode(){
 echo "..                          ..                             ..                    ..                  .."
