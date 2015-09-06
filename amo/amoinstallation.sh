@@ -146,9 +146,11 @@ echo "..                          															               .."
 echo "..                          ..                             ..                    ..                  .."
 echo "..                          ..                             ..                    ..                  .."
 
-	source /$user/.venvburrito/startup.sh
+	source /home/$user/.venvburrito/startup.sh
+	sleep 5
 	mkvirtualenv $amoInstance
 	pip install --upgrade pip #making sure pip is in recent version
+	sleep 2
 	make full_init
 	./manage.py activate_user --set-admin admin@admin.com
 	manage.py runserver localhost:'$amoPort'
