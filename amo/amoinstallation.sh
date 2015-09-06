@@ -54,7 +54,7 @@ fi
 
 
 # 	sudo apt-get install python-dev python-virtualenv npm libxml2-dev libxslt1-dev libmysqlclient-dev memcached libssl-dev swig openssl curl libjpeg-dev zlib1g-dev libsasl2-dev nodejs nodejs-legacy
-# 	curl -sL https://raw.github.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | $SHELL
+# 	
 
 # }
 
@@ -137,6 +137,8 @@ runAMOinstance(){
 echo "..                          ..                             ..                    ..                  .."
 echo "................................running full_init and server at localhost:"$amoPort"....................................."
 echo "..                          ..                             ..                    ..                  .."
+	curl -sL https://raw.github.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | $SHELL
+	echo "creating virtualenv for "$amoInstance" "
 	mkvirtualenv $amoInstance
 	pip install --upgrade pip #making sure pip is in recent version
 	make full_init
