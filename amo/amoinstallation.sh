@@ -37,13 +37,13 @@ usage(){
 
 createAMOHome(){
 echo "                                             									"                                                                                                                                                                                                          
-echo "creating amo home                     					"
+echo ">>>creating amo home                     					"
 echo "                                             									"                                                                                                                                                                                                          
 
 if [ ! -d /home/$user/AMOHome ]; then
-	echo 'no AMO home directory found.'
+	echo ">>>no AMO home directory found."
         mkdir /home/$user/AMOHome
-	echo 'created AMO directory'
+	echo ">>>created AMO directory"
 fi 
 }
 
@@ -60,7 +60,7 @@ fi
 
 installAMOolympiaCode(){
 echo "                              												"                                                                                                                                                                         
-echo "installing amo code from olympia                     	 "
+echo ">>>installing amo code from olympia                     	 "
 echo "                                             									"                                                                                                                                                          
 
 		if [ ! -d /home/$user/AMOHome/$amoInstance ]; then
@@ -74,7 +74,7 @@ echo "                                             									"
 
 amoDBsettings(){
 	echo "                                             									"     
-	echo "amo database settings          			            "
+	echo ">>> amo database settings          			            "
 	echo "                                             									"     
 	mysql -u root << EOF
 	CREATE DATABASE IF NOT EXISTS amo_$dbName DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
@@ -85,9 +85,9 @@ EOF
 
 configureLocalSettings() {
 echo "                                             									"                                                                                                                                                                                                          
-echo "configuring local_settings.py file                      "
+echo ">>>configuring local_settings.py file                      "
 echo "                                             									"     
-echo "checking if local_settings.py is present"
+echo ">>>checking if local_settings.py is present"
 if [  ! -f /home/$user/AMOHome/$amoInstance/local_settings.py ];
         then 
         		touch /home/$user/AMOHome/$amoInstance/local_settings.py
@@ -137,35 +137,35 @@ fi
 
 runAMOinstance(){
 echo "                                             									"                                                                                                                                                                                                          
-echo "running full_init and server at localhost:"$amoPort"             "
+echo ">>>running full_init and server at localhost:"$amoPort"             "
 echo "                                             									"                                                                                                                                                                                                          
 	curl -sL https://raw.github.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | $SHELL
                                                                                                                                                                                                        
 echo "                                             									"                                                                                                                                                                                                          
-echo "source virtualenv for "$runAMOinstance"						"				                         
+echo ">>>source virtualenv for "$runAMOinstance"						"				                         
 echo "                                             									"                                                                                                                                                                                                          
 
 
 	source /home/$user/.venvburrito/startup.sh
 	sleep 5                                                                                                                                                                                                     
 echo "                                             									"                                                                                                                                                                                                          
-echo "MAKE virtualenv for "$amoInstance"						"				                         
+echo ">>>MAKE virtualenv for "$amoInstance"						"				                         
 echo "                                             									"                                                                                                                                                                                                          
 	mkvirtualenv $amoInstance
 echo "                                             									"                                                                                                                                                                                                          
-echo "upgrade pip										"		  		                                                 
+echo ">>>upgrade pip										"		  		                                                 
 echo "                                             									"                                                                                                                                                                                                          
 	pip install --upgrade pip #making sure pip is in recent version
 	sleep 2
 echo "                                             									"                                                                                                                                                                                                          
-echo "make full init 									" 		                         
+echo ">>>make full init 									" 		                         
 echo "                                             									"                                                                                                                                                                                                          
 	make full_init
 	#./manage.py activate_user --set-admin admin@admin.com
 echo "                                             									"                                                                                                                                                                                                          
-echo "runserver at "$amoPort"								" 		                         
+echo ">>>runserver at "$amoPort"								" 		                         
 echo "                                             									"                                                                                                                                                                                                          
-/home/$user/AMOHome/$amoInstance/manage.py runserver localhost:'$amoPort'
+/home/$user/AMOHome/$amoInstance/manage.py runserver localhost:$amoPort
 	
 }
 
@@ -194,7 +194,7 @@ if [[ $user == "" || $dbName == "" || $amoGitTag == "" || $amoInstance == "" || 
         usage
 fi
 
-#                      unction calls                      
+#                      function calls                      
 
 createAMOHome
 
