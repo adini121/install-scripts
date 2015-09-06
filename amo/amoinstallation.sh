@@ -109,26 +109,26 @@ DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
 CACHES = {
  	'default': {
 		'BACKEND': 'caching.backends.memcached.MemcachedCache',
- 		'LOCATION': os.environ.get('MEMCACHE_LOCATION', 'localhost:'$memcachedPort''),     
-		 		}
-		}
+ 		'LOCATION': os.environ.get('MEMCACHE_LOCATION', 'localhost:$memcachedPort'),     
+	}
+}
 
 # Elasticsearch
 ES_HOSTS = [os.environ.get('ELASTICSEARCH_LOCATION', '127.0.0.1:9200')]
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_INDEXES = {
-			'default': 'addons_'$amoInstance'',
- 			'stats': 'addons_'$amoInstance'_stats',
-			}
+	'default': 'addons_$amoInstance',
+ 	'stats': 'addons_$amoInstance_stats',
+}
 
 # Celery
 BROKER_URL = os.environ.get('BROKER_URL',
-            'amqp://olympia:olympia@localhost:5672/'$amoInstance'')
+            'amqp://olympia:olympia@localhost:5672/$amoInstance')
 
-REDIS_LOCATION = os.environ.get('REDIS_LOCATION', 'localhost:'$redisPort'')
+REDIS_LOCATION = os.environ.get('REDIS_LOCATION', 'localhost:$redisPort')
 REDIS_BACKENDS = {
-    			'master': 'redis://{location}?socket_timeout=0.5'.format(
-        		location=REDIS_LOCATION)}
+    'master': 'redis://{location}?socket_timeout=0.5'.format(
+    location=REDIS_LOCATION)}
 EOF
         		echo "exiting local_settings.py"
 fi
