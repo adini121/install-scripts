@@ -155,11 +155,11 @@ while getopts ":u:b:t:a:p:m:r:" i; do
 		;;
 		a) amoInstance=${OPTARG}
 		;;
-		p) amoPort
+		p) amoPort=${OPTARG}
 		;;
-		m) memcachedPort
+		m) memcachedPort=${OPTARG}
 		;;
-		r) redisPort
+		r) redisPort=${OPTARG}
 
     esac
 done
