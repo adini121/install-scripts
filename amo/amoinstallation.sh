@@ -138,22 +138,37 @@ echo "..                          ..                             ..             
 echo "................................running full_init and server at localhost:"$amoPort"....................................."
 echo "..                          ..                             ..                    ..                  .."
 	curl -sL https://raw.github.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | $SHELL
-echo "..                          ..                             ..                    ..                  .."
+
 echo "..                           														                   .."
 echo "..                         															               .."	
-echo ".. 	 						creating virtualenv for "$amoInstance"								   .."
+echo ".. 	 						source virtualenv for "$amoInstance"								   .."
 echo "..                          															               .."
-echo "..                          ..                             ..                    ..                  .."
-echo "..                          ..                             ..                    ..                  .."
+
 
 	source /home/$user/.venvburrito/startup.sh
 	sleep 5
+echo "..                           														                   .."
+echo "..                         															               .."	
+echo ".. 	 						MAKE virtualenv for "$amoInstance"									   .."
+echo "..                          															               .."
 	mkvirtualenv $amoInstance
+echo "..                           														                   .."
+echo "..                         															               .."	
+echo ".. 	 									upgrade pip				  		                           .."
+echo "..                          															               .."
 	pip install --upgrade pip #making sure pip is in recent version
 	sleep 2
+echo "..                           														                   .."
+echo "..                         															               .."	
+echo ".. 	 									make full init 											   .."
+echo "..                          															               .."
 	make full_init
-	./manage.py activate_user --set-admin admin@admin.com
-	manage.py runserver localhost:'$amoPort'
+	#./manage.py activate_user --set-admin admin@admin.com
+echo "..                           														                   .."
+echo "..                         															               .."	
+echo ".. 	 						runserver at "$amoPort"								   .."
+echo "..                          															               .."
+/home/$user/AMOHome/$amoInstance/manage.py runserver localhost:'$amoPort'
 	
 }
 
