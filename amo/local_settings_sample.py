@@ -1,0 +1,32 @@
+# local settings
+from settings import *  # noqa
+
+DATABASE_URL = os.environ.get('DATABASE_URL','mysql://amo:amopassword@localhost/olympia_instance')
+DATABASES = {'default': dj_database_url.parse(DATABASE_URL)}
+DATABASES['default']['OPTIONS'] = {'init_command': 'SET storage_engine=InnoDB','sql_mode': 'STRICT_ALL_TABLES'}
+DATABASES['default']['TEST_CHARSET'] = 'utf8'
+DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
+#Memcached
+CACHES = {
+    'default': {
+        'BACKEND': 'caching.backends.memcached.MemcachedCache',
+        'LOCATION': os.environ.get('MEMCACHE_LOCATION', 'localhost:11212'),
+    }
+}
+
+# Elasticsearch
+ES_HOSTS = [os.environ.get('ELASTICSEARCH_LOCATION', '127.0.0.1:9200')]
+ES_URLS = ['http://%s' % h for h in ES_HOSTS]
+ES_INDEXES = {
+    'default': 'addons_instance',
+    'stats': 'addons_instance_stats',
+}
+
+# Celery
+BROKER_URL = os.environ.get('BROKER_URL',
+                            'amqp://olympia:olympia@localhost:5672/olympia_instance')
+
+REDIS_LOCATION = os.environ.get('REDIS_LOCATION', 'localhost:6380')
+REDIS_BACKENDS = {
+    'master': 'redis://{location}?socket_timeout=0.5'.format(
+        location=REDIS_LOCATION)}
