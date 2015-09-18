@@ -2,8 +2,8 @@
 
 # Description: Deployment script for jenkins, takes as input : User, Jenkins version, Tomcat Port on which Jenkins will run
 # Author: Aditya
-# ChangeLog: added createJenkinsHome() function - Aug 13
-# Date: 11.08.15
+# ChangeLog: added createJenkinsHome() function 
+# Date modified: 15.08.15
 
 echo "running script for creating multiple tomcat instances under the home directory"
 usage(){

@@ -1,11 +1,14 @@
-# local settings
+#local_settings.py 
+#specify the settings for each AMO instance
 from settings import *  # noqa
 
+#Database settings
 DATABASE_URL = os.environ.get('DATABASE_URL','mysql://amo:amopassword@localhost/olympia_instance')
 DATABASES = {'default': dj_database_url.parse(DATABASE_URL)}
 DATABASES['default']['OPTIONS'] = {'init_command': 'SET storage_engine=InnoDB','sql_mode': 'STRICT_ALL_TABLES'}
 DATABASES['default']['TEST_CHARSET'] = 'utf8'
 DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
+
 #Memcached
 CACHES = {
     'default': {
