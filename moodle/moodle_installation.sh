@@ -51,8 +51,9 @@ createMoodleHome(){
 
 moodleConfiguration(){
 	echo ".......................................Configuring moodle......................................."
+	CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 	if [ ! -f /var/www/$moodleInstance/config.php ]; then
-			cp /home/$USER/config.php /var/www/$moodleInstance/
+			cp ${CURRENT_DIR}/config.php /var/www/$moodleInstance/
 		fi
 	
 	#cp /home/$USER/moodle/config.php /var/www/moodle/
@@ -92,13 +93,13 @@ apacheConfiguration() {
 	
 	 if ! grep -q 'Alias /$moodleInstance /var/www/$moodleInstance' /etc/apache2/sites-available/000-default.conf;
         then
-                sudo sed -i "/\<ServerName[[:space:]]localhost\>/a 		Alias /$moodleInstance /var/www/$moodleInstance \\
-                <Directory /var/www/>\\
-                Options Indexes FollowSymLinks MultiViews\\
-                AllowOverride All\\
-                Order allow,deny\\
-                allow from all\\
-                </Directory>\\" /etc/apache2/sites-available/000-default.conf
+                sudo sed -i "/\<ServerName[[:space:]]localhost\>/a 		[[:space:]][[:space:]][[:space:]]Alias /$moodleInstance /var/www/$moodleInstance \\
+                		[[:space:]][[:space:]]<Directory /var/www/>\\
+                		[[:space:]][[:space:]]Options Indexes FollowSymLinks MultiViews\\
+                		[[:space:]][[:space:]]AllowOverride All\\
+                		[[:space:]][[:space:]]Order allow,deny\\
+                		[[:space:]][[:space:]]allow from all\\
+                		[[:space:]][[:space:]]</Directory>\\" /etc/apache2/sites-available/000-default.conf
         fi
 
 }
