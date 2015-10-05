@@ -52,10 +52,11 @@ createMoodleHome(){
 moodleConfiguration(){
 	echo ".......................................Configuring moodle......................................."
 	CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+	echo "<<<< Dir check >>>>"
 	if [ ! -f /var/www/$moodleInstance/config.php ]; then
 			cp $CURRENT_DIR/config.php /var/www/$moodleInstance/
 		fi
-	
+		echo "<<<< Dir check ends >>>>"
 	#cp /home/$USER/moodle/config.php /var/www/moodle/
 
 	chmod 775 /var/www/$moodleInstance/config.php
