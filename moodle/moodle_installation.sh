@@ -95,10 +95,10 @@ apacheConfiguration() {
         then
                 sudo sed -i "/\<ServerName[[:space:]]localhost\>/a 	\        Alias /$moodleInstance /var/www/$moodleInstance \/\
                 <Directory /var/www/> \
-                Options Indexes FollowSymLinks MultiViews\\
+                Options Indexes FollowSymLinks MultiViews\\AllowOverride All\\ allow from all\\
                 AllowOverride All\\
                 Order allow,deny\\
-                allow from all\
+                allow from all\\
                 </Directory>\\" /etc/apache2/sites-available/000-default.conf
         fi
 
