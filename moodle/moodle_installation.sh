@@ -101,10 +101,9 @@ apacheConfiguration() {
                 allow from all\\
                 </Directory>\\" /etc/apache2/sites-available/000-default.conf
         fi
-    if grep -q 'Alias /$moodleInstance' /etc/apache2/sites-available/000-default.conf;
-    	then 
-    			sudo sed -i 's|\\||g' /etc/apache2/sites-available/000-default.conf
-    	fi
+    
+    	sudo sed -i 's|\\||g' /etc/apache2/sites-available/000-default.conf
+    	
 }
 
 while getopts ":u:v:t:m:" i; do
