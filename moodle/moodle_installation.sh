@@ -22,9 +22,8 @@ installMoodleCode(){
 			git clone git://git.moodle.org/moodle.git $moodleInstance
 		fi
  
-	cd /var/www/$moodleInstance
-	git pull
-	git checkout $MoodleGitTag
+	git -C /var/www/$moodleInstance pull
+	git -C /var/www/$moodleInstance checkout $MoodleGitTag
 }
 
 moodleDBsettings(){
@@ -94,13 +93,13 @@ apacheConfiguration() {
 	
 	 if ! grep -q 'Alias /$moodleInstance /var/www/$moodleInstance' /etc/apache2/sites-available/000-default.conf;
         then
-                sudo sed -i "/\<ServerName[[:space:]]localhost\>/a 	Alias /$moodleInstance /var/www/$moodleInstance \\
-                		<Directory /var/www/>\\
-                		Options Indexes FollowSymLinks MultiViews\\
-                		AllowOverride All\\
-                		Order allow,deny\\
-                		allow from all\\
-                		</Directory>\\" /etc/apache2/sites-available/000-default.conf
+                sudo sed -i "		/\<ServerName[[:space:]]localhost\>/a 	Alias /$moodleInstance /var/www/$moodleInstance \\
+                			<Directory /var/www/>\\
+                			Options Indexes FollowSymLinks MultiViews\\
+                			AllowOverride All\\
+                			Order allow,deny\\
+                			allow from all\\
+                			</Directory>\\" /etc/apache2/sites-available/000-default.conf
         fi
 
 }
