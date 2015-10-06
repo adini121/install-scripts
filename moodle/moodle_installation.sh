@@ -17,9 +17,9 @@ usage(){
 
 installMoodleCode(){
 	echo "................................installing moodle code......................................."
-	cd /var/www/
+
 		if [ ! -d /var/www/$moodleInstance ]; then
-			git clone git://git.moodle.org/moodle.git $moodleInstance
+			git -C /var/www/ clone git://git.moodle.org/moodle.git $moodleInstance
 		fi
  
 	git -C /var/www/$moodleInstance pull
