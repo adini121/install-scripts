@@ -69,7 +69,7 @@ moodleConfiguration(){
 
 moodleInstall(){
 	echo "................................final moodle installation steps................................"
-	sudo /usr/bin/php /var/www/$moodleInstance/admin/cli/install_database.php --adminpass=MOODLE_ADMIN_121 --agree-license 
+	sudo /usr/bin/php /var/www/$moodleInstance/admin/cli/install_database.php --adminuser=admin --adminpass=MOODLE_ADMIN_121 --fullname=$moodleInstance --shortname=$moodleInstance --agree-license 
 	sudo /usr/bin/php /var/www/$moodleInstance/admin/cli/cron.php >/dev/null
 }
 
@@ -93,12 +93,12 @@ apacheConfiguration() {
 	
 	 if ! grep -q 'Alias /$moodleInstance /var/www/$moodleInstance' /etc/apache2/sites-available/000-default.conf;
         then
-                sudo sed -i "/\<ServerName[[:space:]]localhost\>/a 	\        Alias /$moodleInstance /var/www/$moodleInstance \/\
-                <Directory /var/www/> \
-                Options Indexes FollowSymLinks MultiViews\\AllowOverride All\\ allow from all\\
-                AllowOverride All\\
-                Order allow,deny\\
-                allow from all\\
+                sudo sed -i "/\<ServerName[[:space:]]localhost\>/a 	\        Alias /$moodleInstance /var/www/$moodleInstance\\\
+                <Directory /var/www/>\\
+                Options Indexes FollowSymLinks MultiViews\\\
+                AllowOverride All\\\
+                Order allow,deny\\\
+                allow from all\\\
                 </Directory>\\" /etc/apache2/sites-available/000-default.conf
         fi
 
