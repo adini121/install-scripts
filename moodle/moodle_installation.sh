@@ -95,7 +95,7 @@ apacheConfiguration() {
         then
                 sudo sed -i "/\<ServerName[[:space:]]localhost\>/a 	\        Alias /$moodleInstance /var/www/$moodleInstance \n
                 <Directory /var/www/>\n
-                Options Indexes FollowSymLinks MultiViews\
+                Options Indexes FollowSymLinks MultiViews\n
                 AllowOverride All\n
                 Order allow,deny\n
                 allow from all\n
