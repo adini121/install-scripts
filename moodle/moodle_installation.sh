@@ -67,7 +67,7 @@ moodleConfiguration(){
 
 moodleInstall(){
 	echo "................................final moodle installation steps................................"
-	sudo /usr/bin/php /var/www/$moodleInstance/admin/cli/install_database.php --adminuser=admin --adminpass=MOODLE_ADMIN_121 --fullname=$moodleInstance --shortname=$moodleInstance --agree-license 
+	sudo /usr/bin/php /var/www/$moodleInstance/admin/cli/install_database.php --agree-license 
 	sudo /usr/bin/php /var/www/$moodleInstance/admin/cli/cron.php >/dev/null
 }
 
