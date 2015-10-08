@@ -67,7 +67,7 @@ moodleConfiguration(){
 
 moodleInstall(){
 	echo "................................final moodle installation steps................................"
-	sudo /usr/bin/php /var/www/$moodleInstance/admin/cli/install_database.php --agree-license 
+	sudo /usr/bin/php /var/www/$moodleInstance/admin/cli/install_database.php --agree-license --adminpass=MOODLE_ADMIN_121 
 	sudo /usr/bin/php /var/www/$moodleInstance/admin/cli/cron.php >/dev/null
 }
 
@@ -104,6 +104,7 @@ apacheConfiguration() {
      	then 
      			sudo sed -i 's|\\||g' /etc/apache2/sites-available/000-default.conf
 		fi
+	sudo service apache2 restart	
 }
 
 while getopts ":u:v:t:m:" i; do
