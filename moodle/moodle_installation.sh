@@ -29,7 +29,8 @@ installMoodleCode(){
 moodleDBsettings(){
 	echo "................................moodle database settings......................................."
 	mysql -u root << EOF
-	CREATE DATABASE IF NOT EXISTS moodle_$MoodleVersion DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+	DROP DATABASE IF EXISTS moodle_$MoodleVersion;
+	CREATE DATABASE moodle_$MoodleVersion DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 	GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,CREATE TEMPORARY TABLES,DROP,INDEX,ALTER ON moodle_$MoodleVersion.* TO 'moodleuser'@'localhost' IDENTIFIED BY 'moodlepassword';
 EOF
 }
