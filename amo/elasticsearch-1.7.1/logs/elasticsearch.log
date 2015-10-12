@@ -1,0 +1,32 @@
+[2015-09-07 14:27:40,025][INFO ][node                     ] [Kamal] version[1.7.1], pid[10174], build[b88f43f/2015-07-29T09:54:16Z]
+[2015-09-07 14:27:40,026][INFO ][node                     ] [Kamal] initializing ...
+[2015-09-07 14:27:40,177][INFO ][plugins                  ] [Kamal] loaded [], sites []
+[2015-09-07 14:27:40,273][INFO ][env                      ] [Kamal] using [1] data paths, mounts [[/ (/dev/mapper/infinity--vg-root)]], net usable_space [60.5gb], net total_space [90.1gb], types [ext4]
+[2015-09-07 14:27:43,821][INFO ][node                     ] [Kamal] initialized
+[2015-09-07 14:27:43,822][INFO ][node                     ] [Kamal] starting ...
+[2015-09-07 14:27:43,943][INFO ][transport                ] [Kamal] bound_address {inet[/0:0:0:0:0:0:0:0:9300]}, publish_address {inet[/134.96.235.47:9300]}
+[2015-09-07 14:27:43,970][INFO ][discovery                ] [Kamal] elasticsearch/LpZw_4VOQOWJfIAoqPPVOw
+[2015-09-07 14:27:47,751][INFO ][cluster.service          ] [Kamal] new_master [Kamal][LpZw_4VOQOWJfIAoqPPVOw][infinity][inet[/134.96.235.47:9300]], reason: zen-disco-join (elected_as_master)
+[2015-09-07 14:27:47,775][INFO ][http                     ] [Kamal] bound_address {inet[/0:0:0:0:0:0:0:0:9200]}, publish_address {inet[/134.96.235.47:9200]}
+[2015-09-07 14:27:47,776][INFO ][node                     ] [Kamal] started
+[2015-09-07 14:27:47,797][INFO ][gateway                  ] [Kamal] recovered [0] indices into cluster_state
+[2015-09-07 14:28:18,037][INFO ][node                     ] [Kamal] stopping ...
+[2015-09-07 14:28:18,084][INFO ][node                     ] [Kamal] stopped
+[2015-09-07 14:28:18,084][INFO ][node                     ] [Kamal] closing ...
+[2015-09-07 14:28:18,091][INFO ][node                     ] [Kamal] closed
+[2015-09-07 14:28:52,084][INFO ][node                     ] [Marvin Flumm] version[1.7.1], pid[10259], build[b88f43f/2015-07-29T09:54:16Z]
+[2015-09-07 14:28:52,084][INFO ][node                     ] [Marvin Flumm] initializing ...
+[2015-09-07 14:28:52,215][INFO ][plugins                  ] [Marvin Flumm] loaded [], sites []
+[2015-09-07 14:28:52,273][INFO ][env                      ] [Marvin Flumm] using [1] data paths, mounts [[/ (/dev/mapper/infinity--vg-root)]], net usable_space [60.5gb], net total_space [90.1gb], types [ext4]
+[2015-09-07 14:28:55,508][INFO ][node                     ] [Marvin Flumm] initialized
+[2015-09-07 14:28:55,509][INFO ][node                     ] [Marvin Flumm] starting ...
+[2015-09-07 14:28:55,598][INFO ][transport                ] [Marvin Flumm] bound_address {inet[/0:0:0:0:0:0:0:0:9300]}, publish_address {inet[/134.96.235.47:9300]}
+[2015-09-07 14:28:55,622][INFO ][discovery                ] [Marvin Flumm] elasticsearch/7Iv5AIyWRpmU13HLVcJNDg
+[2015-09-07 14:28:59,401][INFO ][cluster.service          ] [Marvin Flumm] new_master [Marvin Flumm][7Iv5AIyWRpmU13HLVcJNDg][infinity][inet[/134.96.235.47:9300]], reason: zen-disco-join (elected_as_master)
+[2015-09-07 14:28:59,425][INFO ][http                     ] [Marvin Flumm] bound_address {inet[/0:0:0:0:0:0:0:0:9200]}, publish_address {inet[/134.96.235.47:9200]}
+[2015-09-07 14:28:59,426][INFO ][node                     ] [Marvin Flumm] started
+[2015-09-07 14:28:59,438][INFO ][gateway                  ] [Marvin Flumm] recovered [0] indices into cluster_state
+[2015-09-07 14:29:29,980][INFO ][node                     ] [Marvin Flumm] stopping ...
+[2015-09-07 14:29:30,016][INFO ][node                     ] [Marvin Flumm] stopped
+[2015-09-07 14:29:30,016][INFO ][node                     ] [Marvin Flumm] closing ...
+[2015-09-07 14:29:30,026][INFO ][node                     ] [Marvin Flumm] closed

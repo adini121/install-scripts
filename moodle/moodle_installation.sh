@@ -17,20 +17,20 @@ usage(){
 
 installMoodleCode(){
 	echo "................................installing moodle code......................................."
-	cd /var/www/
+
 		if [ ! -d /var/www/$moodleInstance ]; then
-			git clone git://git.moodle.org/moodle.git $moodleInstance
+			git -C /var/www/ clone git://git.moodle.org/moodle.git $moodleInstance
 		fi
  
-	cd /var/www/$moodleInstance
-	git pull
-	git checkout $MoodleGitTag
+	git -C /var/www/$moodleInstance pull
+	git -C /var/www/$moodleInstance checkout $MoodleGitTag
 }
 
 moodleDBsettings(){
 	echo "................................moodle database settings......................................."
 	mysql -u root << EOF
-	CREATE DATABASE IF NOT EXISTS moodle_$MoodleVersion DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+	DROP DATABASE IF EXISTS moodle_$MoodleVersion;
+	CREATE DATABASE moodle_$MoodleVersion DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 	GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,CREATE TEMPORARY TABLES,DROP,INDEX,ALTER ON moodle_$MoodleVersion.* TO 'moodleuser'@'localhost' IDENTIFIED BY 'moodlepassword';
 EOF
 }
@@ -51,16 +51,15 @@ createMoodleHome(){
 
 moodleConfiguration(){
 	echo ".......................................Configuring moodle......................................."
-	if [ ! -f /var/www/$moodleInstance/config.php ]; then
-			cp /home/$USER/config.php /var/www/$moodleInstance/
-		fi
+	CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 	
+	cp $CURRENT_DIR/config.php /var/www/$moodleInstance/
 	#cp /home/$USER/moodle/config.php /var/www/moodle/
 
 	chmod 775 /var/www/$moodleInstance/config.php
 
 	sed -i 's|.*$CFG->dbname    = \x27moodle\x27;.*|$CFG->dbname    = \x27moodle_'$MoodleVersion'\x27;|g' /var/www/$moodleInstance/config.php
-	sed -i 's|.*$CFG->wwwroot   = \x27http://localhost/moodle\x27;.*|$CFG->wwwroot   = \x27http://localhost/moodle_'$$moodleInstance'\x27;|g' /var/www/$moodleInstance/config.php
+	sed -i 's|.*$CFG->wwwroot   = \x27http://localhost/moodle\x27;.*|$CFG->wwwroot   = \x27http://localhost/'$moodleInstance'\x27;|g' /var/www/$moodleInstance/config.php
 	sed -i 's|.*$CFG->dataroot  = \x27/home/adi/moodledata\x27;.*|$CFG->dataroot   = \x27/home/'$USER'/moodledata_'$MoodleVersion'\x27;|g' /var/www/$moodleInstance/config.php
 	#sed -i 's|.*$CFG->dataroot  = \x27/home/$USER/moodledata\x27;.*|$CFG->wwwroot   = \x27/home/$USER/moodle/moodledata/moodledata_'$MoodleVersion'\x27;|g' /var/www/$moodleInstance/config.php
 
@@ -68,7 +67,7 @@ moodleConfiguration(){
 
 moodleInstall(){
 	echo "................................final moodle installation steps................................"
-	sudo /usr/bin/php /var/www/$moodleInstance/admin/cli/install_database.php --adminpass=admin --agree-license 
+	sudo /usr/bin/php /var/www/$moodleInstance/admin/cli/install_database.php --agree-license --adminpass=MOODLE_ADMIN_121 
 	sudo /usr/bin/php /var/www/$moodleInstance/admin/cli/cron.php >/dev/null
 }
 
@@ -90,17 +89,22 @@ apacheConfiguration() {
 	# 	sudo sed -i '/ServerName localhost/r '$ALIASES'' /etc/apache2/sites-available/000-default.conf 
 	# fi
 	
-	 if ! grep -q 'Alias /$moodleInstance /var/www/$moodleInstance' /etc/apache2/sites-available/000-default.conf;
+	 if ! grep -q "Alias /$moodleInstance /var/www/$moodleInstance" /etc/apache2/sites-available/000-default.conf;
         then
-                sudo sed -i "/\<ServerName[[:space:]]localhost\>/a 		Alias /$moodleInstance /var/www/$moodleInstance \\
-                <Directory /var/www/>\\
+                sudo sed -i "/\<ServerName[[:space:]]localhost\>/a 	\        Alias /$moodleInstance /var/www/$moodleInstance\\
+                <Directory /var/www/> \\
                 Options Indexes FollowSymLinks MultiViews\\
                 AllowOverride All\\
                 Order allow,deny\\
                 allow from all\\
                 </Directory>\\" /etc/apache2/sites-available/000-default.conf
         fi
-
+    echo "now we here"
+    if grep -q "Alias /$moodleInstance /var/www/$moodleInstance" /etc/apache2/sites-available/000-default.conf;		
+     	then 
+     			sudo sed -i 's|\\||g' /etc/apache2/sites-available/000-default.conf
+		fi
+	sudo service apache2 restart	
 }
 
 while getopts ":u:v:t:m:" i; do
