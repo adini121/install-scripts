@@ -72,6 +72,13 @@ echo "                                             									"
 	git checkout $amoGitTag
 }
 
+startElasticSearch(){
+tmux kill-session -t elastic-search 
+tmux new -d -A -s elastic-search '
+/home/$user/elasticsearch/bin/elasticsearch
+tmux detach'
+}
+
 amoDBsettings(){
 	echo "                                             									"     
 	echo ">>> amo database settings          			            "
@@ -114,10 +121,7 @@ CACHES = {
 }
 
 # Elasticsearch
-tmux kill-session -t elastic-search 
-tmux new -d -A -s elastic-search '
-/home/$user/elasticsearch/bin/elasticsearch
-tmux detach'
+
 ES_HOSTS = [os.environ.get('ELASTICSEARCH_LOCATION', '127.0.0.1:9200')]
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_INDEXES = {
@@ -203,6 +207,8 @@ fi
 createAMOHome
 
 installAMOolympiaCode
+
+startElasticSearch
 
 amoDBsettings
 
