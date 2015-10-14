@@ -72,13 +72,13 @@ echo "                                             									"
 	git checkout $amoGitTag
 }
 
-startElasticSearch(){
-tmux kill-session -t elastic-search 
-echo ".............Elasticsearch.........."
-tmux new -d -A -s elastic-search '
-/home/$user/elasticsearch/bin/elasticsearch
-tmux detach'
-}
+# startElasticSearch(){
+# tmux kill-session -t elastic-search 
+# echo ".............Elasticsearch.........."
+# tmux new -d -A -s elastic-search '
+# /home/$user/elasticsearch/bin/elasticsearch
+# tmux detach'
+# }
 
 amoDBsettings(){
 	echo "                                             									"     
@@ -209,7 +209,7 @@ createAMOHome
 
 installAMOolympiaCode
 
-startElasticSearch
+# startElasticSearch
 
 amoDBsettings
 
