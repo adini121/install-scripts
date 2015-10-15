@@ -169,7 +169,7 @@ echo "                                             									"
 echo "                                             									"                                                                                                                                                                                                          
 echo ">>>make full init 									" 		                         
 echo "                                             									"                                                                                                                                                                                                          
-	
+	workon $amoInstance
 
 	/usr/bin/expect <<EOD
 	make full_init
