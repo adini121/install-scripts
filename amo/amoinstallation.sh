@@ -169,9 +169,9 @@ echo "                                             									"
 echo "                                             									"                                                                                                                                                                                                          
 echo ">>>make full init 									" 		                         
 echo "                                             									"                                                                                                                                                                                                          
-	make full_init
+	make full_init ||
 
-	expect -c "
+	/usr/bin/expect <<EOD
 	expect \"Type 'yes' to continue, or 'no' to cancel:\"
 	send \"yes\r\"
 	expect eof
@@ -187,7 +187,7 @@ echo "                                             									"
 	expect \"Are you sure you want to wipe all AMO Elasticsearch indexes? (yes/no):\"
 	send \"yes\"
 	expect eof
-	"
+EOD
 	/home/$user/AMOHome/$amoInstance/manage.py activate_user --set-admin admin@admin.com
 
 echo "                                             									"                                                                                                                                                                                                          
