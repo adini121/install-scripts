@@ -170,7 +170,23 @@ echo "                                             									"
 echo ">>>make full init 									" 		                         
 echo "                                             									"                                                                                                                                                                                                          
 	make full_init
-	#./manage.py activate_user --set-admin admin@admin.com
+
+	expect -c "
+	expect \"Add expect Type 'yes' to continue, or 'no' to cancel:\"
+	send \"yes\r\"
+	expect \"Username:\"
+	send \"admin\"
+	expect \"Email:\"
+	send \"adamsken1221@gmail.com\"
+	expect \"Password:\"
+	send \"adsad121\"
+	expect \"Password (again):\"
+	send \"adsad121\"
+	expect \"Are you sure you want to wipe all AMO Elasticsearch indexes? (yes/no):\"
+	send \"yes\"
+	"
+	/home/$user/AMOHome/$amoInstance/manage.py activate_user --set-admin admin@admin.com
+
 echo "                                             									"                                                                                                                                                                                                          
 echo ">>>runserver at "$amoPort"								" 		                         
 echo "                                             									"                                                                                                                                                                                                          
