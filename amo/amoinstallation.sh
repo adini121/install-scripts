@@ -169,10 +169,10 @@ echo "                                             									"
 echo "                                             									"                                                                                                                                                                                                          
 echo ">>>make full init 									" 		                         
 echo "                                             									"                                                                                                                                                                                                          
+	
 	workon $amoInstance
-
 	/usr/bin/expect <<EOD
-	make full_init
+	spawn make full_init
 	expect \"Type 'yes' to continue, or 'no' to cancel:\"
 	send \"yes\r\"
 	expect eof
