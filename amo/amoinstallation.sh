@@ -169,23 +169,24 @@ echo "                                             									"
 echo "                                             									"                                                                                                                                                                                                          
 echo ">>>make full init 									" 		                         
 echo "                                             									"                                                                                                                                                                                                          
-	make full_init ||
+	
 
 	/usr/bin/expect <<EOD
+	make full_init
 	expect \"Type 'yes' to continue, or 'no' to cancel:\"
 	send \"yes\r\"
 	expect eof
 	expect \"Username:\"
-	send \"admin\"
+	send \"admin\r"
 	expect \"Email:\"
-	send \"adamsken1221@gmail.com\"
+	send \"adamsken1221@gmail.com\r"
 	expect \"Password:\"
-	send \"adsad121\"
+	send \"adsad121\r"
 	expect \"Password (again):\"
-	send \"adsad121\"
+	send \"adsad121r\"
 	expect eof
 	expect \"Are you sure you want to wipe all AMO Elasticsearch indexes? (yes/no):\"
-	send \"yes\"
+	send \"yes\r"
 	expect eof
 EOD
 	/home/$user/AMOHome/$amoInstance/manage.py activate_user --set-admin admin@admin.com
