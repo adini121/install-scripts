@@ -172,8 +172,9 @@ echo "                                             									"
 	make full_init
 
 	expect -c "
-	expect \"Add expect Type 'yes' to continue, or 'no' to cancel:\"
+	expect \"Type 'yes' to continue, or 'no' to cancel:\"
 	send \"yes\r\"
+	expect eof
 	expect \"Username:\"
 	send \"admin\"
 	expect \"Email:\"
@@ -182,8 +183,10 @@ echo "                                             									"
 	send \"adsad121\"
 	expect \"Password (again):\"
 	send \"adsad121\"
+	expect eof
 	expect \"Are you sure you want to wipe all AMO Elasticsearch indexes? (yes/no):\"
 	send \"yes\"
+	expect eof
 	"
 	/home/$user/AMOHome/$amoInstance/manage.py activate_user --set-admin admin@admin.com
 
