@@ -170,12 +170,10 @@ echo "                                             									"
 echo ">>>make full init 									" 		                         
 echo "                                             									"                                                                                                                                                                                                          
 	
-	workon $amoInstance
+	make full_init
 	/usr/bin/expect <<EOD
-	spawn make full_init
 	expect \"Type 'yes' to continue, or 'no' to cancel:\"
 	send \"yes\r\"
-	expect eof
 	expect \"Username:\"
 	send \"admin\r"
 	expect \"Email:\"
@@ -184,7 +182,6 @@ echo "                                             									"
 	send \"adsad121\r"
 	expect \"Password (again):\"
 	send \"adsad121r\"
-	expect eof
 	expect \"Are you sure you want to wipe all AMO Elasticsearch indexes? (yes/no):\"
 	send \"yes\r"
 	expect eof
