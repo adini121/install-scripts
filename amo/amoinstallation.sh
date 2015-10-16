@@ -145,14 +145,14 @@ fi
 }
 
 
-runAMOinstance(){
+amoFullInit(){
 echo "                                             									"                                                                                                                                                                                                          
-echo ">>>running full_init and server at localhost:"$amoPort"             "
+echo ">>>running full_init            "
 echo "                                             									"                                                                                                                                                                                                          
 	curl -sL https://raw.github.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | $SHELL
                                                                                                                                                                                                        
 echo "                                             									"                                                                                                                                                                                                          
-echo ">>>source virtualenv for "$runAMOinstance"						"				                         
+echo ">>>source virtualenv for "$amoInstance"						"				                         
 echo "                                             									"                                                                                                                                                                                                          
 
 
@@ -192,7 +192,9 @@ expect "Are you sure you want to wipe all AMO Elasticsearch indexes? (yes/no):"
 send "yes\r"
 expect eof
 EOD
+}
 
+runAMOInstance(){
 echo "Setting default admin user"
 /home/$user/AMOHome/$amoInstance/manage.py activate_user --set-admin adamsken1221@gmail.com
 
@@ -201,6 +203,18 @@ echo ">>>runserver at "$amoPort"								"
 echo "                                             									"                                                                                                                                                                                                          
 /home/$user/AMOHome/$amoInstance/manage.py runserver localhost:$amoPort
 	
+}
+
+activateAMObanner() {
+ echo "creating amo "
+ if [ ! -d /home/$user/AMOHome/AMO-banner-launch ]
+ 	then;
+ 	git -C /home/$user/AMOHome/ clone https://github.com/adini121/AMO-banner-launch.git
+ 	sleep 2
+ 	sed -i 's|.*URL=.*|URL=http://localhost:'$amoPort'/en-US/|g' /home/$user/AMOHome/AMO-banner-launch/src/main/resources/amo.properties
+ 	cd /home/$user/AMOHome/AMO-banner-launch
+ 	mvn clean install 
+
 }
 
 while getopts ":u:b:t:a:p:m:r:" i; do
@@ -240,4 +254,8 @@ amoDBsettings
 
 configureLocalSettings
 
-runAMOinstance
+amoFullInit
+
+runAMOInstance
+
+activateAMObanner
