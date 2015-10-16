@@ -85,7 +85,8 @@ amoDBsettings(){
 	echo ">>> amo database settings          			            "
 	echo "                                             									"     
 	mysql -u root << EOF
-	CREATE DATABASE IF NOT EXISTS amo_$dbName DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+	DROP DATABASE IF EXISTS amo_$dbName;
+	CREATE DATABASE amo_$dbName DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 	GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,CREATE TEMPORARY TABLES,DROP,INDEX,ALTER ON amo_$dbName.* TO 'amouser'@'localhost' IDENTIFIED BY 'amopassword';
 	GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,CREATE TEMPORARY TABLES,DROP,INDEX,ALTER ON test_olympia.* TO 'amouser'@'localhost' IDENTIFIED BY 'amopassword';
 EOF
@@ -158,9 +159,11 @@ echo "                                             									"
 	source /home/$user/.venvburrito/startup.sh
 	sleep 5                                                                                                                                                                                                     
 echo "                                             									"                                                                                                                                                                                                          
-echo ">>>MAKE virtualenv for "$amoInstance"						"				                         
+echo ">>>MAKE clean virtualenv for "$amoInstance"						"				                         
 echo "                                             									"                                                                                                                                                                                                          
+	#rmvirtualenv $amoInstance
 	mkvirtualenv $amoInstance
+	curl -XDELETE 'http://localhost:9200/addons_'$amoInstance'-*/'
 echo "                                             									"                                                                                                                                                                                                          
 echo ">>>upgrade pip										"		  		                                                 
 echo "                                             									"                                                                                                                                                                                                          
