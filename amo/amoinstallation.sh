@@ -170,23 +170,28 @@ echo "                                             									"
 echo ">>>make full init 									" 		                         
 echo "                                             									"                                                                                                                                                                                                          
 	
-	make full_init
-	/usr/bin/expect <<EOD
-	expect \"Type 'yes' to continue, or 'no' to cancel:\"
-	send \"yes\r\"
-	expect \"Username:\"
-	send \"admin\r"
-	expect \"Email:\"
-	send \"adamsken1221@gmail.com\r"
-	expect \"Password:\"
-	send \"adsad121\r"
-	expect \"Password (again):\"
-	send \"adsad121r\"
-	expect \"Are you sure you want to wipe all AMO Elasticsearch indexes? (yes/no):\"
-	send \"yes\r"
-	expect eof
+workon $amoInstance
+sleep 1
+/usr/bin/expect <<EOD
+set timeout 180
+spawn make full_init
+expect "Type 'yes' to continue, or 'no' to cancel:"
+send "yes\r"
+expect "Username:"
+send "admin\r"
+expect "Email:"
+send "adamsken1221@gmail.com\r"
+expect "Password:"
+send "adsad121\r"
+expect "Password (again):"
+send "adsad121\r"
+expect "Are you sure you want to wipe all AMO Elasticsearch indexes? (yes/no):"
+send "yes\r"
+expect eof
 EOD
-	/home/$user/AMOHome/$amoInstance/manage.py activate_user --set-admin admin@admin.com
+
+echo "Setting default admin user"
+/home/$user/AMOHome/$amoInstance/manage.py activate_user --set-admin adamsken1221@gmail.com
 
 echo "                                             									"                                                                                                                                                                                                          
 echo ">>>runserver at "$amoPort"								" 		                         
