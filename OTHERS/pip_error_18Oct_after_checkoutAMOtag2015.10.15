@@ -28,3 +28,10 @@ Traceback (most recent call last):
 OSError: [Errno 13] Permission denied: '/usr/local/lib/python2.7/dist-packages/pip'
 
 Storing debug log for failure in /home/nisal/.pip/pip.log
+
+
+__________________________
+
+expect scripts might fail in AMO because some file download (9MB)
+Downloading https://pyrepo.addons.mozilla.org/Pillow-2.8.1.tar.gz (9.0MB)
+    25% |████████▏                       | 2.3MB 17kB/s eta 0:06:21
