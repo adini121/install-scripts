@@ -19,19 +19,19 @@ FireplaceBaseDir="/home/$USER/Fireplace"
 
 echo "................................(installing) fireplace code......................................."
 
-if [ ! -d $FireplaceBaseDir/$fireplaceInstance ]; then
-    git -C $FireplaceBaseDir clone https://github.com/mozilla/fireplace.git $fireplaceInstance
+if [ ! -d $FireplaceBaseDir/$FireplaceInstance ]; then
+    git -C $FireplaceBaseDir clone https://github.com/mozilla/fireplace.git $FireplaceInstance
 fi
- git -C $FireplaceBaseDir/$fireplaceInstance pull
+ git -C $FireplaceBaseDir/$FireplaceInstance pull
 }
 
 fireplaceConfiguration(){
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-cp {CURRENT_DIR}/settings_local.js $FireplaceBaseDir/$fireplaceInstance/src/media/js
+cp CURRENT_DIR/settings_local.js $FireplaceBaseDir/$FireplaceInstance/src/media/js
 }
 
 fireplaceInstallation(){
-cd $FireplaceBaseDir/$fireplaceInstance/
+cd $FireplaceBaseDir/$FireplaceInstance/
 npm install
 make install
 MKT_PORT=$FireplacePort make serve
