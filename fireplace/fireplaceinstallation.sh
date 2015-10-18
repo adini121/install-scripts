@@ -27,7 +27,7 @@ fi
 
 fireplaceConfiguration(){
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-cp CURRENT_DIR/settings_local.js $FireplaceBaseDir/$FireplaceInstance/src/media/js
+cp $CURRENT_DIR/settings_local.js $FireplaceBaseDir/$FireplaceInstance/src/media/js
 }
 
 fireplaceInstallation(){
