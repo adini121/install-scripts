@@ -3,9 +3,10 @@
 usage(){
         echo "Usage: $0 <OPTIONS>"
         echo "Required options:"
-        echo "  -u $USER               user name"
-        echo "  -t <FireplaceGitTag>      Fireplace git tag eg: v2.7.1, v2.7.0"
+        echo "  -u $USER                  user name"
+        echo "  -t <FireplaceGitTag>      Fireplace git tag eg: 2015.09.08 | 2015.09.15 | 2015.09.22"
         echo "  -m <FireplaceInstance>    Eg Fireplace_first, Fireplace_second"
+        echo "  -p <FireplacePort>        Eg 8088, 8089"
         exit 1
 }
 
