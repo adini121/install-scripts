@@ -164,11 +164,11 @@ echo "                                             									"
 	#rmvirtualenv $amoInstance
 	mkvirtualenv $amoInstance
 	curl -XDELETE 'http://localhost:9200/addons_'$amoInstance'-*/'
-echo "                                             									"                                                                                                                                                                                                          
-echo ">>>upgrade pip										"		  		                                                 
-echo "                                             									"                                                                                                                                                                                                          
-	pip install --upgrade pip #making sure pip is in recent version
-	sleep 2
+# # echo "                                             									"                                                                                                                                                                                                          
+# # echo ">>>upgrade pip										"		  		                                                 
+# # echo "                                             									"                                                                                                                                                                                                          
+# 	#pip install --upgrade pip #making sure pip is in recent version
+# 	sleep 2
 echo "                                             									"                                                                                                                                                                                                          
 echo ">>>make full init 									" 		                         
 echo "                                             									"                                                                                                                                                                                                          
