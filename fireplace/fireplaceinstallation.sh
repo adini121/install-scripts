@@ -23,6 +23,7 @@ if [ ! -d $FireplaceBaseDir/$FireplaceInstance ]; then
     git -C $FireplaceBaseDir clone https://github.com/mozilla/fireplace.git $FireplaceInstance
 fi
  git -C $FireplaceBaseDir/$FireplaceInstance pull
+ git -C $FireplaceBaseDir/$FireplaceInstance checkout $FireplaceGitTag
 }
 
 fireplaceConfiguration(){
