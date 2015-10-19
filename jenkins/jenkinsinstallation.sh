@@ -127,9 +127,9 @@ echo"..............................................finalsteps...................
 
         # export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
         # export PATH=$PATH:$JAVA_HOME
-        /home/$user/tomcat/TomcatInstance$startupPort/bin/startup.sh
+        # /home/$user/tomcat/TomcatInstance$startupPort/bin/startup.sh
         wget https://updates.jenkins-ci.org/latest/form-element-path.hpi -P /home/$user/jenkinsHome/jenkinsHome$JenkinsVersion/plugins/
-        /home/$user/tomcat/TomcatInstance$startupPort/bin/shutdown.sh
+        # /home/$user/tomcat/TomcatInstance$startupPort/bin/shutdown.sh
         /home/$user/tomcat/TomcatInstance$startupPort/bin/startup.sh
 }
 
