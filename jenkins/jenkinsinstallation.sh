@@ -8,6 +8,7 @@
 usage(){
         echo "Usage: $0 <OPTIONS>"
         echo "<<<<<<<<<<< Please set JAVA_HOME Environment Variable >>>>>>>>>"
+        echo "!!!!!!!!!!! Only ONE Jenkins Instance per Tomcat Instance !!!!!!!!!!!"
         echo "Required options:"
         echo "  -u <UID>                user name (e.g. adi)"
         echo "  -v <JenkinsVersion>     Jenkins version (e.g. 1.600, 1.615)"
@@ -31,6 +32,9 @@ fi
 
 }
 
+increaseMavenHeapSpace(){
+export MAVEN_OPTS="-Xmx1024M"
+}
 
 jenkinsWarDownload(){
 echo "..............................................jenkinsWarDownload.............................................."
@@ -119,7 +123,7 @@ if grep -q 'HUDSON_HOME' /home/$user/tomcat/TomcatInstance$startupPort/webapps/j
 	sed -i 's|<env-entry-name>HUDSON_HOME</env-entry-name>|<env-entry-name>JENKINS_HOME</env-entry-name>|g' /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins$JenkinsVersion/WEB-INF/web.xml
 fi
 
-	sed -i 's|.*</env-entry-value>*.|<env-entry-value>/home/'$user'/jenkinsHome/jenkinsHome'$JenkinsVersion'</env-entry-value>|g' /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins$JenkinsVersion/WEB-INF/web.xml
+sed -i 's|.*</env-entry-value>*.|<env-entry-value>/home/'$user'/jenkinsHome/jenkinsHome'$JenkinsVersion'</env-entry-value>|g' /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins$JenkinsVersion/WEB-INF/web.xml
 }
 
 finalsteps(){
@@ -128,7 +132,10 @@ echo "..............................................finalsteps..................
         # export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
         # export PATH=$PATH:$JAVA_HOME
         # /home/$user/tomcat/TomcatInstance$startupPort/bin/startup.sh
-        wget https://updates.jenkins-ci.org/latest/form-element-path.hpi -P /home/$user/jenkinsHome/jenkinsHome$JenkinsVersion/plugins/
+        if [[ ! -f /home/$user/jenkinsHome/jenkinsHome$JenkinsVersion/plugins/form-element-path.hpi ]];
+        then
+                wget https://updates.jenkins-ci.org/latest/form-element-path.hpi -P /home/$user/jenkinsHome/jenkinsHome$JenkinsVersion/plugins/
+        fi
         # /home/$user/tomcat/TomcatInstance$startupPort/bin/shutdown.sh
         /home/$user/tomcat/TomcatInstance$startupPort/bin/startup.sh
 }
