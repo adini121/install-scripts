@@ -7,6 +7,7 @@
 
 usage(){
         echo "Usage: $0 <OPTIONS>"
+        echo "<<<<<<<<<<< Please set JAVA_HOME Environment Variable >>>>>>>>>"
         echo "Required options:"
         echo "  -u <UID>                user name (e.g. adi)"
         echo "  -v <JenkinsVersion>     Jenkins version (e.g. 1.600, 1.615)"
@@ -14,7 +15,7 @@ usage(){
         exit 1
 }
 
-..............................................createJenkinsHome..............................................
+echo"..............................................createJenkinsHome.............................................."
 createJenkinsHome(){
 if [ ! -d /home/$user/jenkinsHome ]; then
 	echo 'no jenkins home directory found.'
@@ -29,7 +30,7 @@ fi
 
 }
 
-..............................................jenkinsWarDownload..............................................
+echo"..............................................jenkinsWarDownload.............................................."
 
 jenkinsWarDownload(){
 if [ ! -d /home/$user/JenkinsWarFiles ]; then
@@ -53,12 +54,13 @@ fi
 echo "sleep till war file is unpacked in webapps folder"
 sleep 10
 }
-..............................................tomcatServerXMLconfig..............................................
+# ..............................................tomcatServerXMLconfig..............................................
 
-tomcatServerXMLconfig(){
-echo "TO BE EDITED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-}
-..............................................jenkinsCatalina_OptsConfig..............................................
+# tomcatServerXMLconfig(){
+# echo "TO BE EDITED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+# }
+
+echo".............................................jenkinsCatalina_OptsConfig.............................................."
 
 jenkinsCatalina_OptsConfig(){
 if grep -q 'CATALINA_OPTS=\"$CATALINA_OPTS $JPDA_OPTS\"' /home/$user/tomcat/TomcatInstance$startupPort/bin/catalina.sh;
@@ -68,7 +70,7 @@ else
         sed -i 's|.*"-DJENKINS_HOME=.*|CATALINA_OPTS=\"-DJENKINS_HOME=/home/'$user'/jenkinsHome/jenkinsHome'$JenkinsVersion' -Xmx1024m\"|g' /home/$user/tomcat/TomcatInstance$startupPort/bin/catalina.sh
 fi
 }
-..............................................jenkinsXMLconfig..............................................
+echo"..............................................jenkinsXMLconfig.............................................."
 
 jenkinsXMLconfig(){
 if [ ! -f /home/$user/tomcat/TomcatInstance$startupPort/conf/Catalina/localhost/jenkins.xml ]; then
@@ -85,7 +87,8 @@ else
 	sed -i 's|.*Environment name=.*|<Environment name=\"JENKINS_HOME\" value=\"/home/'$user'/jenkinsHome/jenkinsHome'$JenkinsVersion'\" type=\"java.lang.String\" override=\"true\"/>|g' /home/$user/tomcat/TomcatInstance$startupPort/conf/Catalina/localhost/jenkins.xml
 fi
 }
-..............................................jenkinsAddConfigXMLFile..............................................
+
+echo"..............................................jenkinsAddConfigXMLFile.............................................."
 
 jenkinsAddConfigXMLFile(){
 if [ ! -f /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins$JenkinsVersion/WEB-INF/context.xml ]; then
@@ -103,7 +106,7 @@ else
         sed -i 's|.*Environment name=.*|<Environment name=\"JENKINS_HOME\" value=\"/home/'$user'/jenkinsHome/jenkinsHome'$JenkinsVersion'\" type=\"java.lang.String\" override=\"true\"/>|g' /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins$JenkinsVersion/WEB-INF/context.xml
 fi
 }
-..............................................jenkinsWebXMLconfig..............................................
+echo"..............................................jenkinsWebXMLconfig.............................................."
 
 jenkinsWebXMLconfig(){
 if grep -q 'HUDSON_HOME' /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins$JenkinsVersion/WEB-INF/web.xml; then
@@ -112,12 +115,15 @@ fi
 
 	sed -i 's|.*</env-entry-value>*.|<env-entry-value>/home/'$user'/jenkinsHome/jenkinsHome'$JenkinsVersion'</env-entry-value>|g' /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins$JenkinsVersion/WEB-INF/web.xml
 }
+echo"..............................................finalsteps.............................................."
 
 finalsteps(){
 
-        export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
-        export PATH=$PATH:$JAVA_HOME
-
+        # export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
+        # export PATH=$PATH:$JAVA_HOME
+        /home/$user/tomcat/TomcatInstance$startupPort/bin/startup.sh
+        wget https://updates.jenkins-ci.org/latest/form-element-path.hpi -O /home/$user/jenkinsHome/jenkinsHome$JenkinsVersion/plugins
+        /home/$user/tomcat/TomcatInstance$startupPort/bin/shutdown.sh
         /home/$user/tomcat/TomcatInstance$startupPort/bin/startup.sh
 }
 
@@ -143,7 +149,7 @@ createJenkinsHome
 
 jenkinsWarDownload
 
-tomcatServerXMLconfig
+# tomcatServerXMLconfig
 
 jenkinsCatalina_OptsConfig
 
