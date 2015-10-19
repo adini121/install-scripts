@@ -15,8 +15,9 @@ usage(){
         exit 1
 }
 
-echo"..............................................createJenkinsHome.............................................."
 createJenkinsHome(){
+echo"..............................................createJenkinsHome.............................................."
+
 if [ ! -d /home/$user/jenkinsHome ]; then
 	echo 'no jenkins home directory found.'
         mkdir /home/$user/jenkinsHome
@@ -30,9 +31,10 @@ fi
 
 }
 
-echo"..............................................jenkinsWarDownload.............................................."
 
 jenkinsWarDownload(){
+echo"..............................................jenkinsWarDownload.............................................."
+
 if [ ! -d /home/$user/JenkinsWarFiles ]; then
 	mkdir /home/$user/JenkinsWarFiles
 fi
@@ -60,9 +62,10 @@ sleep 10
 # echo "TO BE EDITED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 # }
 
-echo".............................................jenkinsCatalina_OptsConfig.............................................."
 
 jenkinsCatalina_OptsConfig(){
+echo".............................................jenkinsCatalina_OptsConfig.............................................."
+
 if grep -q 'CATALINA_OPTS=\"$CATALINA_OPTS $JPDA_OPTS\"' /home/$user/tomcat/TomcatInstance$startupPort/bin/catalina.sh;
 then
         sed -i 's|CATALINA_OPTS=\"$CATALINA_OPTS $JPDA_OPTS\"|CATALINA_OPTS=\"-DJENKINS_HOME=/home/'$user'/jenkinsHome/jenkinsHome'$JenkinsVersion' -Xmx1024m\"|g' /home/$user/tomcat/TomcatInstance$startupPort/bin/catalina.sh
@@ -70,9 +73,10 @@ else
         sed -i 's|.*"-DJENKINS_HOME=.*|CATALINA_OPTS=\"-DJENKINS_HOME=/home/'$user'/jenkinsHome/jenkinsHome'$JenkinsVersion' -Xmx1024m\"|g' /home/$user/tomcat/TomcatInstance$startupPort/bin/catalina.sh
 fi
 }
-echo"..............................................jenkinsXMLconfig.............................................."
 
 jenkinsXMLconfig(){
+echo"..............................................jenkinsXMLconfig.............................................."
+
 if [ ! -f /home/$user/tomcat/TomcatInstance$startupPort/conf/Catalina/localhost/jenkins.xml ]; then
 	touch /home/$user/tomcat/TomcatInstance$startupPort/conf/Catalina/localhost/jenkins.xml
         cat > /home/$user/tomcat/TomcatInstance$startupPort/conf/Catalina/localhost/jenkins.xml << EOF
@@ -88,9 +92,10 @@ else
 fi
 }
 
-echo"..............................................jenkinsAddConfigXMLFile.............................................."
 
 jenkinsAddConfigXMLFile(){
+echo"..............................................jenkinsAddConfigXMLFile.............................................."
+
 if [ ! -f /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins$JenkinsVersion/WEB-INF/context.xml ]; then
         touch /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins$JenkinsVersion/WEB-INF/context.xml
 	chmod 777 /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins$JenkinsVersion/WEB-INF/context.xml
@@ -106,23 +111,24 @@ else
         sed -i 's|.*Environment name=.*|<Environment name=\"JENKINS_HOME\" value=\"/home/'$user'/jenkinsHome/jenkinsHome'$JenkinsVersion'\" type=\"java.lang.String\" override=\"true\"/>|g' /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins$JenkinsVersion/WEB-INF/context.xml
 fi
 }
-echo"..............................................jenkinsWebXMLconfig.............................................."
 
 jenkinsWebXMLconfig(){
+echo"..............................................jenkinsWebXMLconfig.............................................."
+
 if grep -q 'HUDSON_HOME' /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins$JenkinsVersion/WEB-INF/web.xml; then
 	sed -i 's|<env-entry-name>HUDSON_HOME</env-entry-name>|<env-entry-name>JENKINS_HOME</env-entry-name>|g' /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins$JenkinsVersion/WEB-INF/web.xml
 fi
 
 	sed -i 's|.*</env-entry-value>*.|<env-entry-value>/home/'$user'/jenkinsHome/jenkinsHome'$JenkinsVersion'</env-entry-value>|g' /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins$JenkinsVersion/WEB-INF/web.xml
 }
-echo"..............................................finalsteps.............................................."
 
 finalsteps(){
+echo"..............................................finalsteps.............................................."
 
         # export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
         # export PATH=$PATH:$JAVA_HOME
         /home/$user/tomcat/TomcatInstance$startupPort/bin/startup.sh
-        wget https://updates.jenkins-ci.org/latest/form-element-path.hpi -O /home/$user/jenkinsHome/jenkinsHome$JenkinsVersion/plugins
+        wget https://updates.jenkins-ci.org/latest/form-element-path.hpi -P /home/$user/jenkinsHome/jenkinsHome$JenkinsVersion/plugins/
         /home/$user/tomcat/TomcatInstance$startupPort/bin/shutdown.sh
         /home/$user/tomcat/TomcatInstance$startupPort/bin/startup.sh
 }
