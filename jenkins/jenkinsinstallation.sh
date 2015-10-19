@@ -25,9 +25,17 @@ if [ ! -d /home/$user/jenkinsHome ]; then
 	echo 'created new directory'
 fi 
 
-if [ ! -d /home/$user/jenkinsHome/jenkinsHome$JenkinsVersion ]; then
-        mkdir /home/$user/jenkinsHome/jenkinsHome$JenkinsVersion
-	echo "created the folder with version name"
+JENKINS_HOME_DIR="/home/$user/jenkinsHome/jenkinsHome$JenkinsVersion"
+
+if [ ! -d $JENKINS_HOME_DIR ]; then
+        mkdir $JENKINS_HOME_DIR
+	echo "created JENKINS_HOME_DIR"
+elif [[ -d $JENKINS_HOME_DIR ]]; then
+        echo "removing already present JENKINS_HOME_DIR at "$JENKINS_HOME_DIR""
+        rm -r $JENKINS_HOME_DIR
+        mkdir $JENKINS_HOME_DIR
+        echo "created clean JENKINS_HOME_DIR"
+
 fi
 
 }
@@ -86,7 +94,7 @@ if [ ! -f /home/$user/tomcat/TomcatInstance$startupPort/conf/Catalina/localhost/
         cat > /home/$user/tomcat/TomcatInstance$startupPort/conf/Catalina/localhost/jenkins.xml << EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <Context docBase="/home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins"$JenkinsVersion".war">
-	<Environment name="JENKINS_HOME" value="/home/$user/jenkinsHome/jenkinsHome$JenkinsVersion" type="java.lang.String" override="true"/>
+	<Environment name="JENKINS_HOME" value="$JENKINS_HOME_DIR" type="java.lang.String" override="true"/>
 </Context>
 EOF
 
@@ -106,7 +114,7 @@ if [ ! -f /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins$JenkinsV
         cat > /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins$JenkinsVersion/WEB-INF/context.xml << EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <Context docBase="/home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins"$JenkinsVersion".war">
-        <Environment name="JENKINS_HOME" value="/home/$user/jenkinsHome/jenkinsHome$JenkinsVersion" type="java.lang.String" override="true"/>
+        <Environment name="JENKINS_HOME" value="$JENKINS_HOME_DIR" type="java.lang.String" override="true"/>
 </Context>
 EOF
 
@@ -132,12 +140,16 @@ echo "..............................................finalsteps..................
         # export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
         # export PATH=$PATH:$JAVA_HOME
         # /home/$user/tomcat/TomcatInstance$startupPort/bin/startup.sh
-        if [[ ! -f /home/$user/jenkinsHome/jenkinsHome$JenkinsVersion/plugins/form-element-path.hpi ]];
+        if [[ ! -f $JENKINS_HOME_DIR/plugins/form-element-path.hpi ]];
         then
-                wget https://updates.jenkins-ci.org/latest/form-element-path.hpi -P /home/$user/jenkinsHome/jenkinsHome$JenkinsVersion/plugins/
+                wget https://updates.jenkins-ci.org/latest/form-element-path.hpi -P $JENKINS_HOME_DIR/plugins/
         fi
-        # /home/$user/tomcat/TomcatInstance$startupPort/bin/shutdown.sh
         /home/$user/tomcat/TomcatInstance$startupPort/bin/startup.sh
+        sleep 2
+        /home/$user/tomcat/TomcatInstance$startupPort/bin/shutdown.sh
+        sleep 2
+        /home/$user/tomcat/TomcatInstance$startupPort/bin/startup.sh
+
 }
 
 while getopts ":u:v:s:" i; do
@@ -161,6 +173,8 @@ fi
 createJenkinsHome
 
 jenkinsWarDownload
+
+increaseMavenHeapSpace
 
 # tomcatServerXMLconfig
 
