@@ -16,7 +16,7 @@ usage(){
 }
 
 createJenkinsHome(){
-echo"..............................................createJenkinsHome.............................................."
+echo "..............................................createJenkinsHome.............................................."
 
 if [ ! -d /home/$user/jenkinsHome ]; then
 	echo 'no jenkins home directory found.'
@@ -33,7 +33,7 @@ fi
 
 
 jenkinsWarDownload(){
-echo"..............................................jenkinsWarDownload.............................................."
+echo "..............................................jenkinsWarDownload.............................................."
 
 if [ ! -d /home/$user/JenkinsWarFiles ]; then
 	mkdir /home/$user/JenkinsWarFiles
@@ -64,7 +64,7 @@ sleep 10
 
 
 jenkinsCatalina_OptsConfig(){
-echo".............................................jenkinsCatalina_OptsConfig.............................................."
+echo ".............................................jenkinsCatalina_OptsConfig.............................................."
 
 if grep -q 'CATALINA_OPTS=\"$CATALINA_OPTS $JPDA_OPTS\"' /home/$user/tomcat/TomcatInstance$startupPort/bin/catalina.sh;
 then
@@ -75,7 +75,7 @@ fi
 }
 
 jenkinsXMLconfig(){
-echo"..............................................jenkinsXMLconfig.............................................."
+echo "..............................................jenkinsXMLconfig.............................................."
 
 if [ ! -f /home/$user/tomcat/TomcatInstance$startupPort/conf/Catalina/localhost/jenkins.xml ]; then
 	touch /home/$user/tomcat/TomcatInstance$startupPort/conf/Catalina/localhost/jenkins.xml
@@ -94,7 +94,7 @@ fi
 
 
 jenkinsAddConfigXMLFile(){
-echo"..............................................jenkinsAddConfigXMLFile.............................................."
+echo "..............................................jenkinsAddConfigXMLFile.............................................."
 
 if [ ! -f /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins$JenkinsVersion/WEB-INF/context.xml ]; then
         touch /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins$JenkinsVersion/WEB-INF/context.xml
@@ -113,7 +113,7 @@ fi
 }
 
 jenkinsWebXMLconfig(){
-echo"..............................................jenkinsWebXMLconfig.............................................."
+echo "..............................................jenkinsWebXMLconfig.............................................."
 
 if grep -q 'HUDSON_HOME' /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins$JenkinsVersion/WEB-INF/web.xml; then
 	sed -i 's|<env-entry-name>HUDSON_HOME</env-entry-name>|<env-entry-name>JENKINS_HOME</env-entry-name>|g' /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins$JenkinsVersion/WEB-INF/web.xml
@@ -123,7 +123,7 @@ fi
 }
 
 finalsteps(){
-echo"..............................................finalsteps.............................................."
+echo "..............................................finalsteps.............................................."
 
         # export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
         # export PATH=$PATH:$JAVA_HOME
