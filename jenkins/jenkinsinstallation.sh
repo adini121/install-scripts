@@ -154,7 +154,21 @@ echo "..............................................finalsteps..................
         /home/$user/tomcat/TomcatInstance$startupPort/bin/startup.sh
 }
 
- 
+while getopts ":u:v:s:" i; do
+        case "${i}" in
+        u) user=${OPTARG}
+        ;;
+                v) JenkinsVersion=${OPTARG}
+                ;;
+        s) startupPort=${OPTARG}
+        esac
+done
+
+shift $((OPTIND - 1))
+
+if [[ $user == "" || $JenkinsVersion == "" || $startupPort == "" ]]; then
+        usage
+fi 
 
 
 createJenkinsHome
