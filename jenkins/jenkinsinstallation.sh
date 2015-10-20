@@ -33,7 +33,7 @@ if [ ! -d $JENKINS_HOME_DIR ]; then
 elif [[ -d $JENKINS_HOME_DIR ]]; then
         echo "removing already present JENKINS_HOME_DIR at "$JENKINS_HOME_DIR""
         rm -r $JENKINS_HOME_DIR
-        mkdir -p $JENKINS_HOME_DIR
+        mkdir $JENKINS_HOME_DIR
         echo "created clean JENKINS_HOME_DIR"
 
 fi
@@ -137,8 +137,8 @@ sed -i 's|.*</env-entry-value>*.|<env-entry-value>/home/'$user'/jenkinsHome/jenk
 finalsteps(){
 echo "..............................................finalsteps.............................................."
 
-        export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
-        export PATH=$PATH:$JAVA_HOME
+        # export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
+        # export PATH=$PATH:$JAVA_HOME
         # /home/$user/tomcat/TomcatInstance$startupPort/bin/startup.sh
         if [[ ! -f $JENKINS_HOME_DIR/plugins/form-element-path.hpi ]];
         then
@@ -152,7 +152,22 @@ echo "..............................................finalsteps..................
 
 }
 
- 
+while getopts ":u:v:s:" i; do
+        case "${i}" in
+        u) user=${OPTARG}
+        ;;
+	v) JenkinsVersion=${OPTARG}
+	;;
+        s) startupPort=${OPTARG}
+        esac
+done
+
+shift $((OPTIND - 1))
+
+if [[ $user == "" || $JenkinsVersion == "" || $startupPort == "" ]]; then
+        usage
+fi
+
 
 
 createJenkinsHome
