@@ -21,19 +21,19 @@ echo "..............................................createJenkinsHome...........
 
 if [ ! -d /home/$user/jenkinsHome ]; then
 	echo 'no jenkins home directory found.'
-        mkdir /home/$user/jenkinsHome
+        mkdir -p /home/$user/jenkinsHome
 	echo 'created new directory'
 fi 
 
 JENKINS_HOME_DIR="/home/$user/jenkinsHome/jenkinsHome$JenkinsVersion"
 
 if [ ! -d $JENKINS_HOME_DIR ]; then
-        mkdir $JENKINS_HOME_DIR
+        mkdir -p $JENKINS_HOME_DIR
 	echo "created JENKINS_HOME_DIR"
 elif [[ -d $JENKINS_HOME_DIR ]]; then
         echo "removing already present JENKINS_HOME_DIR at "$JENKINS_HOME_DIR""
         rm -r $JENKINS_HOME_DIR
-        mkdir $JENKINS_HOME_DIR
+        mkdir -p $JENKINS_HOME_DIR
         echo "created clean JENKINS_HOME_DIR"
 
 fi
@@ -48,7 +48,7 @@ jenkinsWarDownload(){
 echo "..............................................jenkinsWarDownload.............................................."
 
 if [ ! -d /home/$user/JenkinsWarFiles ]; then
-	mkdir /home/$user/JenkinsWarFiles
+	mkdir -p /home/$user/JenkinsWarFiles
 fi
 
 if [ ! -f /home/$user/JenkinsWarFiles/jenkinsPortMapping.txt ]; then
@@ -137,8 +137,8 @@ sed -i 's|.*</env-entry-value>*.|<env-entry-value>/home/'$user'/jenkinsHome/jenk
 finalsteps(){
 echo "..............................................finalsteps.............................................."
 
-        # export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
-        # export PATH=$PATH:$JAVA_HOME
+        export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
+        export PATH=$PATH:$JAVA_HOME
         # /home/$user/tomcat/TomcatInstance$startupPort/bin/startup.sh
         if [[ ! -f $JENKINS_HOME_DIR/plugins/form-element-path.hpi ]];
         then
