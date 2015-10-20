@@ -36,9 +36,11 @@ elif [[ -d $JENKINS_HOME_DIR ]]; then
         mkdir -p $JENKINS_HOME_DIR
         echo "created clean JENKINS_HOME_DIR"
 
+=======
 if [ ! -d /home/$user/jenkinsHome/jenkinsHome$JenkinsVersion ]; then
         mkdir /home/$user/jenkinsHome/jenkinsHome$JenkinsVersion
 	echo "created the folder with version name"
+>>>>>>> parent of fd497b3... jenkinsinstallation.sh: 1. abridged JENKINS_HOME_DIR reference 2. Clean home directory creation 3. modified startup/shutdown of tomcat servlet
 fi
 
 }
@@ -155,8 +157,8 @@ while getopts ":u:v:s:" i; do
         case "${i}" in
         u) user=${OPTARG}
         ;;
-        v) JenkinsVersion=${OPTARG}
-        ;;
+                v) JenkinsVersion=${OPTARG}
+                ;;
         s) startupPort=${OPTARG}
         esac
 done
