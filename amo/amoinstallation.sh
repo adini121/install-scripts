@@ -176,7 +176,7 @@ echo "                                             									"
 workon $amoInstance
 sleep 1
 /usr/bin/expect <<EOD
-set timeout 180
+set timeout 540
 spawn make full_init
 expect "Type 'yes' to continue, or 'no' to cancel:"
 send "yes\r"
@@ -194,19 +194,33 @@ expect eof
 EOD
 }
 
+startAMO_SeleniumNode(){
+	echo "starting tmux session selenium-node-AMO-AMO"
+	tmux kill-session -t selenium-node-AMO
+	tmux new -d -A -s selenium-node-AMO '
+	export DISPLAY=:0.0
+	sleep 3
+	/usr/bin/java -jar /home/'$USER'/selenium-server-standalone-2.47.1.jar -role node -hub http://localhost:4444/grid/register -browser browserName=firefox -platform platform=LINUX 2>&1 | tee '$AMOBaseDir'/AMO-test-reports/test_log_from_SeNode_'$AMOGitTag'.log
+	sleep 2
+	tmux detach'
+	# sleep 5
+	# echo "exiting tmux session selenium-node-AMO"
+}
+
 runAMOInstance(){
 echo "Setting default admin user"
 /home/$user/AMOHome/$amoInstance/manage.py activate_user --set-admin adamsken1221@gmail.com
 
-echo "                                             									"                                                                                                                                                                                                          
-echo ">>>runserver at "$amoPort"								" 		                         
-echo "                                             									"                                                                                                                                                                                                          
-/home/$user/AMOHome/$amoInstance/manage.py runserver localhost:$amoPort
+echo "starting tmux session selenium-node-AMO-AMO"
+	tmux kill-session -t selenium-node-AMO
+	tmux new -d -A -s selenium-node-AMO '                                                                                                                                                                                              
+	/home/'$user'/AMOHome/'$amoInstance'/manage.py runserver localhost:'$amoPort'
+	tmux detach'
 	
 }
 
 activateAMObanner() {
- echo "creating amo "
+ echo "creating amo banner"
  if [ ! -d /home/$user/AMOHome/AMO-banner-launch ];
  	then
  	git -C /home/$user/AMOHome/ clone https://github.com/adini121/AMO-banner-launch.git
