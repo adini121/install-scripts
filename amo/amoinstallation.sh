@@ -64,6 +64,7 @@ echo ">>>installing amo code from olympia                     	 "
 echo "                                             									"                                                                                                                                                          
 
 		if [ ! -d /home/$user/AMOHome/$amoInstance ]; then
+			rm -r /home/$user/AMOHome/$amoInstance
 			git clone --recursive git://github.com/mozilla/olympia.git  /home/$user/AMOHome/$amoInstance
 		fi
  	
@@ -161,7 +162,7 @@ echo "                                             									"
 echo "                                             									"                                                                                                                                                                                                          
 echo ">>>MAKE clean virtualenv for "$amoInstance"						"				                         
 echo "                                             									"                                                                                                                                                                                                          
-	#rmvirtualenv $amoInstance
+	rmvirtualenv $amoInstance
 	mkvirtualenv $amoInstance
 	curl -XDELETE 'http://localhost:9200/addons_'$amoInstance'-*/'
 # # echo "                                             									"                                                                                                                                                                                                          
@@ -176,21 +177,21 @@ echo "                                             									"
 workon $amoInstance
 sleep 1
 /usr/bin/expect <<EOD
-	set timeout 540
-	spawn make full_init
-	expect "Type 'yes' to continue, or 'no' to cancel:"
-	send "yes\r"
-	expect "Username:"
-	send "admin\r"
-	expect "Email:"
-	send "adamsken1221@gmail.com\r"
-	expect "Password:"
-	send "adsad121\r"
-	expect "Password (again):"
-	send "adsad121\r"
-	expect "Are you sure you want to wipe all AMO Elasticsearch indexes? (yes/no):"
-	send "yes\r"
-	expect eof
+set timeout 540
+spawn make full_init
+expect "Type 'yes' to continue, or 'no' to cancel:"
+send "yes\r"
+expect "Username:"
+send "admin\r"
+expect "Email:"
+send "adamsken1221@gmail.com\r"
+expect "Password:"
+send "adsad121\r"
+expect "Password (again):"
+send "adsad121\r"
+expect "Are you sure you want to wipe all AMO Elasticsearch indexes? (yes/no):"
+send "yes\r"
+expect eof
 EOD
 }
 
