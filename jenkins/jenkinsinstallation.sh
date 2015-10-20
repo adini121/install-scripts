@@ -144,11 +144,12 @@ echo "..............................................finalsteps..................
         then
                 wget https://updates.jenkins-ci.org/latest/form-element-path.hpi -P $JENKINS_HOME_DIR/plugins/
         fi
-        /home/$user/tomcat/TomcatInstance$startupPort/bin/startup.sh
-        sleep 2
-        /home/$user/tomcat/TomcatInstance$startupPort/bin/shutdown.sh
-        sleep 2
-        /home/$user/tomcat/TomcatInstance$startupPort/bin/startup.sh
+
+/home/$user/tomcat/TomcatInstance$startupPort/bin/startup.sh
+sleep 5
+/home/$user/tomcat/TomcatInstance$startupPort/bin/shutdown.sh
+sleep 5
+/home/$user/tomcat/TomcatInstance$startupPort/bin/startup.sh
 
 }
 
