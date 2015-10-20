@@ -25,6 +25,7 @@ if [ ! -d /home/$user/jenkinsHome ]; then
 	echo 'created new directory'
 fi 
 
+<<<<<<< HEAD
 JENKINS_HOME_DIR="/home/"$user"/jenkinsHome/jenkinsHome$JenkinsVersion"
 
 if [ ! -d $JENKINS_HOME_DIR ]; then
