@@ -21,11 +21,11 @@ echo "..............................................createJenkinsHome...........
 
 if [ ! -d /home/$user/jenkinsHome ]; then
 	echo 'no jenkins home directory found.'
-        mkdir /home/$user/jenkinsHome
+        mkdir -p /home/$user/jenkinsHome
 	echo 'created new directory'
 fi 
 
-JENKINS_HOME_DIR="/home/$user/jenkinsHome/jenkinsHome$JenkinsVersion"
+JENKINS_HOME_DIR="/home/"$user"/jenkinsHome/jenkinsHome$JenkinsVersion"
 
 if [ ! -d $JENKINS_HOME_DIR ]; then
         mkdir $JENKINS_HOME_DIR
