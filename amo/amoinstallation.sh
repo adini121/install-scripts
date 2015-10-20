@@ -176,44 +176,31 @@ echo "                                             									"
 workon $amoInstance
 sleep 1
 /usr/bin/expect <<EOD
-set timeout 540
-spawn make full_init
-expect "Type 'yes' to continue, or 'no' to cancel:"
-send "yes\r"
-expect "Username:"
-send "admin\r"
-expect "Email:"
-send "adamsken1221@gmail.com\r"
-expect "Password:"
-send "adsad121\r"
-expect "Password (again):"
-send "adsad121\r"
-expect "Are you sure you want to wipe all AMO Elasticsearch indexes? (yes/no):"
-send "yes\r"
-expect eof
+	set timeout 540
+	spawn make full_init
+	expect "Type 'yes' to continue, or 'no' to cancel:"
+	send "yes\r"
+	expect "Username:"
+	send "admin\r"
+	expect "Email:"
+	send "adamsken1221@gmail.com\r"
+	expect "Password:"
+	send "adsad121\r"
+	expect "Password (again):"
+	send "adsad121\r"
+	expect "Are you sure you want to wipe all AMO Elasticsearch indexes? (yes/no):"
+	send "yes\r"
+	expect eof
 EOD
-}
-
-startAMO_SeleniumNode(){
-	echo "starting tmux session selenium-node-AMO-AMO"
-	tmux kill-session -t selenium-node-AMO
-	tmux new -d -A -s selenium-node-AMO '
-	export DISPLAY=:0.0
-	sleep 3
-	/usr/bin/java -jar /home/'$USER'/selenium-server-standalone-2.47.1.jar -role node -hub http://localhost:4444/grid/register -browser browserName=firefox -platform platform=LINUX 2>&1 | tee '$AMOBaseDir'/AMO-test-reports/test_log_from_SeNode_'$AMOGitTag'.log
-	sleep 2
-	tmux detach'
-	# sleep 5
-	# echo "exiting tmux session selenium-node-AMO"
 }
 
 runAMOInstance(){
 echo "Setting default admin user"
 /home/$user/AMOHome/$amoInstance/manage.py activate_user --set-admin adamsken1221@gmail.com
 
-echo "starting tmux session selenium-node-AMO-AMO"
-	tmux kill-session -t selenium-node-AMO
-	tmux new -d -A -s selenium-node-AMO '                                                                                                                                                                                              
+echo "starting tmux session AMO_"$amoInstance" "
+	tmux kill-session -t AMO_$amoInstance
+	tmux new -d -A -s AMO_$amoInstance '                                                                                                                                                                                              
 	/home/'$user'/AMOHome/'$amoInstance'/manage.py runserver localhost:'$amoPort'
 	tmux detach'
 	
@@ -221,15 +208,19 @@ echo "starting tmux session selenium-node-AMO-AMO"
 
 activateAMObanner() {
  echo "creating amo banner"
+
  if [ ! -d /home/$user/AMOHome/AMO-banner-launch ];
  	then
  	git -C /home/$user/AMOHome/ clone https://github.com/adini121/AMO-banner-launch.git
  fi
 
- 	sleep 2
- 	sed -i 's|.*URL=.*|URL=http://localhost:'$amoPort'/en-US/|g' /home/$user/AMOHome/AMO-banner-launch/src/main/resources/amo.properties
- 	cd /home/$user/AMOHome/AMO-banner-launch
- 	mvn clean install 
+sleep 2
+sed -i 's|.*URL=.*|URL=http://localhost:'$amoPort'/en-US/|g' /home/$user/AMOHome/AMO-banner-launch/src/main/resources/amo.properties
+cd /home/$user/AMOHome/AMO-banner-launch
+export MAVEN_OPTS="-Xmx1024M"
+export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
+git pull
+mvn clean install 
 
 }
 
