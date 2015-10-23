@@ -41,8 +41,9 @@ fi
 }
 
 installAMOolympiaCode(){
-if [ ! -d $AMO_HOME_DIR/$amoInstance ]; then
+if [ -d $AMO_HOME_DIR/$amoInstance ]; then
 	rm -r $AMO_HOME_DIR/$amoInstance
+	mkdir -p $AMO_HOME_DIR/$amoInstance
 	git -C $AMO_HOME_DIR clone --recursive git://github.com/mozilla/olympia.git  $amoInstance
 fi
  	
@@ -54,7 +55,7 @@ startElasticSearch(){
 tmux kill-session -t elastic-search 
 echo ".............Elasticsearch.........."
 tmux new -d -A -s elastic-search '
-/home/$user/elasticsearch/bin/elasticsearch
+/home/'$user'/elasticsearch/bin/elasticsearch
 tmux detach'
 }
 
