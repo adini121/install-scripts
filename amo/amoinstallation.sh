@@ -32,6 +32,7 @@ usage(){
 
 createAMOHome(){
 AMO_HOME_DIR="/home/$user/AMOHome/"
+echo " "$AMO_HOME_DIR"" 
 if [ ! -d $AMO_HOME_DIR ]; then
 	echo ">>>no AMO home directory found."
         mkdir $AMO_HOME_DIR
@@ -135,16 +136,17 @@ echo "                                             									"
 echo "                                             									"                                                                                                                                                                                                          
 echo "						MAKE clean virtualenv for "$amoInstance"						"				                         
 echo "                                             									"                                                                                                                                                                                                          
-	rmvirtualenv $amoInstance
+	# rmvirtualenv $amoInstance
 	mkvirtualenv $amoInstance
 	curl -XDELETE 'http://localhost:9200/addons_'$amoInstance'-*/'
+	pip install --upgrade pip
 
 echo "                                             									"                                                                                                                                                                                                          
 echo "								make full init 									" 		                         
 echo "                                             									"                                                                                                                                                                                                          
 	
 workon $amoInstance
-sleep 1
+sleep 5
 /usr/bin/expect <<EOD
 set timeout 2000
 spawn make full_init
