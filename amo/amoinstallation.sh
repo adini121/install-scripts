@@ -3,12 +3,7 @@
 # Description: Deployment script for AMO Mozilla addons app. Takes as input : User, AMO version, Port on which AMO will run
 # Author: Aditya
 
-
-
-############################################################################################
-#############                      DEPENDENCIES                      		 ###############
-############################################################################################
-
+# Dependencies #
 # Python 2.7 (2.7 -> 2.7.10)
 # Node 0.10.x or higher
 # MySQL
@@ -36,60 +31,38 @@ usage(){
 }
 
 createAMOHome(){
-echo "                                             									"                                                                                                                                                                                                          
-echo ">>>creating amo home                     					"
-echo "                                             									"                                                                                                                                                                                                          
-
-if [ ! -d /home/$user/AMOHome ]; then
+AMO_HOME_DIR="/home/$user/AMOHome/"
+if [ ! -d $AMO_HOME_DIR ]; then
 	echo ">>>no AMO home directory found."
-        mkdir /home/$user/AMOHome
+        mkdir $AMO_HOME_DIR
 	echo ">>>created AMO directory"
 fi 
 }
 
-# downloadDependencies (){
-# echo "                                             									"                                                                                                                                                                                                          
-# echo "                      Download Dependencies                  				"    
-# echo "                                             									"                                                                                                                                                                                                          
-
-
-# 	sudo apt-get install python-dev python-virtualenv npm libxml2-dev libxslt1-dev libmysqlclient-dev memcached libssl-dev swig openssl curl libjpeg-dev zlib1g-dev libsasl2-dev nodejs nodejs-legacy
-# 	
-
-# }
-
 installAMOolympiaCode(){
-echo "                              												"                                                                                                                                                                         
-echo ">>>installing amo code from olympia                     	 "
-echo "                                             									"                                                                                                                                                          
-
-		if [ ! -d /home/$user/AMOHome/$amoInstance ]; then
-			rm -r /home/$user/AMOHome/$amoInstance
-			git clone --recursive git://github.com/mozilla/olympia.git  /home/$user/AMOHome/$amoInstance
-		fi
+if [ ! -d $AMO_HOME_DIR/$amoInstance ]; then
+	rm -r $AMO_HOME_DIR/$amoInstance
+	git -C $AMO_HOME_DIR clone --recursive git://github.com/mozilla/olympia.git  $amoInstance
+fi
  	
-	cd /home/$user/AMOHome/$amoInstance
-	git pull
-	git checkout $amoGitTag
+git -C $AMO_HOME_DIR/$amoInstance pull
+git -C $AMO_HOME_DIR/$amoInstance checkout $amoGitTag
 }
 
-# startElasticSearch(){
-# tmux kill-session -t elastic-search 
-# echo ".............Elasticsearch.........."
-# tmux new -d -A -s elastic-search '
-# /home/$user/elasticsearch/bin/elasticsearch
-# tmux detach'
-# }
+startElasticSearch(){
+tmux kill-session -t elastic-search 
+echo ".............Elasticsearch.........."
+tmux new -d -A -s elastic-search '
+/home/$user/elasticsearch/bin/elasticsearch
+tmux detach'
+}
 
 amoDBsettings(){
-	echo "                                             									"     
-	echo ">>> amo database settings          			            "
-	echo "                                             									"     
-	mysql -u root << EOF
-	DROP DATABASE IF EXISTS amo_$dbName;
-	CREATE DATABASE amo_$dbName DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-	GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,CREATE TEMPORARY TABLES,DROP,INDEX,ALTER ON amo_$dbName.* TO 'amouser'@'localhost' IDENTIFIED BY 'amopassword';
-	GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,CREATE TEMPORARY TABLES,DROP,INDEX,ALTER ON test_olympia.* TO 'amouser'@'localhost' IDENTIFIED BY 'amopassword';
+mysql -u root << EOF
+DROP DATABASE IF EXISTS amo_$dbName;
+CREATE DATABASE amo_$dbName DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,CREATE TEMPORARY TABLES,DROP,INDEX,ALTER ON amo_$dbName.* TO 'amouser'@'localhost' IDENTIFIED BY 'amopassword';
+GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,CREATE TEMPORARY TABLES,DROP,INDEX,ALTER ON test_olympia.* TO 'amouser'@'localhost' IDENTIFIED BY 'amopassword';
 EOF
 }
 
@@ -98,12 +71,12 @@ echo "                                             									"
 echo ">>>configuring local_settings.py file                      "
 echo "                                             									"     
 echo ">>>checking if local_settings.py is present"
-if [  ! -f /home/$user/AMOHome/$amoInstance/local_settings.py ];
+if [  ! -f $AMO_HOME_DIR/$amoInstance/local_settings.py ];
         then 
-        		touch /home/$user/AMOHome/$amoInstance/local_settings.py
-        		chmod 755 /home/$user/AMOHome/$amoInstance/local_settings.py
+        		touch $AMO_HOME_DIR/$amoInstance/local_settings.py
+        		chmod 755 $AMO_HOME_DIR/$amoInstance/local_settings.py
         		echo "created local_settings.py"
-cat > /home/$user/AMOHome/$amoInstance/local_settings.py << EOF
+cat > $AMO_HOME_DIR/$amoInstance/local_settings.py << EOF
 #local_settings.py
 #specify the settings for each AMO instance
 from settings import *  # noqa
@@ -148,36 +121,32 @@ fi
 
 amoFullInit(){
 echo "                                             									"                                                                                                                                                                                                          
-echo ">>>running full_init            "
+echo "									running full_init          					"
 echo "                                             									"                                                                                                                                                                                                          
 	curl -sL https://raw.github.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | $SHELL
                                                                                                                                                                                                        
 echo "                                             									"                                                                                                                                                                                                          
-echo ">>>source virtualenv for "$amoInstance"						"				                         
+echo "					      source virtualenv for "$amoInstance"						"				                       
 echo "                                             									"                                                                                                                                                                                                          
 
 
 	source /home/$user/.venvburrito/startup.sh
 	sleep 5                                                                                                                                                                                                     
 echo "                                             									"                                                                                                                                                                                                          
-echo ">>>MAKE clean virtualenv for "$amoInstance"						"				                         
+echo "						MAKE clean virtualenv for "$amoInstance"						"				                         
 echo "                                             									"                                                                                                                                                                                                          
 	rmvirtualenv $amoInstance
 	mkvirtualenv $amoInstance
 	curl -XDELETE 'http://localhost:9200/addons_'$amoInstance'-*/'
-# # echo "                                             									"                                                                                                                                                                                                          
-# # echo ">>>upgrade pip										"		  		                                                 
-# # echo "                                             									"                                                                                                                                                                                                          
-# 	#pip install --upgrade pip #making sure pip is in recent version
-# 	sleep 2
+
 echo "                                             									"                                                                                                                                                                                                          
-echo ">>>make full init 									" 		                         
+echo "								make full init 									" 		                         
 echo "                                             									"                                                                                                                                                                                                          
 	
 workon $amoInstance
 sleep 1
 /usr/bin/expect <<EOD
-set timeout 540
+set timeout 2000
 spawn make full_init
 expect "Type 'yes' to continue, or 'no' to cancel:"
 send "yes\r"
@@ -197,7 +166,7 @@ EOD
 
 runAMOInstance(){
 echo "Setting default admin user"
-/home/$user/AMOHome/$amoInstance/manage.py activate_user --set-admin adamsken1221@gmail.com
+$AMO_HOME_DIR/$amoInstance/manage.py activate_user --set-admin adamsken1221@gmail.com
 
 echo "starting tmux session AMO_"$amoInstance" "
 	tmux kill-session -t AMO_$amoInstance
@@ -210,14 +179,14 @@ echo "starting tmux session AMO_"$amoInstance" "
 activateAMObanner() {
  echo "creating amo banner"
 
- if [ ! -d /home/$user/AMOHome/AMO-banner-launch ];
+ if [ ! -d $AMO_HOME_DIR/AMO-banner-launch ];
  	then
- 	git -C /home/$user/AMOHome/ clone https://github.com/adini121/AMO-banner-launch.git
+ 	git -C $AMO_HOME_DIR/ clone https://github.com/adini121/AMO-banner-launch.git
  fi
 
 sleep 2
-sed -i 's|.*URL=.*|URL=http://localhost:'$amoPort'/en-US/|g' /home/$user/AMOHome/AMO-banner-launch/src/main/resources/amo.properties
-cd /home/$user/AMOHome/AMO-banner-launch
+sed -i 's|.*URL=.*|URL=http://localhost:'$amoPort'/en-US/|g' $AMO_HOME_DIR/AMO-banner-launch/src/main/resources/amo.properties
+cd $AMO_HOME_DIR/AMO-banner-launch
 export MAVEN_OPTS="-Xmx1024M"
 export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
 git pull
@@ -256,7 +225,7 @@ createAMOHome
 
 installAMOolympiaCode
 
-# startElasticSearch
+startElasticSearch
 
 amoDBsettings
 
