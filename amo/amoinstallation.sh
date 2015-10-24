@@ -125,22 +125,22 @@ amoFullInit(){
 echo "                                             									"                                                                                                                                                                                                          
 echo "									running full_init          					"
 echo "                                             									"                                                                                                                                                                                                          
-	curl -sL https://raw.github.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | $SHELL
+curl -sL https://raw.github.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | $SHELL
                                                                                                                                                                                                        
 echo "                                             									"                                                                                                                                                                                                          
 echo "					      source virtualenv for "$amoInstance"						"				                       
 echo "                                             									"                                                                                                                                                                                                          
 
 
-	source /home/$user/.venvburrito/startup.sh
-	sleep 5                                                                                                                                                                                                     
+source /home/$user/.venvburrito/startup.sh
+sleep 5                                                                                                                                                                                                     
 echo "                                             									"                                                                                                                                                                                                          
 echo "						MAKE clean virtualenv for "$amoInstance"						"				                         
 echo "                                             									"                                                                                                                                                                                                          
-	# rmvirtualenv $amoInstance
-	mkvirtualenv $amoInstance
-	curl -XDELETE 'http://localhost:9200/addons_'$amoInstance'-*/'
-	pip install --upgrade pip
+# rmvirtualenv $amoInstance
+mkvirtualenv $amoInstance
+curl -XDELETE 'http://localhost:9200/addons_'$amoInstance'-*/'
+pip install --upgrade pip
 
 echo "                                             									"                                                                                                                                                                                                          
 echo "								make full init 									" 		                         
@@ -149,7 +149,7 @@ echo "                                             									"
 workon $amoInstance
 sleep 5
 /usr/bin/expect <<EOD
-set timeout 2000
+set timeout 1000
 spawn make full_init
 expect "Type 'yes' to continue, or 'no' to cancel:"
 send "yes\r"
@@ -172,20 +172,19 @@ echo "Setting default admin user"
 $AMO_HOME_DIR/$amoInstance/manage.py activate_user --set-admin adamsken1221@gmail.com
 
 echo "starting tmux session AMO_"$amoInstance" "
-	tmux kill-session -t AMO_$amoInstance
-	tmux new -d -A -s AMO_$amoInstance '                                                                                                                                                                                              
-	/home/'$user'/AMOHome/'$amoInstance'/manage.py runserver localhost:'$amoPort'
-	tmux detach'
+tmux kill-session -t AMO_$amoInstance
+tmux new -d -A -s AMO_$amoInstance '                                                                                                                                                                                              
+/home/'$user'/AMOHome/'$amoInstance'/manage.py runserver localhost:'$amoPort'
+tmux detach'
 	
 }
 
 activateAMObanner() {
- echo "creating amo banner"
+echo "creating amo banner"
 
- if [ ! -d $AMO_HOME_DIR/AMO-banner-launch ];
- 	then
+if [ ! -d $AMO_HOME_DIR/AMO-banner-launch ]; then
  	git -C $AMO_HOME_DIR/ clone https://github.com/adini121/AMO-banner-launch.git
- fi
+fi
 
 sleep 2
 sed -i 's|.*URL=.*|URL=http://localhost:'$amoPort'/en-US/|g' $AMO_HOME_DIR/AMO-banner-launch/src/main/resources/amo.properties
