@@ -33,6 +33,7 @@ usage(){
 createAMOHome(){
 AMO_HOME_DIR="/home/$user/AMOHome/"
 echo " "$AMO_HOME_DIR"" 
+
 if [ ! -d $AMO_HOME_DIR ]; then
 	echo ">>>no AMO home directory found."
         mkdir $AMO_HOME_DIR
@@ -123,6 +124,8 @@ fi
 
 
 amoFullInit(){
+cd $AMO_HOME_DIR/$amoInstance
+
 echo "                                             									"                                                                                                                                                                                                          
 echo "									running full_init          					"
 echo "                                             									"                                                                                                                                                                                                          
