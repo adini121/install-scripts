@@ -19,7 +19,9 @@
 
 usage(){
         echo "Usage: $0 <OPTIONS>"
-        echo "Required options:"
+        echo "________________________________________________________________________________"
+        echo "Create Elasticsearch TMUX session                                               "
+        echo "________________________________________________________________________________"
         echo "  -u <user>           Eg adi, nisal etc"
         echo "  -b <dbName>         name for AMO database, format : YYMMDD, eg 150715"
         echo "  -t <amoGitTag>      amo git tag format : YYYY.MM.DD, eg 2015.04.25"
@@ -27,6 +29,7 @@ usage(){
         echo "  -p <amoPort>        Eg 8080, 8081, 8083 etc"
         echo " 	-m <memcachedPort>  Eg 11211, 11212, 11213 etc"
         echo "  -r <redisPort       Eg 6379, 6380, 6381 etc"
+        echo "________________________________________________________________________________"
         exit 1
 }
 
@@ -43,23 +46,21 @@ fi
 
 installAMOolympiaCode(){
 if [ -d $AMO_HOME_DIR/$amoInstance ]; then
-	rm -rf $AMO_HOME_DIR/$amoInstance
-fi
 mkdir -p $AMO_HOME_DIR/$amoInstance
 git -C $AMO_HOME_DIR clone --recursive git://github.com/mozilla/olympia.git $amoInstance
-
+fi
  	
 git -C $AMO_HOME_DIR/$amoInstance pull
 git -C $AMO_HOME_DIR/$amoInstance checkout $amoGitTag
 }
 
-startElasticSearch(){
-tmux kill-session -t elastic-search 
-echo ".............Elasticsearch.........."
-tmux new -d -A -s elastic-search '
-/home/'$user'/elasticsearch/bin/elasticsearch
-tmux detach'
-}
+# startElasticSearch(){
+# tmux kill-session -t elastic-search 
+# echo ".............Elasticsearch.........."
+# tmux new -d -A -s elastic-search '
+# /home/'$user'/elasticsearch/bin/elasticsearch
+# tmux detach'
+# }
 
 amoDBsettings(){
 mysql -u root << EOF
@@ -204,17 +205,17 @@ while getopts ":u:b:t:a:p:m:r:" i; do
     case "${i}" in
         u) user=${OPTARG}
         ;;
-		b) dbName=${OPTARG}
-		;;
+        b) dbName=${OPTARG}
+        ;;
         t) amoGitTag=${OPTARG}
-		;;
-		a) amoInstance=${OPTARG}
-		;;
-		p) amoPort=${OPTARG}
-		;;
-		m) memcachedPort=${OPTARG}
-		;;
-		r) redisPort=${OPTARG}
+        ;;
+        a) amoInstance=${OPTARG}
+        ;;
+        p) amoPort=${OPTARG}
+        ;;
+        m) memcachedPort=${OPTARG}
+        ;;
+        r) redisPort=${OPTARG}
 
     esac
 done
@@ -231,7 +232,7 @@ createAMOHome
 
 installAMOolympiaCode
 
-startElasticSearch
+# startElasticSearch
 
 amoDBsettings
 
