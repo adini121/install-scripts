@@ -35,7 +35,7 @@ usage(){
 
 createAMOHome(){
 AMO_HOME_DIR="/home/$user/AMOHome/"
-echo " "$AMO_HOME_DIR"" 
+echo "AMO base directory is : "$AMO_HOME_DIR"" 
 
 if [ ! -d $AMO_HOME_DIR ]; then
 	echo ">>>no AMO home directory found."
@@ -45,9 +45,9 @@ fi
 }
 
 installAMOolympiaCode(){
-if [ -d $AMO_HOME_DIR/$amoInstance ]; then
-mkdir -p $AMO_HOME_DIR/$amoInstance
-git -C $AMO_HOME_DIR clone --recursive git://github.com/mozilla/olympia.git $amoInstance
+if [ ! -d $AMO_HOME_DIR/$amoInstance ]; then
+    # mkdir -p $AMO_HOME_DIR/$amoInstance
+    git -C $AMO_HOME_DIR clone --recursive git://github.com/mozilla/olympia.git $amoInstance
 fi
  	
 git -C $AMO_HOME_DIR/$amoInstance pull
@@ -72,15 +72,22 @@ EOF
 }
 
 configureLocalSettings() {
-echo "                                             									"                                                                                                                                                                                                          
-echo ">>>configuring local_settings.py file                      "
-echo "                                             									"     
-echo ">>>checking if local_settings.py is present"
-if [  ! -f $AMO_HOME_DIR/$amoInstance/local_settings.py ];
-        then 
-        		touch $AMO_HOME_DIR/$amoInstance/local_settings.py
-        		chmod 755 $AMO_HOME_DIR/$amoInstance/local_settings.py
-        		echo "created local_settings.py"
+echo "________________________________________________________________________________"                                                                                                                                                                                                          
+echo "                      configuring local_settings.py file                      "
+echo "________________________________________________________________________________"                                                                                                                                                                                                          
+echo "                      checking if local_settings.py is present"
+
+if [ -f $AMO_HOME_DIR/$amoInstance/local_settings.py ]; then
+    echo "________________________________________________________________________________"                                                                                                                                                                                                          
+    echo "                  local_settings.py is present, deleting it"
+    echo "________________________________________________________________________________"                                                                                                                                                                                                          
+
+    rm $AMO_HOME_DIR/$amoInstance/local_settings.py
+fi
+
+touch $AMO_HOME_DIR/$amoInstance/local_settings.py
+chmod 755 $AMO_HOME_DIR/$amoInstance/local_settings.py
+echo "created new local_settings.py"
 cat > $AMO_HOME_DIR/$amoInstance/local_settings.py << EOF
 #local_settings.py
 #specify the settings for each AMO instance
@@ -107,7 +114,7 @@ ES_HOSTS = [os.environ.get('ELASTICSEARCH_LOCATION', '127.0.0.1:9200')]
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_INDEXES = {
 	'default': 'addons_$amoInstance',
- 	'stats': 'addons_$amoInstance_stats',
+ 	'stats': 'addons_stats_$amoInstance',
 }
 
 # Celery
@@ -119,17 +126,19 @@ REDIS_BACKENDS = {
     'master': 'redis://{location}?socket_timeout=0.5'.format(
     location=REDIS_LOCATION)}
 EOF
+echo "________________________________________________________________________________"                                                                                                                                                                                                          
         		echo "exiting local_settings.py"
-fi
+echo "________________________________________________________________________________"                                                                                                                                                                                                          
+
 }
 
 
 amoFullInit(){
 cd $AMO_HOME_DIR/$amoInstance
 
-echo "                                             									"                                                                                                                                                                                                          
+echo "________________________________________________________________________________"                                                                                                                                                                                                          
 echo "									running full_init          					"
-echo "                                             									"                                                                                                                                                                                                          
+echo "________________________________________________________________________________"                                                                                                                                                                                                                                                                                                                                                                                                                    
 curl -sL https://raw.github.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | $SHELL
                                                                                                                                                                                                        
 echo "                                             									"                                                                                                                                                                                                          
@@ -140,17 +149,17 @@ echo "                                             									"
 source /home/$user/.venvburrito/startup.sh
 sleep 5                                                                                                                                                                                                     
 echo "                                             									"                                                                                                                                                                                                          
-echo "						MAKE clean virtualenv for "$amoInstance"						"				                         
+echo "						MAKE virtualenv for "$amoInstance"						"				                         
 echo "                                             									"                                                                                                                                                                                                          
 # rmvirtualenv $amoInstance
 mkvirtualenv $amoInstance
 curl -XDELETE 'http://localhost:9200/addons_'$amoInstance'-*/'
 pip install --upgrade pip
 
-echo "                                             									"                                                                                                                                                                                                          
+echo "________________________________________________________________________________"                                                                                                                                                                                                                                                                                                                                                                                                                    
 echo "								make full init 									" 		                         
-echo "                                             									"                                                                                                                                                                                                          
-	
+echo "________________________________________________________________________________"     
+
 workon $amoInstance
 sleep 5
 /usr/bin/expect <<EOD
@@ -185,7 +194,9 @@ tmux detach'
 }
 
 activateAMObanner() {
-echo "creating amo banner"
+echo "________________________________________________________________________________"                                                                                                                                                                                                                                                                                                                                                                                                                    
+echo "                              creating amo banner"
+echo "________________________________________________________________________________"                                                                                                                                                                                                                                                                                                                                                                                                                    
 
 if [ ! -d $AMO_HOME_DIR/AMO-banner-launch ]; then
  	git -C $AMO_HOME_DIR/ clone https://github.com/adini121/AMO-banner-launch.git
