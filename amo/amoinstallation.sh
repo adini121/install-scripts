@@ -179,7 +179,7 @@ $AMO_HOME_DIR/$amoInstance/manage.py activate_user --set-admin adamsken1221@gmai
 echo "starting tmux session AMO_"$amoInstance" "
 tmux kill-session -t AMO_$amoInstance
 tmux new -d -A -s AMO_$amoInstance '                                                                                                                                                                                              
-/home/'$user'/AMOHome/'$amoInstance'/manage.py runserver localhost:'$amoPort'
+/home/'$user'/AMOHome/'$amoInstance'/manage.py runserver 134.96.235.47:'$amoPort'
 tmux detach'
 	
 }
@@ -192,7 +192,7 @@ if [ ! -d $AMO_HOME_DIR/AMO-banner-launch ]; then
 fi
 
 sleep 2
-sed -i 's|.*URL=.*|URL=http://localhost:'$amoPort'/en-US/|g' $AMO_HOME_DIR/AMO-banner-launch/src/main/resources/amo.properties
+sed -i 's|.*URL=.*|URL=http://134.96.235.47:'$amoPort'/en-US/|g' $AMO_HOME_DIR/AMO-banner-launch/src/main/resources/amo.properties
 cd $AMO_HOME_DIR/AMO-banner-launch
 export MAVEN_OPTS="-Xmx1024M"
 export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
