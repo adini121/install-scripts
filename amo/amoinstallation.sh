@@ -20,14 +20,14 @@
 usage(){
         echo "Usage: $0 <OPTIONS>"
         echo "________________________________________________________________________________"
-        echo "Create Elasticsearch TMUX session                                               "
+        echo "  Required OPTIONS:                            "
         echo "________________________________________________________________________________"
         echo "  -u <user>           Eg adi, nisal etc"
         echo "  -b <dbName>         name for AMO database, format : YYMMDD, eg 150715"
         echo "  -t <amoGitTag>      amo git tag format : YYYY.MM.DD, eg 2015.04.25"
         echo "  -a <amoInstance>    Eg amo_first, amo_second, amo_third etc"
         echo "  -p <amoPort>        Eg 8080, 8081, 8083 etc"
-        echo " 	-m <memcachedPort>  Eg 11211, 11212, 11213 etc"
+        echo "  -m <memcachedPort>  Eg 11211, 11212, 11213 etc"
         echo "  -r <redisPort       Eg 6379, 6380, 6381 etc"
         echo "________________________________________________________________________________"
         exit 1
@@ -137,7 +137,7 @@ amoFullInit(){
 cd $AMO_HOME_DIR/$amoInstance
 
 echo "________________________________________________________________________________"                                                                                                                                                                                                          
-echo "									running full_init          					"
+echo "			running full_init          					"
 echo "________________________________________________________________________________"                                                                                                                                                                                                                                                                                                                                                                                                                    
 curl -sL https://raw.github.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | $SHELL
                                                                                                                                                                                                        
@@ -188,7 +188,7 @@ $AMO_HOME_DIR/$amoInstance/manage.py activate_user --set-admin adamsken1221@gmai
 echo "starting tmux session AMO_"$amoInstance" "
 tmux kill-session -t AMO_$amoInstance
 tmux new -d -A -s AMO_$amoInstance '                                                                                                                                                                                              
-/home/'$user'/AMOHome/'$amoInstance'/manage.py runserver 134.96.235.47:'$amoPort'
+/home/'$user'/AMOHome/'$amoInstance'/manage.py runserver localhost:'$amoPort'
 tmux detach'
 	
 }
