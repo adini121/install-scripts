@@ -151,7 +151,7 @@ sleep 5
 echo "                                             									"                                                                                                                                                                                                          
 echo "						MAKE virtualenv for "$amoInstance"						"				                         
 echo "                                             									"                                                                                                                                                                                                          
-# rmvirtualenv $amoInstance
+rmvirtualenv $amoInstance
 mkvirtualenv $amoInstance
 curl -XDELETE 'http://localhost:9200/addons_'$amoInstance'-*/'
 pip install --upgrade pip
@@ -203,7 +203,7 @@ if [ ! -d $AMO_HOME_DIR/AMO-banner-launch ]; then
 fi
 
 sleep 2
-sed -i 's|.*URL=.*|URL=http://134.96.235.47:'$amoPort'/en-US/|g' $AMO_HOME_DIR/AMO-banner-launch/src/main/resources/amo.properties
+sed -i 's|.*URL=.*|URL=http://localhost:'$amoPort'/en-US/|g' $AMO_HOME_DIR/AMO-banner-launch/src/main/resources/amo.properties
 cd $AMO_HOME_DIR/AMO-banner-launch
 export MAVEN_OPTS="-Xmx1024M"
 export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
