@@ -37,11 +37,14 @@ EOF
 
 createMoodleHome(){
 	echo "................................Creating moodledata home directory................................"
-	if [ ! -d /home/$USER/moodledata_$MoodleVersion ]; then
-			mkdir /home/$USER/moodledata_$MoodleVersion
-		fi
+	mkdir -p /home/$USER/MooodleData
+	if [ -d /home/$USER/MooodleData/moodledata_$MoodleVersion ]; then
+			rm -rf /home/$USER/MooodleData/moodledata_$MoodleVersion
+	fi
+	mkdir -p /home/$USER/MooodleData/moodledata_$MoodleVersion
+	
 
-	chmod 0777 /home/$USER/moodledata_$MoodleVersion
+	chmod 0777 /home/$USER/MooodleData/moodledata_$MoodleVersion
 
 	#mkdir /home/$USER/moodle/moodledata/moodledata_$MoodleVersion
 	#chmod 0777 /home/$USER/moodle/moodledata/moodledata_$MoodleVersion
@@ -52,23 +55,20 @@ createMoodleHome(){
 moodleConfiguration(){
 	echo ".......................................Configuring moodle......................................."
 	CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-	
 	cp $CURRENT_DIR/config.php /var/www/$moodleInstance/
-	#cp /home/$USER/moodle/config.php /var/www/moodle/
-
 	chmod 775 /var/www/$moodleInstance/config.php
 
 	sed -i 's|.*$CFG->dbname    = \x27moodle\x27;.*|$CFG->dbname    = \x27moodle_'$MoodleVersion'\x27;|g' /var/www/$moodleInstance/config.php
-	sed -i 's|.*$CFG->wwwroot   = \x27http://localhost/moodle\x27;.*|$CFG->wwwroot   = \x27http://localhost/'$moodleInstance'\x27;|g' /var/www/$moodleInstance/config.php
-	sed -i 's|.*$CFG->dataroot  = \x27/home/adi/moodledata\x27;.*|$CFG->dataroot   = \x27/home/'$USER'/moodledata_'$MoodleVersion'\x27;|g' /var/www/$moodleInstance/config.php
+	sed -i 's|.*$CFG->wwwroot   = \x27http://localhost/moodle\x27;.*|$CFG->wwwroot   = \x27http://134.96.235.134:8000/'$moodleInstance'\x27;|g' /var/www/$moodleInstance/config.php
+	sed -i 's|.*$CFG->dataroot  = \x27/home/adi/moodledata\x27;.*|$CFG->dataroot   = \x27/home/'$USER'/MooodleData/moodledata_'$MoodleVersion'\x27;|g' /var/www/$moodleInstance/config.php
 	#sed -i 's|.*$CFG->dataroot  = \x27/home/$USER/moodledata\x27;.*|$CFG->wwwroot   = \x27/home/$USER/moodle/moodledata/moodledata_'$MoodleVersion'\x27;|g' /var/www/$moodleInstance/config.php
 
 }
 
 moodleInstall(){
 	echo "................................final moodle installation steps................................"
-	sudo /usr/bin/php /var/www/$moodleInstance/admin/cli/install_database.php --agree-license --adminpass=MOODLE_ADMIN_121 
-	sudo /usr/bin/php /var/www/$moodleInstance/admin/cli/cron.php >/dev/null
+	/usr/bin/php /var/www/$moodleInstance/admin/cli/install_database.php --agree-license --adminpass=MOODLE_ADMIN_121 
+	/usr/bin/php /var/www/$moodleInstance/admin/cli/cron.php >/dev/null
 }
 
 apacheConfiguration() {
@@ -86,12 +86,12 @@ apacheConfiguration() {
 # )
 	# if 	[ ! grep -q 'Alias /$moodleInstance /var/www/$moodleInstance' /etc/apache2/sites-available/000-default.conf ];
 	# then
-	# 	sudo sed -i '/ServerName localhost/r '$ALIASES'' /etc/apache2/sites-available/000-default.conf 
+	# 	sed -i '/ServerName localhost/r '$ALIASES'' /etc/apache2/sites-available/000-default.conf 
 	# fi
 	
 	 if ! grep -q "Alias /$moodleInstance /var/www/$moodleInstance" /etc/apache2/sites-available/000-default.conf;
         then
-                sudo sed -i "/\<ServerName[[:space:]]localhost\>/a 	\        Alias /$moodleInstance /var/www/$moodleInstance\\
+                sed -i "/\<ServerName[[:space:]]134.96.235.134:8000\>/a 	\        Alias /$moodleInstance /var/www/$moodleInstance\\
                 <Directory /var/www/> \\
                 Options Indexes FollowSymLinks MultiViews\\
                 AllowOverride All\\
@@ -102,9 +102,9 @@ apacheConfiguration() {
     echo "now we here"
     if grep -q "Alias /$moodleInstance /var/www/$moodleInstance" /etc/apache2/sites-available/000-default.conf;		
      	then 
-     			sudo sed -i 's|\\||g' /etc/apache2/sites-available/000-default.conf
+     			sed -i 's|\\||g' /etc/apache2/sites-available/000-default.conf
 		fi
-	sudo service apache2 restart	
+	service apache2 restart	
 }
 
 while getopts ":u:v:t:m:" i; do
