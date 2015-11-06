@@ -8,6 +8,7 @@
 usage(){
         echo "Usage: $0 <OPTIONS>"
         echo "Required options:"
+        echo "root user Required"
         echo "  -u $USER               user name"
         echo "  -v <MoodleVersion>     Moodle version for database and moodle home (eg 270, 281 etc)"
         echo "  -t <MoodleGitTag>      Moodle git tag eg: v2.7.1, v2.7.0"
@@ -67,7 +68,7 @@ moodleConfiguration(){
 
 moodleInstall(){
 	echo "................................final moodle installation steps................................"
-	/usr/bin/php /var/www/$moodleInstance/admin/cli/install_database.php --agree-license --adminpass=MOODLE_ADMIN_121 
+	/usr/bin/php /var/www/$moodleInstance/admin/cli/install_database.php --agree-license --adminpass=MOODLE_admin_121 
 	/usr/bin/php /var/www/$moodleInstance/admin/cli/cron.php >/dev/null
 }
 
