@@ -35,18 +35,23 @@ usage(){
 
 createAMOHome(){
 AMO_HOME_DIR="/home/$user/AMOHome/"
-echo "AMO base directory is : "$AMO_HOME_DIR"" 
+echo "____________________AMO base directory is : "$AMO_HOME_DIR"____________________" 
+
+echo "Removing virtualenvs"
+rm -rf /home/$user/.virtualenvs
+rm -rf /home/$user/.venvburrito
 
 if [ ! -d $AMO_HOME_DIR ]; then
-	echo ">>>no AMO home directory found."
+	echo "____________________no AMO home directory found.____________________"
         mkdir $AMO_HOME_DIR
-	echo ">>>created AMO directory"
+	echo "____________________created AMO directory____________________"
 fi 
 }
 
 installAMOolympiaCode(){
-if [ ! -d $AMO_HOME_DIR/$amoInstance ]; then
-    # mkdir -p $AMO_HOME_DIR/$amoInstance
+if [ -d $AMO_HOME_DIR/$amoInstance ]; then
+    rm -rf $AMO_HOME_DIR/$amoInstance 
+    mkdir -p $AMO_HOME_DIR/$amoInstance
     git -C $AMO_HOME_DIR clone --recursive git://github.com/mozilla/olympia.git $amoInstance
 fi
  	
@@ -87,7 +92,7 @@ fi
 
 touch $AMO_HOME_DIR/$amoInstance/local_settings.py
 chmod 755 $AMO_HOME_DIR/$amoInstance/local_settings.py
-echo "created new local_settings.py"
+echo "____________________created new local_settings.py____________________"
 cat > $AMO_HOME_DIR/$amoInstance/local_settings.py << EOF
 #local_settings.py
 #specify the settings for each AMO instance
@@ -134,6 +139,8 @@ echo "__________________________________________________________________________
 
 
 amoFullInit(){
+echo "_________________________Wiping current Elasticsearch indices_____________________"                                                                                                                                                                                                       
+curl -XDELETE 'http://localhost:9200/addons_*/'
 cd $AMO_HOME_DIR/$amoInstance
 
 echo "________________________________________________________________________________"                                                                                                                                                                                                          
@@ -151,9 +158,9 @@ sleep 5
 echo "                                             									"                                                                                                                                                                                                          
 echo "						MAKE virtualenv for "$amoInstance"						"				                         
 echo "                                             									"                                                                                                                                                                                                          
-rmvirtualenv $amoInstance
+
 mkvirtualenv $amoInstance
-curl -XDELETE 'http://localhost:9200/addons_*/'
+
 pip install --upgrade pip
 
 echo "________________________________________________________________________________"                                                                                                                                                                                                                                                                                                                                                                                                                    
@@ -182,10 +189,10 @@ EOD
 }
 
 runAMOInstance(){
-echo "Setting default admin user"
+echo "____________________Setting default admin user___________________________"
 $AMO_HOME_DIR/$amoInstance/manage.py activate_user --set-admin adamsken1221@gmail.com
 
-echo "starting tmux session AMO_"$amoInstance" "
+echo "____________________starting tmux session AMO_"$amoInstance"_____________________"
 tmux kill-session -t AMO_$amoInstance
 tmux new -d -A -s AMO_$amoInstance '                                                                                                                                                                                              
 /home/'$user'/AMOHome/'$amoInstance'/manage.py runserver localhost:'$amoPort'
