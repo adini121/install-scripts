@@ -203,8 +203,8 @@ send "yes\r"
 expect eof
 EOD
 
-/home/'$user'/AMOHome/'$amoInstance'/manage.py compress_assets
-/home/'$user'/AMOHome/'$amoInstance'/manage.py collectstatic --noinput
+/home/$user/AMOHome/$amoInstance/manage.py compress_assets
+/home/$user/AMOHome/$amoInstance/manage.py collectstatic --noinput
 }
 
 runAMOInstance(){
