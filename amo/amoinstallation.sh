@@ -24,7 +24,7 @@ usage(){
         echo "________________________________________________________________________________"
         echo "  -u <user>           Eg adi, nisal etc"
         echo "  -b <dbName>         name for AMO database, format : YYMMDD, eg 150715"
-        echo "  -t <amoGitTag>      amo git tag format : YYYY.MM.DD, eg 2015.04.25"
+        echo "  -t <amoGitTag>      amo git tag format : YYYY.MM.DD, eg 2015.04.25, 2015.09.10 "
         echo "  -a <amoInstance>    Eg amo_first, amo_second, amo_third etc"
         echo "  -p <amoPort>        Eg 8080, 8081, 8083 etc"
         echo "  -m <memcachedPort>  Eg 11211, 11212, 11213 etc"
@@ -153,7 +153,7 @@ echo "						MAKE virtualenv for "$amoInstance"						"
 echo "                                             									"                                                                                                                                                                                                          
 rmvirtualenv $amoInstance
 mkvirtualenv $amoInstance
-curl -XDELETE 'http://localhost:9200/addons_'$amoInstance'-*/'
+curl -XDELETE 'http://localhost:9200/addons_*/'
 pip install --upgrade pip
 
 echo "________________________________________________________________________________"                                                                                                                                                                                                                                                                                                                                                                                                                    
