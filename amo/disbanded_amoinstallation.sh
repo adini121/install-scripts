@@ -144,7 +144,7 @@ curl -XDELETE 'http://localhost:9200/addons_*/'
 cd $AMO_HOME_DIR/$amoInstance
 
 echo "________________________________________________________________________________"                                                                                                                                                                                                          
-echo "			running full_init          					"
+echo "			downloading venvburrito         					"
 echo "________________________________________________________________________________"                                                                                                                                                                                                                                                                                                                                                                                                                    
 curl -sL https://raw.github.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | $SHELL
                                                                                                                                                                                                        
@@ -169,7 +169,7 @@ echo "__________________________________________________________________________
 
 workon $amoInstance
 sleep 5
-pip install --no-deps --exists-action=w --download-cache=/tmp/pip-cache -r requirements/dev.txt --find-links https://pyrepo.addons.mozilla.org/wheelhouse/
+pip install --no-deps --exists-action=w --download-cache=/tmp/pip-cache -r requirements/dev.txt --find-links https://pyrepo.addons.mozilla.org/wheelhouse/ --find-links https://pyrepo.addons.mozilla.org/ --no-index
 npm install
 echo "________________________Done: update_deps___________________________"
 
@@ -189,11 +189,11 @@ send "adsad121\r"
 EOD
 echo "________________________Done: initialize_db___________________________"
 
-/home/'$user'/AMOHome/'$amoInstance'/manage.py generate_addons --app firefox 10
-/home/'$user'/AMOHome/'$amoInstance'/manage.py generate_addons --app thunderbird 10
-/home/'$user'/AMOHome/'$amoInstance'/manage.py generate_addons --app android 10
-/home/'$user'/AMOHome/'$amoInstance'/manage.py generate_addons --app seamonkey 10
-/home/'$user'/AMOHome/'$amoInstance'/manage.py generate_themes 10
+/home/$user/AMOHome/$amoInstance/manage.py generate_addons --app firefox 10
+/home/$user/AMOHome/$amoInstance/manage.py generate_addons --app thunderbird 10
+/home/$user/AMOHome/$amoInstance/manage.py generate_addons --app android 10
+/home/$user/AMOHome/$amoInstance/manage.py generate_addons --app seamonkey 10
+/home/$user/AMOHome/$amoInstance/manage.py generate_themes 10
 
 /usr/bin/expect <<EOD
 set timeout 200
