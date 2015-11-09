@@ -186,7 +186,10 @@ expect "Password:"
 send "adsad121\r"
 expect "Password (again):"
 send "adsad121\r"
+expect eof
 EOD
+
+sleep 2
 echo "________________________Done: initialize_db___________________________"
 
 /home/$user/AMOHome/$amoInstance/manage.py generate_addons --app firefox 10
