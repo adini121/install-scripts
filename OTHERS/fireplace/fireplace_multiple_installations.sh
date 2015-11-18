@@ -1,6 +1,6 @@
 #! /bin/bash
 
-cd /home/nisal/scripts/TTTTinstall-scripts/fireplace/
+cd /home/nisal/scripts/install-scripts/fireplace/
 
 echo "____________________starting tmux session 2014_08_05_____________________"
 tmux kill-session -t fireplace
