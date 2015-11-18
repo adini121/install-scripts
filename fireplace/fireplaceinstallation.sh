@@ -20,7 +20,7 @@ FireplaceBaseDir="/home/$USER/Fireplace"
 echo "................................(installing) fireplace code......................................."
 
 if [ ! -d $FireplaceBaseDir/$FireplaceInstance ]; then
-    rm -r $FireplaceBaseDir/$FireplaceInstance
+    rm -rf $FireplaceBaseDir/$FireplaceInstance
     git -C $FireplaceBaseDir clone https://github.com/mozilla/fireplace.git $FireplaceInstance
 fi
  git -C $FireplaceBaseDir/$FireplaceInstance stash
