@@ -23,7 +23,8 @@ if [ ! -d $FireplaceBaseDir/$FireplaceInstance ]; then
     rm -r $FireplaceBaseDir/$FireplaceInstance
     git -C $FireplaceBaseDir clone https://github.com/mozilla/fireplace.git $FireplaceInstance
 fi
- git -C $FireplaceBaseDir/$FireplaceInstance pull
+ git -C $FireplaceBaseDir/$FireplaceInstance stash
+ git -C $FireplaceBaseDir/$FireplaceInstance fetch
  git -C $FireplaceBaseDir/$FireplaceInstance checkout $FireplaceGitTag
 }
 
