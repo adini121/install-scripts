@@ -1,10 +1,12 @@
 #! /bin/bash
 
 cd /home/nisal/scripts/install-scripts/fireplace/
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+echo "Current directory is: "$CURRENT_DIR" "
 
 echo "____________________starting tmux session 2014_08_05_____________________"
 tmux kill-session -t fireplace
-tmux new -d -A -s fireplace_2014_08_05 '                                                                                                                                                                                              
+tmux new -d -A -s fireplace_2014_08_05'                                                                                                                                                                                              
 sh ./fireplaceinstallation.sh -u nisal -t 2014.08.05 -m first -p 8001
 tmux detach'
 
