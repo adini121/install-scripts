@@ -34,7 +34,7 @@ usage(){
 }
 
 createAMOHome(){
-AMO_HOME_DIR="/home/$user/AMOHome/"
+AMO_HOME_DIR="/home/$user/AMOHome"
 echo "____________________AMO base directory is : "$AMO_HOME_DIR"____________________" 
 
 echo "Removing virtualenvs"
