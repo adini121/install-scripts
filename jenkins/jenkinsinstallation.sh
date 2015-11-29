@@ -136,7 +136,7 @@ sed -i 's|.*</env-entry-value>*.|<env-entry-value>/home/'$user'/jenkinsHome/jenk
 
 finalsteps(){
 echo "..............................................finalsteps.............................................."
-
+        export JAVA_OPTS="-Xmx4096m -Xms1024m -server -XX:MaxPermSize=512m"
         export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
         export PATH=$PATH:$JAVA_HOME
         # /home/$user/tomcat/TomcatInstance$startupPort/bin/startup.sh
