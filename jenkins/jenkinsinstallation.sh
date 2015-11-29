@@ -61,7 +61,8 @@ if [ ! -f  /home/$user/JenkinsWarFiles/jenkins"$JenkinsVersion".war ]; then
 wget https://updates.jenkins-ci.org/download/war/$JenkinsVersion/jenkins.war -O /home/$user/JenkinsWarFiles/jenkins"$JenkinsVersion".war
 fi
 
-if [ ! -f /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins$JenkinsVersion ]; then
+if [[ ! -f /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins* ]]; then
+rm -rf /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins*
 cp /home/$user/JenkinsWarFiles/jenkins"$JenkinsVersion".war /home/$user/tomcat/TomcatInstance$startupPort/webapps
 fi
 
