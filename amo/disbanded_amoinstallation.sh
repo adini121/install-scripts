@@ -51,21 +51,14 @@ fi
 installAMOolympiaCode(){
 if [ -d $AMO_HOME_DIR/$amoInstance ]; then
     rm -rf $AMO_HOME_DIR/$amoInstance 
-    mkdir -p $AMO_HOME_DIR/$amoInstance
-    git -C $AMO_HOME_DIR clone --recursive git://github.com/mozilla/olympia.git $amoInstance
 fi
- 	
+
+mkdir -p $AMO_HOME_DIR/$amoInstance
+git -C $AMO_HOME_DIR clone --recursive git@github.com:mozilla/olympia.git $amoInstance
 git -C $AMO_HOME_DIR/$amoInstance pull
 git -C $AMO_HOME_DIR/$amoInstance checkout $amoGitTag
 }
 
-# startElasticSearch(){
-# tmux kill-session -t elastic-search 
-# echo ".............Elasticsearch.........."
-# tmux new -d -A -s elastic-search '
-# /home/'$user'/elasticsearch/bin/elasticsearch
-# tmux detach'
-# }
 
 amoDBsettings(){
 mysql -u root << EOF
