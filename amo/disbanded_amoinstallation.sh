@@ -53,7 +53,6 @@ if [ -d $AMO_HOME_DIR/$amoInstance ]; then
     rm -rf $AMO_HOME_DIR/$amoInstance 
 fi
 
-mkdir -p $AMO_HOME_DIR/$amoInstance
 git -C $AMO_HOME_DIR clone --recursive git@github.com:mozilla/olympia.git $amoInstance
 git -C $AMO_HOME_DIR/$amoInstance pull
 git -C $AMO_HOME_DIR/$amoInstance checkout $amoGitTag
