@@ -3,8 +3,8 @@
 usage(){
         echo "Usage: $0 <OPTIONS>"
         echo "Required options:"
-        echo "  -u $USER                  user name"
-        echo "  -t <bedrockGitCommit>      bedrock git tag eg: December 15 -> commit | Jan 1 -> commit "
+        echo "  -u $USER                User name"
+        echo "  -t <bedrockGitCommit>   Bedrock git tag (Dec15-March15) Eg December 15 -> commit | Jan 1 -> commit "
         echo "  -m <bedrockInstance>    Eg bedrock_mv1_first, bedrock_mv1_second"
         echo "  -p <bedrockPort>        Eg 8088, 8089"
         exit 1
@@ -42,7 +42,7 @@ bedrockInstallation(){
 pip install virtualenv
 virtualenv $bedrockInstance
 source $bedrockInstance/bin/activate
-
+pip install 'pip<7.0'
 export LC_CTYPE="en_US.utf-8"
 pip install -r requirements/compiled.txt
 pip install -r requirements/dev.txt
