@@ -32,7 +32,7 @@ if [ ! -d $JENKINS_HOME_DIR ]; then
 	echo "created JENKINS_HOME_DIR"
 elif [[ -d $JENKINS_HOME_DIR ]]; then
         echo "removing already present JENKINS_HOME_DIR at "$JENKINS_HOME_DIR""
-        rm -r $JENKINS_HOME_DIR
+        rm -rf $JENKINS_HOME_DIR
         mkdir -p $JENKINS_HOME_DIR
         echo "created clean JENKINS_HOME_DIR"
 
@@ -41,7 +41,7 @@ fi
 }
 
 increaseMavenHeapSpace(){
-export MAVEN_OPTS="-Xmx1024M"
+export MAVEN_OPTS="-Xmx512M"
 }
 
 jenkinsWarDownload(){
@@ -61,11 +61,10 @@ if [ ! -f  /home/$user/JenkinsWarFiles/jenkins"$JenkinsVersion".war ]; then
 wget https://updates.jenkins-ci.org/download/war/$JenkinsVersion/jenkins.war -O /home/$user/JenkinsWarFiles/jenkins"$JenkinsVersion".war
 fi
 
-if [[ ! -f /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins* ]]; then
+if [[ -f /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins* ]]; then
 rm -rf /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins*
-cp /home/$user/JenkinsWarFiles/jenkins"$JenkinsVersion".war /home/$user/tomcat/TomcatInstance$startupPort/webapps
 fi
-
+cp /home/$user/JenkinsWarFiles/jenkins"$JenkinsVersion".war /home/$user/tomcat/TomcatInstance$startupPort/webapps
 echo "sleep till war file is unpacked in webapps folder"
 sleep 10
 }
@@ -137,7 +136,7 @@ sed -i 's|.*</env-entry-value>*.|<env-entry-value>/home/'$user'/jenkinsHome/jenk
 
 finalsteps(){
 echo "..............................................finalsteps.............................................."
-        export JAVA_OPTS="-Xmx4096m -Xms1024m -server -XX:MaxPermSize=512m"
+        export JAVA_OPTS="-Xms128m -Xmx2048m -server -XX:MaxPermSize=512m"
         export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
         export PATH=$PATH:$JAVA_HOME
         # /home/$user/tomcat/TomcatInstance$startupPort/bin/startup.sh
