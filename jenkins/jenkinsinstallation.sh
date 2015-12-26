@@ -41,7 +41,7 @@ fi
 }
 
 createJenkinsTmpDir(){
-JENKINS_TMP_DIR="/home/$user/jenkinsHome/jenkinsTMP$JenkinsVersion"
+JENKINS_TMP_DIR="/home/$user/jenkinsHome/jenkinsTMP$JenkinsVersion/tmp"
 if [ ! -d $JENKINS_TMP_DIR ]; then
         mkdir -p $JENKINS_TMP_DIR
         echo "created JENKINS_TMP_DIR"
@@ -51,7 +51,7 @@ elif [[ -d $JENKINS_TMP_DIR ]]; then
         mkdir -p $JENKINS_TMP_DIR
         echo "created clean JENKINS_TMP_DIR"
 fi
-export JAVA_OPTS="-Djava.io.tmpdir=$JENKINS_TMP_DIR"
+export JAVA_OPTS="-Djava.io.tmpdir=/home/$user/jenkinsHome/jenkinsTMP$JenkinsVersion/tmp"
 }
 # increaseMavenHeapSpace(){
 # export MAVEN_OPTS="-Xmx512M"
