@@ -40,9 +40,9 @@ fi
 
 }
 
-increaseMavenHeapSpace(){
-export MAVEN_OPTS="-Xmx512M"
-}
+# increaseMavenHeapSpace(){
+# export MAVEN_OPTS="-Xmx512M"
+# }
 
 jenkinsWarDownload(){
 echo "..............................................jenkinsWarDownload.............................................."
@@ -61,9 +61,11 @@ if [ ! -f  /home/$user/JenkinsWarFiles/jenkins"$JenkinsVersion".war ]; then
 wget https://updates.jenkins-ci.org/download/war/$JenkinsVersion/jenkins.war -O /home/$user/JenkinsWarFiles/jenkins"$JenkinsVersion".war
 fi
 
-if [[ -f /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins* ]]; then
-rm -rf /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins*
-fi
+# if [[ -f /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins* ]]; then
+# rm -rf /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins*
+# fi
+echo "____________________Removing previous Jenkins instances___________________"
+rm -rf /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins1.*
 cp /home/$user/JenkinsWarFiles/jenkins"$JenkinsVersion".war /home/$user/tomcat/TomcatInstance$startupPort/webapps
 echo "sleep till war file is unpacked in webapps folder"
 sleep 10
@@ -80,9 +82,9 @@ echo ".............................................jenkinsCatalina_OptsConfig...
 
 if grep -q 'CATALINA_OPTS=\"$CATALINA_OPTS $JPDA_OPTS\"' /home/$user/tomcat/TomcatInstance$startupPort/bin/catalina.sh;
 then
-        sed -i 's|CATALINA_OPTS=\"$CATALINA_OPTS $JPDA_OPTS\"|CATALINA_OPTS=\"-DJENKINS_HOME=/home/'$user'/jenkinsHome/jenkinsHome'$JenkinsVersion' -Xmx1024m\"|g' /home/$user/tomcat/TomcatInstance$startupPort/bin/catalina.sh
+        sed -i 's|CATALINA_OPTS=\"$CATALINA_OPTS $JPDA_OPTS\"|CATALINA_OPTS=\"-DJENKINS_HOME=/home/'$user'/jenkinsHome/jenkinsHome'$JenkinsVersion'\"|g' /home/$user/tomcat/TomcatInstance$startupPort/bin/catalina.sh
 else
-        sed -i 's|.*"-DJENKINS_HOME=.*|CATALINA_OPTS=\"-DJENKINS_HOME=/home/'$user'/jenkinsHome/jenkinsHome'$JenkinsVersion' -Xmx1024m\"|g' /home/$user/tomcat/TomcatInstance$startupPort/bin/catalina.sh
+        sed -i 's|.*"-DJENKINS_HOME=.*|CATALINA_OPTS=\"-DJENKINS_HOME=/home/'$user'/jenkinsHome/jenkinsHome'$JenkinsVersion'\"|g' /home/$user/tomcat/TomcatInstance$startupPort/bin/catalina.sh
 fi
 }
 
@@ -136,7 +138,7 @@ sed -i 's|.*</env-entry-value>*.|<env-entry-value>/home/'$user'/jenkinsHome/jenk
 
 finalsteps(){
 echo "..............................................finalsteps.............................................."
-        export JAVA_OPTS="-Xms128m -Xmx2048m -server -XX:MaxPermSize=512m"
+        # export JAVA_OPTS="-Xms128m -Xmx2048m -server -XX:MaxPermSize=512m"
         export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
         export PATH=$PATH:$JAVA_HOME
         # /home/$user/tomcat/TomcatInstance$startupPort/bin/startup.sh
@@ -176,7 +178,7 @@ createJenkinsHome
 
 jenkinsWarDownload
 
-increaseMavenHeapSpace
+# increaseMavenHeapSpace
 
 # tomcatServerXMLconfig
 
