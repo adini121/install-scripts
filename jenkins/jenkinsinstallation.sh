@@ -40,19 +40,19 @@ fi
 
 }
 
-createJenkinsTmpDir(){
-JENKINS_TMP_DIR="/home/$user/jenkinsHome/jenkinsTMP$JenkinsVersion/tmp"
-if [ ! -d $JENKINS_TMP_DIR ]; then
-        mkdir -p $JENKINS_TMP_DIR
-        echo "created JENKINS_TMP_DIR"
-elif [[ -d $JENKINS_TMP_DIR ]]; then
-        echo "removing already present JENKINS_TMP_DIR at "$JENKINS_TMP_DIR""
-        rm -rf $JENKINS_TMP_DIR
-        mkdir -p $JENKINS_TMP_DIR
-        echo "created clean JENKINS_TMP_DIR"
-fi
-export JAVA_OPTS="-Djava.io.tmpdir=/home/$user/jenkinsHome/jenkinsTMP$JenkinsVersion/tmp"
-}
+# createJenkinsTmpDir(){
+# JENKINS_TMP_DIR="/home/$user/jenkinsHome/jenkinsTMP$JenkinsVersion/tmp"
+# if [ ! -d $JENKINS_TMP_DIR ]; then
+#         mkdir -p $JENKINS_TMP_DIR
+#         echo "created JENKINS_TMP_DIR"
+# elif [[ -d $JENKINS_TMP_DIR ]]; then
+#         echo "removing already present JENKINS_TMP_DIR at "$JENKINS_TMP_DIR""
+#         rm -rf $JENKINS_TMP_DIR
+#         mkdir -p $JENKINS_TMP_DIR
+#         echo "created clean JENKINS_TMP_DIR"
+# fi
+# export JAVA_OPTS="-Djava.io.tmpdir=/home/$user/jenkinsHome/jenkinsTMP$JenkinsVersion/tmp"
+# }
 # increaseMavenHeapSpace(){
 # export MAVEN_OPTS="-Xmx512M"
 # }
@@ -153,7 +153,6 @@ sed -i 's|.*</env-entry-value>*.|<env-entry-value>/home/'$user'/jenkinsHome/jenk
 finalsteps(){
 echo "..............................................finalsteps.............................................."
         # export JAVA_OPTS="-Xms128m -Xmx2048m -server -XX:MaxPermSize=512m"
-        export JAVA_OPTS="-Djava.io.tmpdir=/home/$user/jenkinsHome/jenkinsTMP$JenkinsVersion/tmp"
         export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
         #export PATH=$PATH:$JAVA_HOME
         # /home/$user/tomcat/TomcatInstance$startupPort/bin/startup.sh
@@ -196,7 +195,7 @@ jenkinsWarDownload
 # increaseMavenHeapSpace
 
 # tomcatServerXMLconfig
-createJenkinsTmpDir
+
 
 jenkinsCatalina_OptsConfig
 
