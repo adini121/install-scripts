@@ -195,6 +195,7 @@ jenkinsWarDownload
 # increaseMavenHeapSpace
 
 # tomcatServerXMLconfig
+createJenkinsTmpDir
 
 jenkinsCatalina_OptsConfig
 
