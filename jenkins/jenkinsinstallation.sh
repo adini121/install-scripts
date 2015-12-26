@@ -140,7 +140,7 @@ finalsteps(){
 echo "..............................................finalsteps.............................................."
         # export JAVA_OPTS="-Xms128m -Xmx2048m -server -XX:MaxPermSize=512m"
         export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
-        export PATH=$PATH:$JAVA_HOME
+        #export PATH=$PATH:$JAVA_HOME
         # /home/$user/tomcat/TomcatInstance$startupPort/bin/startup.sh
         if [[ ! -f $JENKINS_HOME_DIR/plugins/form-element-path.hpi ]];
         then
