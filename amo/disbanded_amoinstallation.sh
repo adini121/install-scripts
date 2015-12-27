@@ -226,17 +226,12 @@ while getopts ":u:b:t:a:p:m:r:" i; do
         a) amoInstance=${OPTARG}
         ;;
         p) amoPort=${OPTARG}
-        ;;
-        m) memcachedPort=${OPTARG}
-        ;;
-        r) redisPort=${OPTARG}
-
     esac
 done
 
 shift $((OPTIND - 1))
 
-if [[ $user == "" || $dbName == "" || $amoGitTag == "" || $amoInstance == "" || $amoPort == "" || memcachedPort == "" || redisPort == "" ]]; then
+if [[ $user == "" || $dbName == "" || $amoGitTag == "" || $amoInstance == "" || $amoPort == "" ]]; then
         usage
 fi
 
