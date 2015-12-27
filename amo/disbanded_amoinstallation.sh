@@ -27,8 +27,8 @@ usage(){
         echo "  -t <amoGitTag>      amo git tag format : YYYY.MM.DD, eg 2015.04.25, 2015.09.10 "
         echo "  -a <amoInstance>    Eg amo_first, amo_second, amo_third etc"
         echo "  -p <amoPort>        Eg 8080, 8081, 8083 etc"
-        echo "  -m <memcachedPort>  Eg 11211, 11212, 11213 etc"
-        echo "  -r <redisPort       Eg 6379, 6380, 6381 etc"
+        # echo "  -m <memcachedPort>  Eg 11211, 11212, 11213 etc"
+        # echo "  -r <redisPort       Eg 6379, 6380, 6381 etc"
         echo "________________________________________________________________________________"
         exit 1
 }
@@ -36,10 +36,6 @@ usage(){
 createAMOHome(){
 AMO_HOME_DIR="/home/$user/AMOHome"
 echo "____________________AMO base directory is : "$AMO_HOME_DIR"____________________" 
-
-echo "Removing virtualenvs"
-rm -rf /home/$user/.virtualenvs
-rm -rf /home/$user/.venvburrito
 
 if [ ! -d $AMO_HOME_DIR ]; then
 	echo "____________________no AMO home directory found.____________________"
@@ -53,9 +49,10 @@ if [ -d $AMO_HOME_DIR/$amoInstance ]; then
     rm -rf $AMO_HOME_DIR/$amoInstance 
 fi
 
-git -C $AMO_HOME_DIR clone --recursive git@github.com:mozilla/olympia.git $amoInstance
-git -C $AMO_HOME_DIR/$amoInstance pull
-git -C $AMO_HOME_DIR/$amoInstance checkout $amoGitTag
+git -C $AMO_HOME_DIR clone -b $amoGitTag --single-branch --depth=1 git@github.com:mozilla/olympia.git $amoInstance
+# git -C $AMO_HOME_DIR/$amoInstance pull
+# git -C $AMO_HOME_DIR/$amoInstance checkout $amoGitTag
+git submodule update --init --recursive
 }
 
 
@@ -101,7 +98,7 @@ DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
 CACHES = {
  	'default': {
 		'BACKEND': 'caching.backends.memcached.MemcachedCache',
- 		'LOCATION': os.environ.get('MEMCACHE_LOCATION', 'localhost:$memcachedPort'),     
+ 		'LOCATION': os.environ.get('MEMCACHE_LOCATION', 'localhost:11211'),     
 	}
 }
 
@@ -118,7 +115,7 @@ ES_INDEXES = {
 BROKER_URL = os.environ.get('BROKER_URL',
             'amqp://olympia:olympia@localhost:5672/$amoInstance')
 
-REDIS_LOCATION = os.environ.get('REDIS_LOCATION', 'localhost:$redisPort')
+REDIS_LOCATION = os.environ.get('REDIS_LOCATION', 'localhost:6379')
 REDIS_BACKENDS = {
     'master': 'redis://{location}?socket_timeout=0.5'.format(
     location=REDIS_LOCATION)}
@@ -133,34 +130,21 @@ echo "__________________________________________________________________________
 amoFullInit(){
 echo "_________________________Wiping current Elasticsearch indices_____________________"                                                                                                                                                                                                       
 curl -XDELETE 'http://localhost:9200/addons_*/'
-cd $AMO_HOME_DIR/$amoInstance
 
 echo "________________________________________________________________________________"                                                                                                                                                                                                          
-echo "			downloading venvburrito         					"
+echo "			making and activating virtualenv "$amoInstance"					"
 echo "________________________________________________________________________________"                                                                                                                                                                                                                                                                                                                                                                                                                    
-curl -sL https://raw.github.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | $SHELL
-                                                                                                                                                                                                       
-echo "                                             									"                                                                                                                                                                                                          
-echo "					      source virtualenv for "$amoInstance"						"				                       
-echo "                                             									"                                                                                                                                                                                                          
-
-
-source /home/$user/.venvburrito/startup.sh
-sleep 5                                                                                                                                                                                                     
-echo "                                             									"                                                                                                                                                                                                          
-echo "						MAKE virtualenv for "$amoInstance"						"				                         
-echo "                                             									"                                                                                                                                                                                                          
-
-mkvirtualenv $amoInstance
-
-pip install --upgrade pip
+cd $AMO_HOME_DIR/$amoInstance
+pip install virtualenv
+virtualenv $amoInstance
+source $amoInstance/bin/activate
 
 echo "________________________________________________________________________________"                                                                                                                                                                                                                                                                                                                                                                                                                    
-echo "								make disbanded 									" 		                         
+echo "								make disbanded install									" 		                         
 echo "________________________________________________________________________________"     
 
 workon $amoInstance
-sleep 5
+sleep 1
 pip install --no-deps --exists-action=w --download-cache=/tmp/pip-cache -r requirements/dev.txt --find-links https://pyrepo.addons.mozilla.org/wheelhouse/ --find-links https://pyrepo.addons.mozilla.org/ --no-index
 npm install
 echo "________________________Done: update_deps___________________________"
@@ -191,7 +175,7 @@ echo "________________________Done: initialize_db___________________________"
 /home/$user/AMOHome/$amoInstance/manage.py generate_themes 10
 
 /usr/bin/expect <<EOD
-set timeout 200
+set timeout 300
 spawn /home/$user/AMOHome/$amoInstance/manage.py reindex --wipe --force  
 expect "Are you sure you want to wipe all AMO Elasticsearch indexes? (yes/no):"
 send "yes\r"
@@ -208,10 +192,10 @@ $AMO_HOME_DIR/$amoInstance/manage.py activate_user --set-admin adamsken1221@gmai
 
 echo "____________________starting tmux session AMO_"$amoInstance"_____________________"
 tmux kill-session -t AMO_$amoInstance
-tmux new -d -A -s AMO_$amoInstance '                                                                                                                                                                                              
-/home/'$user'/AMOHome/'$amoInstance'/manage.py runserver localhost:'$amoPort'
+tmux new -d -A -s AMO_$amoInstance '
+source '$amoInstance'/bin/activate                                                                                                                                                                                              
+/home/'$user'/AMOHome/'$amoInstance'/manage.py runserver 134.96.235.47:'$amoPort'
 tmux detach'
-	
 }
 
 activateAMObanner() {
@@ -224,13 +208,11 @@ if [ ! -d $AMO_HOME_DIR/AMO-banner-launch ]; then
 fi
 
 sleep 2
-sed -i 's|.*URL=.*|URL=http://localhost:'$amoPort'/en-US/|g' $AMO_HOME_DIR/AMO-banner-launch/src/main/resources/amo.properties
+sed -i 's|.*URL=.*|URL=http://134.96.235.47:'$amoPort'/en-US/|g' $AMO_HOME_DIR/AMO-banner-launch/src/main/resources/amo.properties
 cd $AMO_HOME_DIR/AMO-banner-launch
-export MAVEN_OPTS="-Xmx1024M"
 export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
 git pull
 mvn clean install 
-
 }
 
 while getopts ":u:b:t:a:p:m:r:" i; do
