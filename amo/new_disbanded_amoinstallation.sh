@@ -149,10 +149,9 @@ sleep 1
 pip install --no-deps --exists-action=w -r requirements/dev.txt --find-links https://pyrepo.stage.mozaws.net/wheelhouse/ --find-links https://pyrepo.stage.mozaws.net/wheelhouse/ --find-links https://pyrepo.stage.mozaws.net/ --no-index
 npm install
 echo "________________________Done: update_deps___________________________"
-
+source $amoInstance/bin/activate
 /usr/bin/expect <<EOD
 set timeout 1000
-spawn source $amoInstance/bin/activate
 spawn /home/$user/AMOHome/$amoInstance/manage.py reset_db
 expect "Type 'yes' to continue, or 'no' to cancel:"
 send "yes\r"
@@ -166,7 +165,6 @@ schematic --fake migrations/
 
 /usr/bin/expect <<EOD
 set timeout 1000
-source $amoInstance/bin/activate
 spawn /home/$user/AMOHome/$amoInstance/manage.py createsuperuser
 expect "Username:"
 send "admin\r"
@@ -189,21 +187,22 @@ echo "________________________Done: initialize_db___________________________"
 /home/$user/AMOHome/$amoInstance/manage.py generate_addons --app android 10
 /home/$user/AMOHome/$amoInstance/manage.py generate_addons --app seamonkey 10
 /home/$user/AMOHome/$amoInstance/manage.py generate_themes 10
-
+source $amoInstance/bin/activate
 /usr/bin/expect <<EOD
-set timeout 300
+set timeout 500
 spawn /home/$user/AMOHome/$amoInstance/manage.py reindex --wipe --force  
 expect "Are you sure you want to wipe all AMO Elasticsearch indexes? (yes/no):"
 send "yes\r"
 expect eof
 EOD
-
+source $amoInstance/bin/activate
 /home/$user/AMOHome/$amoInstance/manage.py compress_assets
 /home/$user/AMOHome/$amoInstance/manage.py collectstatic --noinput
 }
 
 runAMOInstance(){
 echo "____________________Setting default admin user___________________________"
+source $amoInstance/bin/activate
 $AMO_HOME_DIR/$amoInstance/manage.py activate_user --set-admin adamsken1221@gmail.com
 
 echo "____________________starting tmux session AMO_"$amoInstance"_____________________"
