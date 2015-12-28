@@ -7,7 +7,6 @@
 
 usage(){
         echo "Usage: $0 <OPTIONS>"
-        echo "<<<<<<<<<<< Please set JAVA_HOME Environment Variable >>>>>>>>>"
         echo "!!!!!!!!!!! Only ONE Jenkins Instance per Tomcat Instance !!!!!!!!!!!"
         echo "Required options:"
         echo "  -u <UID>                user name (e.g. adi)"
@@ -99,26 +98,25 @@ then
 else
         sed -i 's|.*"-DJENKINS_HOME=.*|CATALINA_OPTS=\"-DJENKINS_HOME=/home/'$user'/jenkinsHome/jenkinsHome'$JenkinsVersion'\"|g' /home/$user/tomcat/TomcatInstance$startupPort/bin/catalina.sh
 fi
-sed -i 's|.*JAVA_OPTS=".*|JAVA_OPTS="-Djava.io.tmpdir=/home/'$user'/jenkinsHome/jenkinsTMP'$JenkinsVersion'/tmp"|g' /home/$user/tomcat/TomcatInstance$startupPort/bin/catalina.sh
 }
 
-jenkinsXMLconfig(){
-echo "..............................................jenkinsXMLconfig.............................................."
+# jenkinsXMLconfig(){
+# echo "..............................................jenkinsXMLconfig.............................................."
 
-if [ ! -f /home/$user/tomcat/TomcatInstance$startupPort/conf/Catalina/localhost/jenkins.xml ]; then
-	touch /home/$user/tomcat/TomcatInstance$startupPort/conf/Catalina/localhost/jenkins.xml
-        cat > /home/$user/tomcat/TomcatInstance$startupPort/conf/Catalina/localhost/jenkins.xml << EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<Context docBase="/home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins"$JenkinsVersion".war">
-	<Environment name="JENKINS_HOME" value="$JENKINS_HOME_DIR" type="java.lang.String" override="true"/>
-</Context>
-EOF
+# if [ ! -f /home/$user/tomcat/TomcatInstance$startupPort/conf/Catalina/localhost/jenkins.xml ]; then
+# 	touch /home/$user/tomcat/TomcatInstance$startupPort/conf/Catalina/localhost/jenkins.xml
+#         cat > /home/$user/tomcat/TomcatInstance$startupPort/conf/Catalina/localhost/jenkins.xml << EOF
+# <?xml version="1.0" encoding="UTF-8"?>
+# <Context docBase="/home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins"$JenkinsVersion".war">
+# 	<Environment name="JENKINS_HOME" value="$JENKINS_HOME_DIR" type="java.lang.String" override="true"/>
+# </Context>
+# EOF
 
-else
- 	sed -i 's|.*docBase=.*|<Context docBase=\"/home/'$user'/tomcat/TomcatInstance'$startupPort'/webapps/jenkins'$JenkinsVersion'\">|g' /home/$user/tomcat/TomcatInstance$startupPort/conf/Catalina/localhost/jenkins.xml
-	sed -i 's|.*Environment name=.*|<Environment name=\"JENKINS_HOME\" value=\"/home/'$user'/jenkinsHome/jenkinsHome'$JenkinsVersion'\" type=\"java.lang.String\" override=\"true\"/>|g' /home/$user/tomcat/TomcatInstance$startupPort/conf/Catalina/localhost/jenkins.xml
-fi
-}
+# else
+#  	sed -i 's|.*docBase=.*|<Context docBase=\"/home/'$user'/tomcat/TomcatInstance'$startupPort'/webapps/jenkins'$JenkinsVersion'\">|g' /home/$user/tomcat/TomcatInstance$startupPort/conf/Catalina/localhost/jenkins.xml
+# 	sed -i 's|.*Environment name=.*|<Environment name=\"JENKINS_HOME\" value=\"/home/'$user'/jenkinsHome/jenkinsHome'$JenkinsVersion'\" type=\"java.lang.String\" override=\"true\"/>|g' /home/$user/tomcat/TomcatInstance$startupPort/conf/Catalina/localhost/jenkins.xml
+# fi
+# }
 
 
 jenkinsAddConfigXMLFile(){
@@ -153,7 +151,7 @@ sed -i 's|.*</env-entry-value>*.|<env-entry-value>/home/'$user'/jenkinsHome/jenk
 finalsteps(){
 echo "..............................................finalsteps.............................................."
         # export JAVA_OPTS="-Xms128m -Xmx2048m -server -XX:MaxPermSize=512m"
-        export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
+        # export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
         #export PATH=$PATH:$JAVA_HOME
         # /home/$user/tomcat/TomcatInstance$startupPort/bin/startup.sh
         if [[ ! -f $JENKINS_HOME_DIR/plugins/form-element-path.hpi ]];
