@@ -197,8 +197,6 @@ jenkinsWarDownload
 
 jenkinsCatalina_OptsConfig
 
-jenkinsXMLconfig
-
 jenkinsAddConfigXMLFile
 
 jenkinsWebXMLconfig
