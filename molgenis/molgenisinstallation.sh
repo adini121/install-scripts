@@ -52,8 +52,8 @@ molgenis_home=/home/$whoami/.molgenis/omx
 rm -rf $molgenis_tomcat_home/webapps/*
 cp /home/$whoami/MolgenisWarFiles/molgenis"$molgenisVersion".war $molgenis_tomcat_home/webapps/ROOT.war
 sleep 10
-sed -i '' 's|.*CATALINA_OPTS=.*|CATALINA_OPTS=\"-Xmx2g -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -Dmolgenis.home=/home/$whoami/.molgenis/omx"|g' $molgenis_tomcat_home/bin/catalina.sh
-sed -i '' 's|redirectPort=\"8443\"|redirectPort=\"8443\" maxPostSize=\"33554432\" scheme=\"https\" proxyPort=\"443\" URIEncoding=\"UTF-8\"/>|g' $molgenis_tomcat_home/conf/server.xml
+sed -i 's|.*CATALINA_OPTS=.*|CATALINA_OPTS=\"-Xmx2g -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -Dmolgenis.home=/home/$whoami/.molgenis/omx"|g' $molgenis_tomcat_home/bin/catalina.sh
+sed -i 's|redirectPort=\"8443\"|redirectPort=\"8443\" maxPostSize=\"33554432\" scheme=\"https\" proxyPort=\"443\" URIEncoding=\"UTF-8\"/>|g' $molgenis_tomcat_home/conf/server.xml
 sleep 5
 $molgenis_tomcat_home/bin/shutdown.sh
 sleep 5
