@@ -13,6 +13,8 @@ TomcatHome=/home/$user/tomcat/TomcatInstance$startupPort
 MolgenisHome=/home/$user/.molgenis/omx
 
 molgenisDatabaseCreation(){
+TomcatHome=/home/$user/tomcat/TomcatInstance$startupPort
+MolgenisHome=/home/$user/.molgenis/omx
 if [ ! -f $TomcatHome/lib/mysql-connector-java-5.1.24.jar ]; then
     wget http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.24/mysql-connector-java-5.1.24.jar -P $TomcatHome/lib
 fi
@@ -25,6 +27,8 @@ EOF
 }
 
 molgenisHomeConfiguration() {
+TomcatHome=/home/$user/tomcat/TomcatInstance$startupPort
+MolgenisHome=/home/$user/.molgenis/omx
 if [ -d $MolgenisHome ]; then
     rm -rf $MolgenisHome
 fi
@@ -43,6 +47,8 @@ EOF
 }
 
 molgenisTomcatConfiguration(){
+TomcatHome=/home/$user/tomcat/TomcatInstance$startupPort
+MolgenisHome=/home/$user/.molgenis/omx
 rm -rf $TomcatHome/webapps/*
 cp /home/$user/MolgenisWarFiles/molgenis"$molgenisVersion".war $TomcatHome/webapps/ROOT.war
 sleep 10
