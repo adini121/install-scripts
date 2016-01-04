@@ -16,8 +16,6 @@ usage(){
         exit 1
 }
 
-export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
-
 tomcatInstanceCreation(){
 echo "tomcat instance creation script. Installing instance TomcatInstance$startupPort"
 if [ ! -d /home/$user/tomcat/TomcatInstance$startupPort ]; then
@@ -27,8 +25,6 @@ else
 fi
         cp -R /home/$user/tomcat/apache-tomcat-7.0.63/* /home/$user/tomcat/TomcatInstance$startupPort
 }
-
-
 changingTomcatConf() {
 sed -i 's|<Connector port=\"8080\"|<Connector port=\"'$startupPort'\"|g' /home/$user/tomcat/TomcatInstance$startupPort/conf/server.xml
 sed -i 's|<Server port=\"8005\"|<Server port=\"'$shutdownPort'\"|g' /home/$user/tomcat/TomcatInstance$startupPort/conf/server.xml
