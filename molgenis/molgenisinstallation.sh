@@ -8,13 +8,13 @@ usage(){
         echo "  -s <startupPort>        Tomcat startup port (e.g. 8082)"
         exit 1
 }
-echo "USER is : $user"
-TomcatHome=/home/$user/tomcat/TomcatInstance$startupPort
-MolgenisHome=/home/$user/.molgenis/omx
+echo "USER is : nisal"
+TomcatHome=/home/nisal/tomcat/TomcatInstance8004
+MolgenisHome=/home/nisal/.molgenis/omx
 
 molgenisDatabaseCreation(){
-TomcatHome=/home/$user/tomcat/TomcatInstance$startupPort
-MolgenisHome=/home/$user/.molgenis/omx
+TomcatHome=/home/nisal/tomcat/TomcatInstance8004
+MolgenisHome=/home/nisal/.molgenis/omx
 if [ ! -f $TomcatHome/lib/mysql-connector-java-5.1.24.jar ]; then
     wget http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.24/mysql-connector-java-5.1.24.jar -P $TomcatHome/lib
 fi
@@ -27,8 +27,8 @@ EOF
 }
 
 molgenisHomeConfiguration() {
-TomcatHome=/home/$user/tomcat/TomcatInstance$startupPort
-MolgenisHome=/home/$user/.molgenis/omx
+TomcatHome=/home/nisal/tomcat/TomcatInstance8004
+MolgenisHome=/home/nisal/.molgenis/omx
 if [ -d $MolgenisHome ]; then
     rm -rf $MolgenisHome
 fi
@@ -47,15 +47,15 @@ EOF
 }
 
 molgenisTomcatConfiguration(){
-TomcatHome=/home/$user/tomcat/TomcatInstance$startupPort
-MolgenisHome=/home/$user/.molgenis/omx
+TomcatHome=/home/nisal/tomcat/TomcatInstance8004
+MolgenisHome=/home/nisal/.molgenis/omx
 rm -rf $TomcatHome/webapps/*
-cp /home/$user/MolgenisWarFiles/molgenis"$molgenisVersion".war $TomcatHome/webapps/ROOT.war
+cp /home/nisal/MolgenisWarFiles/molgenis"$molgenisVersion".war $TomcatHome/webapps/ROOT.war
 sleep 10
-sed -i 's|.*CATALINA_OPTS=.*|CATALINA_OPTS=\"-Xmx2g -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -Dmolgenis.home=/home/$user/.molgenis/omx"|g' $TomcatHome/bin/catalina.sh
+sed -i 's|.*CATALINA_OPTS=.*|CATALINA_OPTS=\"-Xmx2g -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -Dmolgenis.home=/home/nisal/.molgenis/omx"|g' $TomcatHome/bin/catalina.sh
 # sed -i '' 's|redirectPort=\"8443\"|redirectPort=\"8443\" maxPostSize=\"33554432\" scheme=\"https\" proxyPort=\"443\" URIEncoding=\"UTF-8\"/>|g' $TomcatHome/conf/server.xml
 rm -f $TomcatHome/logs/catalina.out
-export CATALINA_OPTS="-Xmx2g -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -Dmolgenis.home=/home/$user/.molgenis/omx"
+export CATALINA_OPTS="-Xmx2g -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -Dmolgenis.home=/home/nisal/.molgenis/omx"
 sleep 5
 $TomcatHome/bin/shutdown.sh
 sleep 5
@@ -75,7 +75,7 @@ done
 
 shift $((OPTIND - 1))
 
-if [[ $user == "" || $molgenisVersion == "" || $startupPort == "" ]]; then
+if [[ nisal == "" || $molgenisVersion == "" || $startupPort == "" ]]; then
     usage
 fi
 
