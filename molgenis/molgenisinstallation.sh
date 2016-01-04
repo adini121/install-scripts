@@ -8,8 +8,6 @@ usage(){
         exit 1
 }
 
-
-
 molgenisDatabaseCreation(){
 molgenis_tomcat_home=/home/$whoami/tomcat/TomcatInstance$startupPort
 molgenis_home=/home/$whoami/.molgenis/omx
@@ -19,8 +17,8 @@ fi
 mysql -u root << EOF
 DROP DATABASE IF EXISTS omx;
 create database omx;
-grant all privileges on omx.* to molgenis@localhost identified by 'molgenis';
-flush privileges;
+# grant all privileges on omx.* to molgenis@localhost identified by 'molgenis';
+# flush privileges;
 EOF
 }
 
@@ -37,8 +35,8 @@ mkdir -p $molgenis_home;
 touch $molgenis_home/molgenis-server.properties
 chmod 777 $molgenis_home/molgenis-server.properties
 cat > $molgenis_home/molgenis-server.properties << EOF
-db_user=molgenis
-db_password=molgenis
+db_user=root
+db_password=
 db_uri=jdbc\:mysql\://localhost/omx
 admin.password=admin
 user.password=admin
@@ -48,19 +46,17 @@ EOF
 molgenisTomcatConfiguration(){
 molgenis_tomcat_home=/home/$whoami/tomcat/TomcatInstance$startupPort
 molgenis_home=/home/$whoami/.molgenis/omx
-
 rm -rf $molgenis_tomcat_home/webapps/*
 cp /home/$whoami/MolgenisWarFiles/molgenis"$molgenisVersion".war $molgenis_tomcat_home/webapps/ROOT.war
 sleep 10
 sed -i 's|.*CATALINA_OPTS=.*|CATALINA_OPTS=\"-Xmx2g -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -Dmolgenis.home=/home/$whoami/.molgenis/omx"|g' $molgenis_tomcat_home/bin/catalina.sh
-sed -i 's|redirectPort=\"8443\"|redirectPort=\"8443\" maxPostSize=\"33554432\" scheme=\"https\" proxyPort=\"443\" URIEncoding=\"UTF-8\"/>|g' $molgenis_tomcat_home/conf/server.xml
+# sed -i '' 's|redirectPort=\"8443\"|redirectPort=\"8443\" maxPostSize=\"33554432\" scheme=\"https\" proxyPort=\"443\" URIEncoding=\"UTF-8\"/>|g' $molgenis_tomcat_home/conf/server.xml
+rm -f $molgenis_tomcat_home/logs/catalina.out
+export CATALINA_OPTS="-Xmx2g -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -Dmolgenis.home=/home/$whoami/.molgenis/omx"
 sleep 5
 $molgenis_tomcat_home/bin/shutdown.sh
 sleep 5
 $molgenis_tomcat_home/bin/startup.sh
-export CATALINA_OPTS="-Xmx2g -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -Dmolgenis.home=/home/$whoami/.molgenis/omx"
-
-
 }
 
 
