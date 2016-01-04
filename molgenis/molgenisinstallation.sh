@@ -1,16 +1,18 @@
-#! /bin/sh
+#! /bin/bash
 
 usage(){
         echo "Usage: $0 <OPTIONS>"
         echo "Required options:"
+        echo "  -u <UID>                user name (e.g. adi)"
         echo "  -m <molgenisVersion>    Molgenis Version"
         echo "  -s <startupPort>        Tomcat startup port (e.g. 8082)"
         exit 1
 }
 
+molgenis_tomcat_home=/home/$user/tomcat/TomcatInstance$startupPort
+molgenis_home=/home/$user/.molgenis/omx
+
 molgenisDatabaseCreation(){
-molgenis_tomcat_home=/home/$whoami/tomcat/TomcatInstance$startupPort
-molgenis_home=/home/$whoami/.molgenis/omx
 if [ ! -f $molgenis_tomcat_home/lib/mysql-connector-java-5.1.24.jar ]; then
     wget http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.24/mysql-connector-java-5.1.24.jar -P $molgenis_tomcat_home/lib
 fi
@@ -23,9 +25,6 @@ EOF
 }
 
 molgenisHomeConfiguration() {
-molgenis_tomcat_home=/home/$whoami/tomcat/TomcatInstance$startupPort
-molgenis_home=/home/$whoami/.molgenis/omx
-
 if [ -d $molgenis_home ]; then
     rm -rf $molgenis_home
 fi
@@ -44,15 +43,13 @@ EOF
 }
 
 molgenisTomcatConfiguration(){
-molgenis_tomcat_home=/home/$whoami/tomcat/TomcatInstance$startupPort
-molgenis_home=/home/$whoami/.molgenis/omx
 rm -rf $molgenis_tomcat_home/webapps/*
-cp /home/$whoami/MolgenisWarFiles/molgenis"$molgenisVersion".war $molgenis_tomcat_home/webapps/ROOT.war
+cp /home/$user/MolgenisWarFiles/molgenis"$molgenisVersion".war $molgenis_tomcat_home/webapps/ROOT.war
 sleep 10
-sed -i 's|.*CATALINA_OPTS=.*|CATALINA_OPTS=\"-Xmx2g -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -Dmolgenis.home=/home/$whoami/.molgenis/omx"|g' $molgenis_tomcat_home/bin/catalina.sh
+sed -i 's|.*CATALINA_OPTS=.*|CATALINA_OPTS=\"-Xmx2g -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -Dmolgenis.home=/home/$user/.molgenis/omx"|g' $molgenis_tomcat_home/bin/catalina.sh
 # sed -i '' 's|redirectPort=\"8443\"|redirectPort=\"8443\" maxPostSize=\"33554432\" scheme=\"https\" proxyPort=\"443\" URIEncoding=\"UTF-8\"/>|g' $molgenis_tomcat_home/conf/server.xml
 rm -f $molgenis_tomcat_home/logs/catalina.out
-export CATALINA_OPTS="-Xmx2g -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -Dmolgenis.home=/home/$whoami/.molgenis/omx"
+export CATALINA_OPTS="-Xmx2g -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -Dmolgenis.home=/home/$user/.molgenis/omx"
 sleep 5
 $molgenis_tomcat_home/bin/shutdown.sh
 sleep 5
@@ -60,17 +57,19 @@ $molgenis_tomcat_home/bin/startup.sh
 }
 
 
-while getopts ":m:s:" i; do
-    case "${i}" in
+while getopts ":u:m:s:" i; do
+        case "${i}" in
+        u) user=${OPTARG}
+        ;;
         m) molgenisVersion=${OPTARG}
         ;;
         s) startupPort=${OPTARG}
-    esac
+        esac
 done
 
 shift $((OPTIND - 1))
 
-if [[ $molgenisVersion == "" || $startupPort == "" ]]; then
+if [[ $user == "" || $molgenisVersion == "" || $startupPort == "" ]]; then
         usage
 fi
 
