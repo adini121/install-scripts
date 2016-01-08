@@ -64,10 +64,10 @@ gunicorn wsgi.app:application -b 0.0.0.0:7779
 while getopts ":u:t:m:p:" i; do
     case "${i}" in
         u) USER=${OPTARG}
-		;;
+	;;
         t) bedrockGitCommit=${OPTARG}
-		;;
-		m) bedrockInstance=${OPTARG}
+	;;
+	m) bedrockInstance=${OPTARG}
         ;;
         p) bedrockPort=${OPTARG}
     esac
