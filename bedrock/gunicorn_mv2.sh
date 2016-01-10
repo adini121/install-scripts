@@ -35,8 +35,9 @@ git -C $bedrockBaseDir/$bedrockInstance submodule update --init --recursive
 bedrockConfiguration(){
 cd $bedrockBaseDir/$bedrockInstance/
 cp bedrock/settings/local.py-dist bedrock/settings/local.py
-sed -i 's|.*DEBUG.*|DEBUG=False|g' bedrock/settings/local.py
-sed -i '/DEBUG=False/a\HMAC_KEYS = {\x272013-01-01\x27: \x27prositneujahr\x27}' bedrock/settings/local.py
+#sed -i 's|.*DEBUG.*|DEBUG=False|g' bedrock/settings/local.py
+#sed -i '/DEBUG=False/a\HMAC_KEYS = {\x272013-01-01\x27: \x27prositneujahr\x27}' bedrock/settings/local.py
+#sed -i '/DEBUG=False/a\ALLOWED_HOSTS = [\x27134.96.235.47\x27]' bedrock/settings/local.py
 }
 
 bedrockInstallation(){
@@ -56,7 +57,7 @@ send "yes\r"
 expect eof
 EOD
 #./manage.py runserver 0.0.0.0:$bedrockPort
-gunicorn wsgi.app:application -b 0.0.0.0:7779
+gunicorn wsgi.app:application -b 0.0.0.0:$bedrockPort
 
 }
 
