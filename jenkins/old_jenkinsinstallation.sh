@@ -80,7 +80,7 @@ echo "____________________Removing previous Jenkins instances___________________
 rm -rf /home/$user/tomcat/TomcatInstance$startupPort/webapps/jenkins1.*
 cp /home/$user/JenkinsWarFiles/jenkins"$JenkinsVersion".war /home/$user/tomcat/TomcatInstance$startupPort/webapps
 echo "sleep till war file is unpacked in webapps folder"
-sleep 150
+sleep 30
 }
 # ..............................................tomcatServerXMLconfig..............................................
 
@@ -158,9 +158,13 @@ echo "..............................................finalsteps..................
         then
                 wget https://updates.jenkins-ci.org/latest/form-element-path.hpi -P $JENKINS_HOME_DIR/plugins/
         fi
-	curl http://134.96.235.47:$startupPort/jenkins$JenkinsVersion/restart
-#sleep 5
-#/home/$user/tomcat/TomcatInstance$startupPort/bin/startup.sh
+/home/$user/tomcat/TomcatInstance$startupPort/bin/shutdown.sh
+sleep 5
+/home/$user/tomcat/TomcatInstance$startupPort/bin/startup.sh
+sleep 5
+/home/$user/tomcat/TomcatInstance$startupPort/bin/shutdown.sh
+sleep 5
+/home/$user/tomcat/TomcatInstance$startupPort/bin/startup.sh
 
 }
 
