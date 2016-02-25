@@ -1,0 +1,25 @@
+library(ggplot2)
+library(splines)
+library(calibrate)
+robusttests = c(43,43,43,43,43,5,5,5,5,5,5,5)
+revisions=(c(1:12))
+spl <- smooth.spline(revisions,robusttests)
+plot(revisions,robusttests)
+lines(predict(spl,revisions))
+isp <- interpSpline(revisions,robusttests)
+dev.new()
+# plot options cex.main=0.5 (Main title)
+plot(revisions,robusttests,xaxt ="n",xlab = "",ylab = "Number of robust tests",ylim = range(0:60),xlim = range(0:12),cex.main=0.8,col="black",pch=16,bty="l",main="Moodle",cex.lab=1, cex.axis=0.7)
+axis(1, at = 1:12, label = rep("", 12), tck = -0.02)
+## add the labels
+axis(1, at = 1:12, line = -0.7, lwd = 0, cex.axis = 0.7)
+xvec <- seq(min(revisions),max(revisions),length.out = 300)
+# title(ylab = "Loss of Percent", cex.lab = 1.5,
+#       line = 4.5)
+
+textxy(revisions,robusttests,labs = robusttests)
+mtext(side=1, text="Software revisions over time", line=1.5)
+legend("topright", legend = c("Software revisions","Major release"), cex=0.75, lty =c(NA,3),lwd = c(NA,2),pch=c(19,NA),col="black",bty = "n")
+lines(predict(isp,xvec))
+abline(v=1,col="black",lty=3,lwd=1.5)
+
