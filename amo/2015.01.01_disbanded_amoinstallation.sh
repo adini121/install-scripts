@@ -136,9 +136,12 @@ echo "			making and activating virtualenv "$amoInstance"					"
 echo "________________________________________________________________________________"                                                                                                                                                                                                                                                                                                                                                                                                                    
 cd $AMO_HOME_DIR/$amoInstance
 sed -i 's|Pillow==2.8.1|Pillow==2.7.0|g' $AMO_HOME_DIR/$amoInstance/requirements/compiled.txt
+echo">>>>>>>>>>>!!!!!!!!!!!!!<<<<<<<<<<<<<  SETTING SED !!!!!!!!!!!!!!>>>>>>>>>"
+sed -i 's|PyJWT-mozilla==0.1.4.2|PyJWT-mozilla==0.1.5|g' $AMO_HOME_DIR/$amoInstance/requirements/prod.txt
 pip install virtualenv
 virtualenv $amoInstance
 source $amoInstance/bin/activate
+pip install pip==6.0.3
 
 echo "________________________________________________________________________________"                                                                                                                                                                                                                                                                                                                                                                                                                    
 echo "								make disbanded install									" 		                         
@@ -152,19 +155,17 @@ echo "________________________Done: update_deps___________________________"
 source $amoInstance/bin/activate
 /usr/bin/expect <<EOD
 set timeout 1000
-$amoInstance/bin/python /home/$user/AMOHome/$amoInstance/manage.py reset_db
+spawn /home/$user/AMOHome/$amoInstance/manage.py reset_db
 expect "Type 'yes' to continue, or 'no' to cancel:"
 send "yes\r"
 expect eof
 EOD
 source $amoInstance/bin/activate
-pip install Django
-$amoInstance/bin/python /home/$user/AMOHome/$amoInstance/manage.py syncdb --noinput
-$amoInstance/bin/python /home/$user/AMOHome/$amoInstance/manage.py loaddata initial.json
-$amoInstance/bin/python /home/$user/AMOHome/$amoInstance/manage.py import_prod_versions
+/home/$user/AMOHome/$amoInstance/manage.py syncdb --noinput
+/home/$user/AMOHome/$amoInstance/manage.py loaddata initial.json
+/home/$user/AMOHome/$amoInstance/manage.py import_prod_versions
 schematic --fake migrations/
 
-source $amoInstance/bin/activate
 /usr/bin/expect <<EOD
 set timeout 1000
 spawn /home/$user/AMOHome/$amoInstance/manage.py createsuperuser
@@ -184,28 +185,28 @@ source $amoInstance/bin/activate
 sleep 2
 echo "________________________Done: initialize_db___________________________"
 
-$amoInstance/bin/python /home/$user/AMOHome/$amoInstance/manage.py generate_addons --app firefox 15
-$amoInstance/bin/python /home/$user/AMOHome/$amoInstance/manage.py generate_addons --app thunderbird 15
-$amoInstance/bin/python /home/$user/AMOHome/$amoInstance/manage.py generate_addons --app android 15
-$amoInstance/bin/python /home/$user/AMOHome/$amoInstance/manage.py generate_addons --app seamonkey 15
-$amoInstance/bin/python /home/$user/AMOHome/$amoInstance/manage.py generate_themes 15
+/home/$user/AMOHome/$amoInstance/manage.py generate_addons --app firefox 10
+/home/$user/AMOHome/$amoInstance/manage.py generate_addons --app thunderbird 10
+/home/$user/AMOHome/$amoInstance/manage.py generate_addons --app android 10
+/home/$user/AMOHome/$amoInstance/manage.py generate_addons --app seamonkey 10
+/home/$user/AMOHome/$amoInstance/manage.py generate_themes 10
 source $amoInstance/bin/activate
 /usr/bin/expect <<EOD
 set timeout 500
-spawn $amoInstance/bin/python /home/$user/AMOHome/$amoInstance/manage.py reindex --wipe --force  
+spawn /home/$user/AMOHome/$amoInstance/manage.py reindex --wipe --force  
 expect "Are you sure you want to wipe all AMO Elasticsearch indexes? (yes/no):"
 send "yes\r"
 expect eof
 EOD
 source $amoInstance/bin/activate
-$amoInstance/bin/python /home/$user/AMOHome/$amoInstance/manage.py compress_assets
-$amoInstance/bin/python /home/$user/AMOHome/$amoInstance/manage.py collectstatic --noinput
+/home/$user/AMOHome/$amoInstance/manage.py compress_assets
+/home/$user/AMOHome/$amoInstance/manage.py collectstatic --noinput
 }
 
 runAMOInstance(){
 echo "____________________Setting default admin user___________________________"
 source $amoInstance/bin/activate
-/home/$user/AMOHome/$amoInstance/manage.py activate_user --set-admin adamsken1221@gmail.com
+$AMO_HOME_DIR/$amoInstance/manage.py activate_user --set-admin adamsken1221@gmail.com
 
 echo "____________________starting tmux session AMO_"$amoInstance"_____________________"
 tmux kill-session -t AMO_$amoInstance
